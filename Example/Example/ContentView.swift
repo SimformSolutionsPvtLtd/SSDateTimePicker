@@ -12,18 +12,25 @@ struct ContentView: View {
     
     //MARK: - Property
     @State var showCalender: Bool = false
-    @State var showThmeCalender: Bool = false
+    @State var displayCustomizedCalendar: Bool = false
 
+    init() {
+
+    }
+    
     //MARK: - Body
     var body: some View {
         ZStack {
             VStack(spacing: 30) {
                 btnSelectDate
-                btnThemePicker
+                HStack {
+                    btnThemePicker
+//                    Text(calendarManager.selectedDate?.monthDateYear ?? "-")
+                }
             }
-          
-            CalenderView(showCalender: $showCalender)
-            ThemeCalederView(showCalender: $showThmeCalender)
+            SSCalederView(showCalender: $displayCustomizedCalendar, calendarManager: customizedCalendar())
+
+            SSCalederView(showCalender: $showCalender, calendarManager: calendar())
         }
        
     }
@@ -36,17 +43,27 @@ struct ContentView: View {
         } label: {
             Text("Select Date")
         }
-
     }
     
     var btnThemePicker: some View {
         Button {
-            showThmeCalender.toggle()
+            displayCustomizedCalendar.toggle()
         } label: {
-            Text("Open theme picker")
+            Text("Configured Date Picker")
         }
-
     }
+    
+    func calendar() -> StateObject<SSCalendarManager> {
+        let calendarManager = SSCalendarManager(currentMonth: Date())
+        return StateObject(wrappedValue: calendarManager)
+    }
+    
+    func customizedCalendar() -> StateObject<SSCalendarManager> {
+        let configuration = SSCalendarConfiguration(pickerBackgroundColor: Color(uiColor: UIColor(red: 209, green: 128, blue: 128, alpha: 1)), selectionColor: .red)
+        let calendarManager = SSCalendarManager(currentMonth: Date(), configuration: configuration)
+        return StateObject(wrappedValue: calendarManager)
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
