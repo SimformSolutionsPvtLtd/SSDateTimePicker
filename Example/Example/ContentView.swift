@@ -9,12 +9,43 @@ import SwiftUI
 import DateTimePicker
 
 struct ContentView: View {
+    
+    //MARK: - Property
+    @State var showCalender: Bool = false
+    @State var showThmeCalender: Bool = false
+
+    //MARK: - Body
     var body: some View {
-        VStack {
-           Text("Example")
-            CalenderView()
+        ZStack {
+            VStack(spacing: 30) {
+                btnSelectDate
+                btnThemePicker
+            }
+          
+            CalenderView(showCalender: $showCalender)
+            ThemeCalederView(showCalender: $showThmeCalender)
         }
-        .padding()
+       
+    }
+    
+    //MARK: - Sub views
+    
+    var btnSelectDate: some View {
+        Button {
+            showCalender.toggle()
+        } label: {
+            Text("Select Date")
+        }
+
+    }
+    
+    var btnThemePicker: some View {
+        Button {
+            showThmeCalender.toggle()
+        } label: {
+            Text("Open theme picker")
+        }
+
     }
 }
 
