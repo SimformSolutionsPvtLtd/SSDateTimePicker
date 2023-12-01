@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720D22B194D2100AC1FB6 /* PickerViewModel.swift */; };
 		65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584D2B0E3E850049A7BA /* ExampleApp.swift */; };
-		65E058502B0E3E850049A7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584F2B0E3E850049A7BA /* ContentView.swift */; };
+		65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */; };
 		65E058522B0E3E860049A7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E058512B0E3E860049A7BA /* Assets.xcassets */; };
 		65E058552B0E3E860049A7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E058542B0E3E860049A7BA /* Preview Assets.xcassets */; };
 		65E058772B0E3FC30049A7BA /* DateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E058732B0E3FBC0049A7BA /* DateTimePicker.framework */; };
@@ -32,9 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		650720D22B194D2100AC1FB6 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		65E0584A2B0E3E850049A7BA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0584D2B0E3E850049A7BA /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
-		65E0584F2B0E3E850049A7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerExampleView.swift; sourceTree = "<group>"; };
 		65E058512B0E3E860049A7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65E058542B0E3E860049A7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimePicker.xcodeproj; path = ../DateTimePicker/DateTimePicker.xcodeproj; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		650720CF2B194C7900AC1FB6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				650720D22B194D2100AC1FB6 /* PickerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		65E058412B0E3E850049A7BA = {
 			isa = PBXGroup;
 			children = (
@@ -73,8 +83,9 @@
 		65E0584C2B0E3E850049A7BA /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				650720CF2B194C7900AC1FB6 /* ViewModel */,
 				65E0584D2B0E3E850049A7BA /* ExampleApp.swift */,
-				65E0584F2B0E3E850049A7BA /* ContentView.swift */,
+				65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */,
 				65E058512B0E3E860049A7BA /* Assets.xcassets */,
 				65E058532B0E3E860049A7BA /* Preview Content */,
 			);
@@ -198,7 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E058502B0E3E850049A7BA /* ContentView.swift in Sources */,
+				650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */,
+				65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */,
 				65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  ThemeCalederView.swift
+//  SSDatePicker.swift
 //  DateTimePicker
 //
 //  Created by Rizwana Desai on 24/11/23.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-public struct SSCalederView: View, ConfigurationDirectAccess {
-   
+public struct SSDatePicker: View, ConfigurationDirectAccess {
+    
     //MARK: - Property
     @Binding var showCalender: Bool
     @State var currentView: SelectionView = .date
-    @StateObject var calendarManager: SSCalendarManager
+    @ObservedObject var calendarManager: SSCalendarManager
     
     var configuration: SSCalendarConfiguration {
         calendarManager.configuration
     }
-
+    
     private var weeks: [Date] {
         guard let monthInterval = Calendar.current.dateInterval(of: .month, for: calendarManager.currentMonth) else {
             return []
@@ -29,7 +29,7 @@ public struct SSCalederView: View, ConfigurationDirectAccess {
     }
     
     //MARK: - init
-    public init(showCalender: Binding<Bool>, calendarManager: StateObject<SSCalendarManager>) {
+    public init(showCalender: Binding<Bool>, calendarManager: ObservedObject<SSCalendarManager>) {
         self._showCalender = showCalender
         self._calendarManager = calendarManager
     }
@@ -46,7 +46,6 @@ public struct SSCalederView: View, ConfigurationDirectAccess {
                     .padding(.leading, SSCalendarConstants.horizontalSpacing)
                     .padding(.trailing, SSCalendarConstants.horizontalSpacing)
                     .compositingGroup()
-                //                    .shadow(color: Color.lightGreen, radius: 10, x: 0, y: 0)
             }
         }
         .environmentObject(calendarManager)
@@ -60,7 +59,7 @@ public struct SSCalederView: View, ConfigurationDirectAccess {
             case .month:
                 MonthSelectionView()
             case .year:
-                YearSelectionView()
+                YearSelectionView(currentView: $currentView)
             }
         }
     }
@@ -72,7 +71,7 @@ public struct SSCalederView: View, ConfigurationDirectAccess {
             calenderFooterView
             bottomButtons
         }
-        .padding(8)
+        .padding(SSCalendarConstants.pickerViewInnerPadding)
     }
     
     var calenderHeader: some View {
@@ -102,7 +101,7 @@ public struct SSCalederView: View, ConfigurationDirectAccess {
     }
     
     var daysOfWeekView: some View {
-        HStack {
+        HStack(spacing: 0) {
             ForEach(Calendar.current.shortWeekdaySymbols, id: \.self) { dayOfWeek in
                 Text(dayOfWeek.prefix(1))
                     .font(.caption)
@@ -215,19 +214,29 @@ public struct SSCalederView: View, ConfigurationDirectAccess {
             currentView = .date
         }
     }
+
 }
 
 
-extension SSCalederView {
+extension SSDatePicker {
     
     //MARK: - Action methods
     
     func actionCancel() {
-        showCalender = false
-        currentView = .date
+        calendarManager.selectionCanceled(for: currentView)
+        switch currentView {
+        case .date:
+            showCalender = false
+            currentView = .date
+        case .month:
+            currentView = .date
+        case .year:
+            currentView = .month
+        }
     }
     
     func actionOk() {
+        self.calendarManager.selectionConfirmed(for: currentView)
         switch currentView {
         case .year, .month:
             currentView = .date
@@ -244,3 +253,4 @@ extension SSCalederView {
 //        ThemeCalederView(showCalender: .constant(true), calendarManager: SSCalendarManager(currentMonth: Date()))
 //    }
 //}
+

@@ -14,11 +14,10 @@ extension Color {
         self.init(UIColor(named: name, in: Bundle.calendarBundle, compatibleWith: nil)!)
     }
     
-    static let fluorescentPink: Color = Color("fluorescentPink")
-    static let mauvePurple: Color = Color("mauvePurple")
     static let lightGreen: Color = Color("lightGreen")
     static let darkGreen: Color = Color("darkGreen")
-    static let themeBlack: Color = Color("themeBlack")
+    static let darkPink: Color = Color("darkPink")
+    static let lightPink: Color = Color("lightPink")
 
 }
 
