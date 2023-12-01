@@ -58,3 +58,14 @@ extension DateFormatter {
     }
 
 }
+
+public struct DateFormat {
+    
+    public static let abbreviatedMonth = "MMM"
+    public static let dayOfWeekWithMonthAndDay = "EEEE MMMM d"
+    public static let fullMonth = "MMMM"
+    public static let timeOnlyWithPadding = "h:mm a"
+    public static let monthYear = "MMMM, yyyy"
+    public static let monthDateYear = "MMM d, yyyy"
+    
+}

@@ -7,79 +7,77 @@
 
 import SwiftUI
 
-struct DateView: View, ConfigurationAccess {
+struct DateView: View, ConfigurationDirectAccess {
     
-    var configuration: SSCalendarConfiguration
+    //MARK: - Property
+    
+    @EnvironmentObject var calendarManager: SSCalendarManager
+    
     var date: Date
     var weekDateInSelectedMonth: Date
-
-    @State var selectedDate: Date?
-   
-    //MARK: - Property
+    var configuration: SSCalendarConfiguration {
+        calendarManager.configuration
+    }
+    
     private var isDayToday: Bool {
         calendar.isDateInToday(date)
     }
+    
     private var isDaySelectableAndInRange: Bool {
         isDayWithinDateRange && isDayWithinWeekMonthAndYear && canSelectDay
     }
     
     //TODO: implement datasource method to check if the date is from preferd date range
     private var isDayWithinDateRange: Bool {
-       true
+        true
     }
     
     private var isDayWithinWeekMonthAndYear: Bool {
         calendar.isDate(weekDateInSelectedMonth, equalTo: date, toGranularities: [.month, .year])
     }
-
+    
     private var canSelectDay: Bool {
         true
     }
-
+    
     private var isSelected: Bool {
-        guard let selectedDate = selectedDate else { return false }
+        guard let selectedDate = calendarManager.selectedDate else { return false }
         return calendar.isDate(selectedDate, equalTo: date, toGranularities: [.day, .month, .year])
     }
     
     private var numericDay: String {
         String(calendar.component(.day, from: date))
     }
-
+    
     private var foregroundColor: Color {
         if isDayToday {
-            return SSCalendarTheme.todayTextColor
+            return todayColor
         } else {
-            return SSCalendarTheme.dateMonthYearColor
+            return dateMonthYearTextColor
         }
     }
-
-    private var backgroundColor: some View {
-        Group {
-            if isSelected {
-//                SSCalendarTheme.selectionColor
-                SSCalendarTheme.themeColor
-            }
-            if isDayToday {
-                SSCalendarTheme.todayBackgroundColor
-            } else {
-                Color.clear
-            }
+    
+    private var backgroundColor: Color {
+        if isSelected {
+            return selectionBackgroundColor
+        } else if isDayToday {
+            return todaySelectionColor
+        } else {
+            return Color.clear
         }
     }
-
+    
     private var opacity: Double {
-        guard !isDayToday else { return 1 }
         return isDaySelectableAndInRange ? 1 : 0.15
     }
-
+    
     //MARK: - init
-
-    init(configuration: SSCalendarConfiguration, date: Date, weekDateInSelectedMonth: Date) {
-        self.configuration = configuration
+    
+    init(date: Date, weekDateInSelectedMonth: Date) {
         self.date = date
         self.weekDateInSelectedMonth = weekDateInSelectedMonth
     }
-
+    
     //MARK: - Body
     
     var body: some View {
@@ -100,12 +98,13 @@ struct DateView: View, ConfigurationAccess {
     }
     
     func updateSelection() {
-        self.selectedDate = date
+        guard isDaySelectableAndInRange else { return }
+        self.calendarManager.updateDateSelection(date: date)
     }
 }
 
 struct DateView_Previews: PreviewProvider {
     static var previews: some View {
-        DateView(configuration: SSCalendarConfiguration(), date: Date(), weekDateInSelectedMonth: Date())
+        DateView(date: Date(), weekDateInSelectedMonth: Date())
     }
 }

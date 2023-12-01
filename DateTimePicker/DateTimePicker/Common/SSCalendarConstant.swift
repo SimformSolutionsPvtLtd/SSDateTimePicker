@@ -22,3 +22,10 @@ struct SSCalendarConstants {
     static let monthYearGridSpacing: CGFloat = 15
     
 }
+
+
+enum SelectionView {
+    case date
+    case month
+    case year
+}

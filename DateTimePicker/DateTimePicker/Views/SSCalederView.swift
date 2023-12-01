@@ -7,34 +7,31 @@
 
 import SwiftUI
 
-public struct ThemeCalederView: View, ConfigurationAccess {
-    
+public struct SSCalederView: View, ConfigurationDirectAccess {
+   
     //MARK: - Property
     @Binding var showCalender: Bool
+    @State var currentView: SelectionView = .date
+    @StateObject var calendarManager: SSCalendarManager
     
-    @State var showDatePicker: Bool = true
-    @State var showMonthPicker: Bool = false
-    @State var showYearPicker: Bool = false
-//    @State var visibleCalendarMonth: Date = Date()
+    var configuration: SSCalendarConfiguration {
+        calendarManager.configuration
+    }
 
-    @StateObject var calendarManager: SSCalendarManager = SSCalendarManager(currentMonth: Date())
-    var configuration: SSCalendarConfiguration
-    
     private var weeks: [Date] {
-        guard let monthInterval = calendar.dateInterval(of: .month, for: calendarManager.currentMonth) else {
+        guard let monthInterval = Calendar.current.dateInterval(of: .month, for: calendarManager.currentMonth) else {
             return []
         }
         print("Month Interval \(monthInterval)")
-        return calendar.generateDates(
+        return Calendar.current.generateDates(
             inside: monthInterval,
-            matching: calendar.firstDayOfEveryWeek)
+            matching: Calendar.current.firstDayOfEveryWeek)
     }
     
     //MARK: - init
-    public init(showCalender: Binding<Bool>) {
-        self.configuration = SSCalendarConfiguration()
+    public init(showCalender: Binding<Bool>, calendarManager: StateObject<SSCalendarManager>) {
         self._showCalender = showCalender
-//        self._calendarManager = calendarManager
+        self._calendarManager = calendarManager
     }
     
     //MARK: - Sub views
@@ -44,30 +41,26 @@ public struct ThemeCalederView: View, ConfigurationAccess {
                 Color.black.opacity(0.5)
                     .ignoresSafeArea()
                 calenderContainerView
-                    .background(Color.lightGreen)
-                    .cornerRadius(15)
+                    .background(pickerBackgroundColor)
+                    .cornerRadius(pickerViewRadius)
                     .padding(.leading, SSCalendarConstants.horizontalSpacing)
                     .padding(.trailing, SSCalendarConstants.horizontalSpacing)
                     .compositingGroup()
-//                    .shadow(color: Color.lightGreen, radius: 10, x: 0, y: 0)
+                //                    .shadow(color: Color.lightGreen, radius: 10, x: 0, y: 0)
             }
         }
         .environmentObject(calendarManager)
-        .onChange(of: showCalender) { showCalender in
-            showDatePicker = showCalender
-        }
     }
     
     var pickerContainerView: some View {
         ZStack(alignment: .center) {
-            if showDatePicker {
+            switch currentView {
+            case .date:
                 dateSectionView
-            }
-            if showMonthPicker {
+            case .month:
                 MonthSelectionView()
-            }
-            if showYearPicker {
-                YearSelectionView(selectedYear: .constant(2022))
+            case .year:
+                YearSelectionView()
             }
         }
     }
@@ -100,30 +93,29 @@ public struct ThemeCalederView: View, ConfigurationAccess {
         VStack(alignment: .leading, spacing: 20) {
             Text("Select Date")
                 .font(.system(size: 12, weight: .bold))
-                .foregroundColor(Color.gray)
-            Text("Nov 24, 2023")
+                .foregroundColor(headerTitleColor)
+            Text(calendarManager.selectedDate?.monthDateYear ?? calendarManager.currentMonth.monthYear)
                 .font(.system(size: 19, weight: .semibold))
-                .foregroundColor(Color.black)
+                .foregroundColor(headerDateColor)
         }
         .padding(10)
-            
     }
     
     var daysOfWeekView: some View {
         HStack {
-            ForEach(calendar.shortWeekdaySymbols, id: \.self) { dayOfWeek in
+            ForEach(Calendar.current.shortWeekdaySymbols, id: \.self) { dayOfWeek in
                 Text(dayOfWeek.prefix(1))
                     .font(.caption)
                     .frame(width: SSCalendarConstants.widthForDaysOfWeek)
-                    .foregroundColor(.gray)
-
+                    .foregroundColor(weekdayTextColor)
+                
             }
         }
     }
     
     var datesView: some View {
         ForEach(weeks, id: \.self) { week in
-            WeekDatesView(configuration: configuration, week: week)
+            WeekDatesView(week: week)
         }
     }
     
@@ -141,39 +133,44 @@ public struct ThemeCalederView: View, ConfigurationAccess {
     
     var lblMonthYear: some View {
         Button {
-            if showDatePicker {
-                self.showMonthPicker = true
-                self.showDatePicker = false
-            } else if showMonthPicker {
-                self.showYearPicker = true
-                self.showMonthPicker = false
-            } else {
-                self.showYearPicker = false
-                self.showDatePicker = true
-            }
+            updateView()
         } label: {
-            Text(calendarManager.currentMonth.monthYear)
-                .font(.system(size: 14, weight: .regular))
-                .foregroundColor(Color.themeBlack)
+            Text(currentMonthYear)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(monthYearNavigationLabelColor)
+        }
+    }
+    
+    var currentMonthYear: String {
+        switch currentView {
+        case .date:
+            return calendarManager.currentMonth.monthYear
+        case .month:
+            return String(calendarManager.currentMonth.year)
+        case .year:
+            guard let startingYear = calendarManager.yearRange.first, let endYear = calendarManager.yearRange.last else {
+                return String(calendarManager.currentMonth.year)
+            }
+            return "\(startingYear) - \(endYear)"
         }
     }
     
     var btnPrevious: some View {
         Button {
-            self.calendarManager.actionPrev(for: !showDatePicker)
+            self.calendarManager.actionPrev(for: currentView)
         } label: {
             Image(systemName: ImageConstant.chevronLeft)
-                .foregroundColor(Color.gray)
+                .foregroundColor(nextPrevButtonColor)
                 .padding(5)
         }
     }
     
     var btnNext: some View {
         Button {
-            self.calendarManager.actionNext(for: !showDatePicker)
+            self.calendarManager.actionNext(for: currentView)
         } label: {
             Image(systemName: ImageConstant.chevronRight)
-                .foregroundColor(Color.gray)
+                .foregroundColor(nextPrevButtonColor)
                 .padding(5)
         }
     }
@@ -193,7 +190,7 @@ public struct ThemeCalederView: View, ConfigurationAccess {
             Text("Cancel")
                 .font(.system(size: 15, weight: .semibold))
                 .padding(10)
-                .foregroundColor(Color.darkGreen)
+                .foregroundColor(cancelBtnColor)
         }
     }
     
@@ -204,37 +201,40 @@ public struct ThemeCalederView: View, ConfigurationAccess {
             Text("Ok")
                 .font(.system(size: 15, weight: .semibold))
                 .padding(10)
-                .foregroundColor(Color.darkGreen)
+                .foregroundColor(okBtnColor)
         }
     }
     
+    func updateView() {
+        switch currentView {
+        case .date:
+            currentView = .month
+        case .month:
+            currentView = .year
+        case .year:
+            currentView = .date
+        }
+    }
 }
 
 
-extension ThemeCalederView {
+extension SSCalederView {
     
     //MARK: - Action methods
     
     func actionCancel() {
         showCalender = false
-        showMonthPicker = false
-        showDatePicker = false
-        showYearPicker = false
+        currentView = .date
     }
     
     func actionOk() {
-        showCalender.toggle()
-        showDatePicker.toggle()
-        showMonthPicker = false
-        showYearPicker = false
-    }
-  
-    func actionNextYear() {
-         
-    }
-    
-    func actionPreviousYear() {
-         
+        switch currentView {
+        case .year, .month:
+            currentView = .date
+        case .date:
+            showCalender = false
+            currentView = .date
+        }
     }
     
 }

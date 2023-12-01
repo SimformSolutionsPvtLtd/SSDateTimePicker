@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-struct WeekDatesView: View, ConfigurationAccess {
+struct WeekDatesView: View, ConfigurationDirectAccess {
     
     //MARK: - Property
 
-    var configuration: SSCalendarConfiguration
+    @EnvironmentObject var calendarManager: SSCalendarManager
     var week: Date
-    
+    var configuration: SSCalendarConfiguration {
+        calendarManager.configuration
+    }
+
     private var dates: [Date] {
         guard let weekInterval = calendar.dateInterval(of: .weekOfYear, for: week) else {
             return []
@@ -24,8 +27,7 @@ struct WeekDatesView: View, ConfigurationAccess {
     }
     
     //MARK: - init
-    init(configuration: SSCalendarConfiguration, week: Date) {
-        self.configuration = configuration
+    init(week: Date) {
         self.week = week
     }
     
@@ -40,14 +42,15 @@ struct WeekDatesView: View, ConfigurationAccess {
     var datesForWeek: some View {
         HStack {
             ForEach(dates, id: \.self) { date in
-                DateView(configuration: configuration, date: date, weekDateInSelectedMonth: week)
+                DateView(date: date, weekDateInSelectedMonth: week)
             }
         }
     }
+    
 }
 
 struct DatesView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekDatesView(configuration: SSCalendarConfiguration(), week: Date())
+        WeekDatesView(week: Date())
     }
 }
