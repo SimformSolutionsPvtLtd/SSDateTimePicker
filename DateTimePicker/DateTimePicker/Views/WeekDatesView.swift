@@ -40,7 +40,7 @@ struct WeekDatesView: View, ConfigurationDirectAccess {
     //MARK: - Sub views
     
     var datesForWeek: some View {
-        HStack {
+        HStack(spacing: 0) {
             ForEach(dates, id: \.self) { date in
                 DateView(date: date, weekDateInSelectedMonth: week)
             }

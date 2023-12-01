@@ -31,6 +31,14 @@ public struct SSCalendarConfiguration {
     // Corner radius
     var pickerViewRadius: CGFloat = 15
     
+    //
+    public var allowMultipleSelection: Bool = false
+    public var allowRangeSelection: Bool = false
+    public var shouldHeighLightCurrentDate: Bool = false
+    
+    public var minimumDate: Date?
+    public var maximumDate: Date?
+    
     var calendar: Calendar = Calendar.current
     
     public init(pickerBackgroundColor: Color, selectionColor: Color) {
@@ -40,9 +48,9 @@ public struct SSCalendarConfiguration {
     }
     
     public init() {
-        self.selectionBackgroundColor = .darkGreen
-        self.buttonsForegroundColor = .darkGreen
-        self.pickerBackgroundColor = .lightGreen
+        self.selectionBackgroundColor = .darkPink
+        self.buttonsForegroundColor = .darkPink
+        self.pickerBackgroundColor = .lightPink
     }
     
     
@@ -125,4 +133,22 @@ extension ConfigurationDirectAccess {
     var monthYearNavigationLabelColor: Color {
         configuration.monthYearNavigationLabelColor
     }
+    
+    var allowMultipleSelection: Bool {
+        configuration.allowMultipleSelection
+    }
+    
+    var allowRangeSelection: Bool {
+        configuration.allowRangeSelection
+    }
+    
+    var minimumDate: Date? {
+        configuration.minimumDate
+    }
+    
+    var maximumDate: Date? {
+        configuration.maximumDate
+    }
+    
+    
 }

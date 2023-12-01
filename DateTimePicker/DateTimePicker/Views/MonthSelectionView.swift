@@ -10,9 +10,12 @@ import SwiftUI
 struct MonthSelectionView: View, ConfigurationDirectAccess {
     
     //MARK: - Property
-  
-    private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    @State var monthList: [String] = DateFormatter.monthsList
+   
     @EnvironmentObject var calendarManager: SSCalendarManager
+
+    private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    
     var configuration: SSCalendarConfiguration {
         calendarManager.configuration
     }
@@ -30,16 +33,16 @@ struct MonthSelectionView: View, ConfigurationDirectAccess {
     var monthsGridView: some View {
         HStack {
             LazyVGrid(columns: gridItem, spacing: SSCalendarConstants.monthYearGridSpacing) {
-                ForEach(0..<DateFormatter.monthsList.count, id: \.self) { index in
-                    btnMonth(for: index)
+                ForEach(monthList, id: \.self) {  month in
+                    btnMonth(for: month)
                 }
             }
         }
     }
     
     @ViewBuilder
-    func btnMonth(for month: Int) -> some View {
-        let monthName = DateFormatter.monthsList[month]
+    func btnMonth(for month: String) -> some View {
+        let monthName = month
         let isSelectedMonth = calendarManager.isSelected(monthName)
         Button {
             updateMonth(month: month)
@@ -50,7 +53,8 @@ struct MonthSelectionView: View, ConfigurationDirectAccess {
         }
     }
     
-    func updateMonth(month: Int) {
+    func updateMonth(month: String) {
+        guard let month = monthList.firstIndex(where: { $0 == month}) else { return }
         calendarManager.updateMonthSelection(month: month+1)
     }
         

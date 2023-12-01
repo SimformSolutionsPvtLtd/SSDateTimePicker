@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct YearSelectionView: View, ConfigurationDirectAccess {
+public struct YearSelectionView: View, ConfigurationDirectAccess {
     
     //MARK: - Property
+    @Binding var currentView: SelectionView
     @EnvironmentObject var calendarManager: SSCalendarManager
 
     private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: 3)    
@@ -17,9 +18,13 @@ struct YearSelectionView: View, ConfigurationDirectAccess {
     var configuration: SSCalendarConfiguration {
         calendarManager.configuration
     }
+    
+    public init(currentView: Binding<SelectionView>) {
+        self._currentView = currentView
+    }
 
     //MARK: - Body
-    var body: some View {
+    public var body: some View {
         yearsGridView
             .padding(.top, 20)
             .padding(.bottom, 20)
@@ -53,12 +58,13 @@ struct YearSelectionView: View, ConfigurationDirectAccess {
     
     func updateYearSelection(year: Int) {
         calendarManager.updateYearSelection(year: year)
+        currentView = .month
     }
 
 }
 
-struct YearSelectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        YearSelectionView()
-    }
-}
+//struct YearSelectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        YearSelectionView(currentView: .constant(.date))
+//    }
+//}

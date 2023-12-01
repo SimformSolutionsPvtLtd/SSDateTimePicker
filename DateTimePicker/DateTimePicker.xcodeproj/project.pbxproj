@@ -21,8 +21,10 @@
 		650720BE2B10CB7300AC1FB6 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720BD2B10CB7300AC1FB6 /* DateFormatter+Extension.swift */; };
 		650720C02B10CBA100AC1FB6 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720BF2B10CBA100AC1FB6 /* Bundle+Extension.swift */; };
 		650720C22B10CBC500AC1FB6 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720C12B10CBC500AC1FB6 /* Color+Extension.swift */; };
-		650720C62B13BE4D00AC1FB6 /* SSCalederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720C52B13BE4D00AC1FB6 /* SSCalederView.swift */; };
+		650720C62B13BE4D00AC1FB6 /* SSDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720C52B13BE4D00AC1FB6 /* SSDatePicker.swift */; };
 		650720C82B146E9500AC1FB6 /* SSCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720C72B146E9500AC1FB6 /* SSCalendarManager.swift */; };
+		650720CB2B181E5400AC1FB6 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720CA2B181E5400AC1FB6 /* View+Extension.swift */; };
+		650720CD2B18257600AC1FB6 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */; };
 		65E058102B0E2B260049A7BA /* DateTimePicker.docc in Sources */ = {isa = PBXBuildFile; fileRef = 65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */; };
 		65E058162B0E2B260049A7BA /* DateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */; };
 		65E0581B2B0E2B260049A7BA /* DateTimePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0581A2B0E2B260049A7BA /* DateTimePickerTests.swift */; };
@@ -54,8 +56,10 @@
 		650720BD2B10CB7300AC1FB6 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		650720BF2B10CBA100AC1FB6 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		650720C12B10CBC500AC1FB6 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		650720C52B13BE4D00AC1FB6 /* SSCalederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCalederView.swift; sourceTree = "<group>"; };
+		650720C52B13BE4D00AC1FB6 /* SSDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDatePicker.swift; sourceTree = "<group>"; };
 		650720C72B146E9500AC1FB6 /* SSCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSCalendarManager.swift; sourceTree = "<group>"; };
+		650720CA2B181E5400AC1FB6 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTimePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0580E2B0E2B260049A7BA /* DateTimePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateTimePicker.h; sourceTree = "<group>"; };
 		65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DateTimePicker.docc; sourceTree = "<group>"; };
@@ -89,7 +93,7 @@
 				650720A52B0F6BE600AC1FB6 /* DateView.swift */,
 				650720B22B10880900AC1FB6 /* MonthSelectionView.swift */,
 				650720B42B10881900AC1FB6 /* YearSelectionView.swift */,
-				650720C52B13BE4D00AC1FB6 /* SSCalederView.swift */,
+				650720C52B13BE4D00AC1FB6 /* SSDatePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +105,7 @@
 				6507209B2B0F4D4500AC1FB6 /* SSCalendarConfiguration.swift */,
 				650720A92B0F819F00AC1FB6 /* ImageConstant.swift */,
 				650720C72B146E9500AC1FB6 /* SSCalendarManager.swift */,
+				650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 				650720BD2B10CB7300AC1FB6 /* DateFormatter+Extension.swift */,
 				650720BF2B10CBA100AC1FB6 /* Bundle+Extension.swift */,
 				650720C12B10CBC500AC1FB6 /* Color+Extension.swift */,
+				650720CA2B181E5400AC1FB6 /* View+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -270,10 +276,12 @@
 				650720BA2B10CB2800AC1FB6 /* DateComponents+Extension.swift in Sources */,
 				650720A22B0F644000AC1FB6 /* WeekDatesView.swift in Sources */,
 				650720B82B10CB0300AC1FB6 /* Calendar+Extension.swift in Sources */,
+				650720CB2B181E5400AC1FB6 /* View+Extension.swift in Sources */,
 				650720C02B10CBA100AC1FB6 /* Bundle+Extension.swift in Sources */,
 				650720A62B0F6BE600AC1FB6 /* DateView.swift in Sources */,
-				650720C62B13BE4D00AC1FB6 /* SSCalederView.swift in Sources */,
+				650720C62B13BE4D00AC1FB6 /* SSDatePicker.swift in Sources */,
 				650720B32B10880900AC1FB6 /* MonthSelectionView.swift in Sources */,
+				650720CD2B18257600AC1FB6 /* CornerRadiusStyle.swift in Sources */,
 				650720AA2B0F819F00AC1FB6 /* ImageConstant.swift in Sources */,
 				650720BE2B10CB7300AC1FB6 /* DateFormatter+Extension.swift in Sources */,
 				650720B52B10881900AC1FB6 /* YearSelectionView.swift in Sources */,
