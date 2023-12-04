@@ -30,30 +30,28 @@ public extension DatePickerDataSource {
     
 }
 
-
-public class SSCalendarManager: ObservableObject {
+public final class SSDatePickerManager: ObservableObject, ConfigurationDirectAccess {
     
     //MARK: - Property
-
+    
     @Published public private(set) var currentMonth: Date
     @Published public var selectedDate: Date? = nil
-    @Published public private(set) var yearRange = [Int]()
+    @Published private(set) var yearRange = [Int]()
     @Published public var datasource: DatePickerDataSource?
     @Published public var selectedDates: [Date]? = nil
     @Published public var startDate: Date? = nil
     @Published public var endDate: Date? = nil
-    
     private var lastCurrentMonth: Date
     private var lastSelectedDate: Date?
-    
-    public var configuration: SSCalendarConfiguration
+    public var configuration: SSDatePickerConfiguration
+    // Publisher's
     public var onSingleDateSelection = Event<Date>()
     public var onMultipleDateSelection = Event<[Date]>()
     public var onDateRangeSelection = Event<(Date, Date)>()
-
+    
     //MARK: - init
-
-    public init(currentMonth: Date, selectedDate: Date? = nil, configuration: SSCalendarConfiguration = SSCalendarConfiguration()) {
+    
+    public init(currentMonth: Date, selectedDate: Date? = nil, configuration: SSDatePickerConfiguration = SSDatePickerConfiguration()) {
         self.currentMonth = currentMonth
         self.selectedDate = selectedDate
         self.configuration = configuration
@@ -66,9 +64,9 @@ public class SSCalendarManager: ObservableObject {
     func actionNext(for view: SelectionView) {
         switch view {
         case .date:
-            currentMonth = currentMonth.getNextMonth() ?? currentMonth
+            currentMonth = currentMonth.getNextMonth(calendar) ?? currentMonth
         case .month:
-            currentMonth = currentMonth.getNextYear() ?? currentMonth
+            currentMonth = currentMonth.getNextYear(calendar) ?? currentMonth
         case .year:
             guard let year = self.yearRange.last else { return }
             self.updateYearRange(year: year+12)
@@ -78,9 +76,9 @@ public class SSCalendarManager: ObservableObject {
     func actionPrev(for view: SelectionView) {
         switch view {
         case .date:
-            currentMonth = currentMonth.getPreviousMonth() ?? currentMonth
+            currentMonth = currentMonth.getPreviousMonth(calendar) ?? currentMonth
         case .month:
-            currentMonth = currentMonth.getPreviousYear() ?? currentMonth
+            currentMonth = currentMonth.getPreviousYear(calendar) ?? currentMonth
         case .year:
             guard let year = self.yearRange.first else { return }
             self.updateYearRange(year: year-1)
@@ -92,7 +90,7 @@ public class SSCalendarManager: ObservableObject {
     }
     
     func isSelected(_ year: Int) -> Bool {
-        year == (selectedDate ?? currentMonth).year
+        year == (selectedDate ?? currentMonth).year(calendar)
     }
     
     func updateDateSelection(date: Date) {
@@ -109,7 +107,6 @@ public class SSCalendarManager: ObservableObject {
     }
     
     func updateRangeSelection(date: Date) {
-        
         if let startDate = startDate , date >= configuration.calendar.startOfDay(for: startDate) {
             endDate = date
         } else {
@@ -119,44 +116,41 @@ public class SSCalendarManager: ObservableObject {
     
     func updateMonthSelection(month: Int) {
         guard let selectedDate else {
-            var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self.currentMonth)
+            var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self.currentMonth)
             component.month = month
-            self.currentMonth = Calendar.current.date(from: component) ?? currentMonth
+            self.currentMonth = calendar.date(from: component) ?? currentMonth
             return
         }
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate)
+        var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate)
         component.month = month
-        self.selectedDate = Calendar.current.date(from: component)
+        self.selectedDate = calendar.date(from: component)
         self.currentMonth = self.selectedDate ?? currentMonth
     }
     
     func updateYearSelection(year: Int) {
         guard let selectedDate else {
-            var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self.currentMonth)
+            var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self.currentMonth)
             component.year = year
-            self.currentMonth = Calendar.current.date(from: component) ?? currentMonth
+            self.currentMonth = calendar.date(from: component) ?? currentMonth
             return
         }
-        var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate)
+        var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate)
         component.year = year
-        self.selectedDate = Calendar.current.date(from: component)
+        self.selectedDate = calendar.date(from: component)
         self.currentMonth = self.selectedDate ?? currentMonth
     }
     
     func updateYearRange(year: Int) {
-        let year = year
         let lowerBound = year - 11
         let upperBound = year
         self.yearRange = Array(lowerBound...upperBound)
     }
-        
+    
     func selectionCanceled(for view: SelectionView) {
         switch view {
         case .date:
             self.selectedDate = lastSelectedDate
-        case .month:
-            self.currentMonth = lastCurrentMonth
-        case .year:
+        case .month, .year:
             self.currentMonth = lastCurrentMonth
         }
     }
@@ -166,9 +160,7 @@ public class SSCalendarManager: ObservableObject {
         case .date:
             lastSelectedDate = self.selectedDate
             notifySubscriber()
-        case .month:
-            lastCurrentMonth = self.currentMonth
-        case .year:
+        case .month, .year:
             lastCurrentMonth = self.currentMonth
         }
     }

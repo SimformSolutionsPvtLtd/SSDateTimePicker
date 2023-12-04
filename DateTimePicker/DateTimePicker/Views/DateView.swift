@@ -11,11 +11,11 @@ struct DateView: View, ConfigurationDirectAccess {
     
     //MARK: - Property
     
-    @EnvironmentObject var calendarManager: SSCalendarManager
-    
+    @EnvironmentObject var calendarManager: SSDatePickerManager
     var date: Date
     var weekDateInSelectedMonth: Date
-    var configuration: SSCalendarConfiguration {
+    
+    var configuration: SSDatePickerConfiguration {
         calendarManager.configuration
     }
     
@@ -27,6 +27,16 @@ struct DateView: View, ConfigurationDirectAccess {
         isDayWithinDateRange && isDayWithinWeekMonthAndYear && canSelectDay
     }
     
+    private var canSelectFutureDate: Bool {
+        guard disableFutureDates else { return true }
+        return date <= calendar.startOfDay(for: Date())
+    }
+
+    private var canSelectPastDate: Bool {
+        guard disablePastDates else { return true }
+        return date >= calendar.startOfDay(for: Date())
+    }
+
     private var isDayWithinDateRange: Bool {
         guard let minimumDate, let maximumDate else { return true }
         return date >= calendar.startOfDay(for: minimumDate) && date <= maximumDate
@@ -37,7 +47,7 @@ struct DateView: View, ConfigurationDirectAccess {
     }
     
     private var canSelectDay: Bool {
-        calendarManager.datasource?.datePicker(canSelectDate: date) ?? true
+        (calendarManager.datasource?.datePicker(canSelectDate: date) ?? true) && canSelectPastDate && canSelectFutureDate
     }
     
     private var isSelected: Bool {
@@ -55,6 +65,8 @@ struct DateView: View, ConfigurationDirectAccess {
     private var foregroundColor: Color {
         if isDayToday {
             return todayColor
+        } else if isSelected {
+            return Color.white
         } else {
             return dateMonthYearTextColor
         }
@@ -110,7 +122,6 @@ struct DateView: View, ConfigurationDirectAccess {
         isStartDate ? [.topLeft,.bottomLeft] : [.topRight,.bottomRight]
     }
     
-    
     //MARK: - init
     
     init(date: Date, weekDateInSelectedMonth: Date) {
@@ -130,32 +141,28 @@ struct DateView: View, ConfigurationDirectAccess {
         Text(numericDay)
             .font(.footnote)
             .foregroundColor(foregroundColor)
-            .frame(width: SSCalendarConstants.widthForDaysOfWeek, height: SSCalendarConstants.widthForDaysOfWeek)
+            .frame(width: SSPickerConstants.widthForDaysOfWeek, height: SSPickerConstants.widthForDaysOfWeek)
             .if(!allowRangeSelection, transform: { view in
                 view
                     .background(Circle()
-                        .padding(.leading, 5)
-                        .padding(.trailing, 5)
+                        .padding(.leading, SSPickerConstants.selectionCirclePadding)
+                        .padding(.trailing, SSPickerConstants.selectionCirclePadding)
                         .foregroundColor(backgroundColor))
             })
                 .if(allowRangeSelection, transform: { view in
                     view
                         .background(backgroundColor)
-                        .cornerRadius((isStartDate || isEndDate) ? 11 : 0, corners: corners)
+                        .cornerRadius((isStartDate || isEndDate) ? SSPickerConstants.dateRangeSelectionCornerRadius : 0, corners: corners)
                 })
                     .opacity(opacity)
                     .onTapGesture(perform: updateSelection)
     }
     
+    //MARK: - Methods
+
     func updateSelection() {
         guard isDaySelectableAndInRange else { return }
         self.calendarManager.updateDateSelection(date: date)
     }
     
-}
-
-struct DateView_Previews: PreviewProvider {
-    static var previews: some View {
-        DateView(date: Date(), weekDateInSelectedMonth: Date())
-    }
 }

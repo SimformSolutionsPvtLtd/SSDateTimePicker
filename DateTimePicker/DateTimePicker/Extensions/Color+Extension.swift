@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 extension Color {
-  
+    
     init(_ name: String) {
-        self.init(UIColor(named: name, in: Bundle.calendarBundle, compatibleWith: nil)!)
+        self.init(UIColor(named: name, in: Bundle.dateTimePickerBundle, compatibleWith: nil)!)
     }
     
     static let lightGreen: Color = Color("lightGreen")
     static let darkGreen: Color = Color("darkGreen")
     static let darkPink: Color = Color("darkPink")
     static let lightPink: Color = Color("lightPink")
-
+    
 }
 

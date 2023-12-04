@@ -9,7 +9,7 @@ import Foundation
 
 struct ImageConstant {
     
-    static let chevronRight                             = "chevron.right"
-    static let chevronLeft                              = "chevron.left"
+    static let chevronRight = "chevron.right"
+    static let chevronLeft = "chevron.left"
     
 }

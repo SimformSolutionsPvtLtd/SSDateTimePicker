@@ -9,37 +9,37 @@ import Foundation
 import SwiftUI
 
 
-public struct SSCalendarConfiguration {
+public struct SSDatePickerConfiguration {
     
     // Colors
-    var headerTitleColor: Color = Color.gray
-    var headerDateColor: Color = Color.black
-    var weekdayTextColor: Color = Color.gray
-    var dateMonthYearTextColor: Color = Color.black
-    var selectionForegroundColor: Color = Color.white
-    var selectionBackgroundColor: Color
-    var todayColor: Color = Color.black
-    var todaySelectionColor: Color = Color.clear
-    var buttonsForegroundColor: Color
-    var pickerBackgroundColor: Color
-    var nextPrevButtonColor: Color = Color.black
-    var monthYearNavigationLabelColor: Color = Color.black
-    
-    // Date format
-    var headerDateFormat: String = DateFormat.monthDateYear
-    
+    public var headerTitleColor: Color = Color.gray
+    public var headerDateColor: Color = Color.black
+    public var weekdayTextColor: Color = Color.gray
+    public var dateMonthYearTextColor: Color = Color.black
+    public var selectionForegroundColor: Color = Color.white
+    public var selectionBackgroundColor: Color
+    public var todayColor: Color = Color.black
+    public var todaySelectionColor: Color = Color.clear
+    public var buttonsForegroundColor: Color
+    public var pickerBackgroundColor: Color
+    public var nextPrevButtonColor: Color = Color.black
+    public var monthYearNavigationLabelColor: Color = Color.black
+    public var popupOverlayColor: Color = Color.black.opacity(0.5)
+   
     // Corner radius
-    var pickerViewRadius: CGFloat = 15
+    public var pickerViewRadius: CGFloat = 15
     
-    //
+    // Configuration options for date selection.
     public var allowMultipleSelection: Bool = false
     public var allowRangeSelection: Bool = false
-    public var shouldHeighLightCurrentDate: Bool = false
-    
     public var minimumDate: Date?
     public var maximumDate: Date?
-    
-    var calendar: Calendar = Calendar.current
+    public var disableFutureDates: Bool = false
+    public var disablePastDates: Bool = false
+    public var calendar: Calendar = Calendar.current
+
+    // Date format
+    public var headerDateFormat: String = DateFormat.monthDateYear
     
     public init(pickerBackgroundColor: Color, selectionColor: Color) {
         self.selectionBackgroundColor = selectionColor
@@ -53,18 +53,17 @@ public struct SSCalendarConfiguration {
         self.pickerBackgroundColor = .lightPink
     }
     
-    
 }
 
 
 protocol ConfigurationDirectAccess {
     
-    var configuration: SSCalendarConfiguration { get }
+    var configuration: SSDatePickerConfiguration { get }
     
 }
 
 extension ConfigurationDirectAccess {
-   
+    
     var calendar: Calendar {
         configuration.calendar
     }
@@ -108,7 +107,7 @@ extension ConfigurationDirectAccess {
     var pickerBackgroundColor: Color {
         configuration.pickerBackgroundColor
     }
-
+    
     // date format
     var headerDateFormat: String {
         configuration.headerDateFormat
@@ -116,14 +115,6 @@ extension ConfigurationDirectAccess {
     
     var pickerViewRadius: CGFloat {
         configuration.pickerViewRadius
-    }
-    
-    var okBtnColor: Color {
-        configuration.buttonsForegroundColor
-    }
-
-    var cancelBtnColor: Color {
-        configuration.buttonsForegroundColor
     }
     
     var nextPrevButtonColor: Color {
@@ -150,5 +141,16 @@ extension ConfigurationDirectAccess {
         configuration.maximumDate
     }
     
+    var popupOverlayColor: Color {
+        configuration.popupOverlayColor
+    }
     
+    var disablePastDates: Bool {
+        configuration.disablePastDates
+    }
+
+    var disableFutureDates: Bool {
+        configuration.disableFutureDates
+    }
+
 }

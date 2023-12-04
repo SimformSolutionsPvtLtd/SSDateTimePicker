@@ -12,24 +12,23 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     //MARK: - Property
     @Binding var showCalender: Bool
     @State var currentView: SelectionView = .date
-    @ObservedObject var calendarManager: SSCalendarManager
+    @ObservedObject var calendarManager: SSDatePickerManager
     
-    var configuration: SSCalendarConfiguration {
+    var configuration: SSDatePickerConfiguration {
         calendarManager.configuration
     }
     
     private var weeks: [Date] {
-        guard let monthInterval = Calendar.current.dateInterval(of: .month, for: calendarManager.currentMonth) else {
+        guard let monthInterval = calendar.dateInterval(of: .month, for: calendarManager.currentMonth) else {
             return []
         }
-        print("Month Interval \(monthInterval)")
-        return Calendar.current.generateDates(
+        return calendar.generateDates(
             inside: monthInterval,
-            matching: Calendar.current.firstDayOfEveryWeek)
+            matching: calendar.firstDayOfEveryWeek)
     }
     
     //MARK: - init
-    public init(showCalender: Binding<Bool>, calendarManager: ObservedObject<SSCalendarManager>) {
+    public init(showCalender: Binding<Bool>, calendarManager: ObservedObject<SSDatePickerManager>) {
         self._showCalender = showCalender
         self._calendarManager = calendarManager
     }
@@ -38,13 +37,13 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     public var body: some View {
         ZStack(alignment: .center) {
             if showCalender {
-                Color.black.opacity(0.5)
+                popupOverlayColor
                     .ignoresSafeArea()
                 calenderContainerView
                     .background(pickerBackgroundColor)
                     .cornerRadius(pickerViewRadius)
-                    .padding(.leading, SSCalendarConstants.horizontalSpacing)
-                    .padding(.trailing, SSCalendarConstants.horizontalSpacing)
+                    .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
+                    .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
                     .compositingGroup()
             }
         }
@@ -65,49 +64,48 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     }
     
     var calenderContainerView: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             calenderHeader
             pickerContainerView
             calenderFooterView
             bottomButtons
         }
-        .padding(SSCalendarConstants.pickerViewInnerPadding)
+        .padding(SSPickerConstants.pickerViewInnerPadding)
     }
     
     var calenderHeader: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             lblSelectedDate
             Divider()
         }
     }
     
     var dateSectionView: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             daysOfWeekView
             datesView
         }
     }
     
     var lblSelectedDate: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             Text("Select Date")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundColor(headerTitleColor)
-            Text(calendarManager.selectedDate?.monthDateYear ?? calendarManager.currentMonth.monthYear)
+            Text(calendarManager.selectedDate?.formatedString(headerDateFormat) ?? calendarManager.currentMonth.monthYear)
                 .font(.system(size: 19, weight: .semibold))
                 .foregroundColor(headerDateColor)
         }
-        .padding(10)
+        .padding(SSPickerConstants.paddingTen)
     }
     
     var daysOfWeekView: some View {
-        HStack(spacing: 0) {
-            ForEach(Calendar.current.shortWeekdaySymbols, id: \.self) { dayOfWeek in
+        HStack(spacing: SSPickerConstants.horizontalSpacingDates) {
+            ForEach(calendar.shortWeekdaySymbols, id: \.self) { dayOfWeek in
                 Text(dayOfWeek.prefix(1))
                     .font(.caption)
-                    .frame(width: SSCalendarConstants.widthForDaysOfWeek)
+                    .frame(width: SSPickerConstants.widthForDaysOfWeek)
                     .foregroundColor(weekdayTextColor)
-                
             }
         }
     }
@@ -127,7 +125,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
             btnNext
         }
         .frame(maxWidth: .infinity)
-        .padding(5)
+        .padding(SSPickerConstants.paddingFive)
     }
     
     var lblMonthYear: some View {
@@ -145,10 +143,10 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
         case .date:
             return calendarManager.currentMonth.monthYear
         case .month:
-            return String(calendarManager.currentMonth.year)
+            return String(calendarManager.currentMonth.year(calendar))
         case .year:
             guard let startingYear = calendarManager.yearRange.first, let endYear = calendarManager.yearRange.last else {
-                return String(calendarManager.currentMonth.year)
+                return String(calendarManager.currentMonth.year(calendar))
             }
             return "\(startingYear) - \(endYear)"
         }
@@ -158,9 +156,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
         Button {
             self.calendarManager.actionPrev(for: currentView)
         } label: {
-            Image(systemName: ImageConstant.chevronLeft)
-                .foregroundColor(nextPrevButtonColor)
-                .padding(5)
+            self.imageNextPrev(ImageConstant.chevronLeft)
         }
     }
     
@@ -168,14 +164,18 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
         Button {
             self.calendarManager.actionNext(for: currentView)
         } label: {
-            Image(systemName: ImageConstant.chevronRight)
-                .foregroundColor(nextPrevButtonColor)
-                .padding(5)
+            self.imageNextPrev(ImageConstant.chevronRight)
         }
     }
     
+    func imageNextPrev(_ name: String) -> some View {
+        Image(systemName: name)
+            .foregroundColor(nextPrevButtonColor)
+            .padding(SSPickerConstants.paddingFive)
+    }
+    
     var bottomButtons: some View {
-        HStack(spacing: 5) {
+        HStack(spacing: SSPickerConstants.bottomButtonHSpacing) {
             Spacer()
             btnCancel
             btnOk
@@ -187,9 +187,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
             self.actionCancel()
         } label: {
             Text("Cancel")
-                .font(.system(size: 15, weight: .semibold))
-                .padding(10)
-                .foregroundColor(cancelBtnColor)
+                .themeButton(buttonsForegroundColor)
         }
     }
     
@@ -198,9 +196,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
             self.actionOk()
         } label: {
             Text("Ok")
-                .font(.system(size: 15, weight: .semibold))
-                .padding(10)
-                .foregroundColor(okBtnColor)
+                .themeButton(buttonsForegroundColor)
         }
     }
     
@@ -247,10 +243,3 @@ extension SSDatePicker {
     }
     
 }
-
-//struct ThemeCalederView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ThemeCalederView(showCalender: .constant(true), calendarManager: SSCalendarManager(currentMonth: Date()))
-//    }
-//}
-

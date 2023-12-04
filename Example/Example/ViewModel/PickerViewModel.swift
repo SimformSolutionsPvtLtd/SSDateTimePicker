@@ -9,19 +9,21 @@ import Foundation
 import DateTimePicker
 import Combine
 
-class PickerViewModel: ObservableObject {
+final class PickerViewModel: ObservableObject {
     
     //MARK: - Property
     
-    @Published var calendarManager: SSCalendarManager!
+    @Published var calendarManager: SSDatePickerManager!
     @Published var selectedDate: Date?
     @Published var selectedDates: [Date]?
     @Published var startDate: Date?
     @Published var endDate: Date?
     var cancellable = Set<AnyCancellable>()
     
+    //MARK: - init
+
     init() {
-        self.calendarManager = SSCalendarManager(currentMonth: Date())
+        self.calendarManager = SSDatePickerManager(currentMonth: Date())
         subscribeForEvents()
     }
     
@@ -59,7 +61,7 @@ class PickerViewModel: ObservableObject {
     //MARK: Date picker configuration methods
     
     func configureForMultipleDateSelection() {
-        var configuration = SSCalendarConfiguration()
+        var configuration = SSDatePickerConfiguration()
         configuration.allowMultipleSelection = true
 //        configuration.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())!
 //        configuration.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: Date())!
@@ -68,15 +70,17 @@ class PickerViewModel: ObservableObject {
     }
     
     func configureForSingleDateSelection() {
-        let configuration = SSCalendarConfiguration()
+        var configuration = SSDatePickerConfiguration()
+//        configuration.disablePastDates = true
         //        resetSelection()
+//        configuration.headerDateFormat = DateFormat.fullDate
         calendarManager.configuration = configuration
     }
     
     func configureForDateRangeSelection() {
-        var configuration = SSCalendarConfiguration()
+        var configuration = SSDatePickerConfiguration()
         configuration.allowRangeSelection = true
-        resetSelection()
+//        resetSelection()
         calendarManager.configuration = configuration
     }
     
