@@ -10,33 +10,37 @@ import SwiftUI
 public struct YearSelectionView: View, ConfigurationDirectAccess {
     
     //MARK: - Property
-    @Binding var currentView: SelectionView
-    @EnvironmentObject var calendarManager: SSCalendarManager
-
-    private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: 3)    
     
-    var configuration: SSCalendarConfiguration {
+    @Binding var currentView: SelectionView
+    @EnvironmentObject var calendarManager: SSDatePickerManager
+    private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: SSPickerConstants.monthYearGridRows)
+    
+    var configuration: SSDatePickerConfiguration {
         calendarManager.configuration
     }
     
+    //MARK: - init
+
     public init(currentView: Binding<SelectionView>) {
         self._currentView = currentView
     }
 
     //MARK: - Body
+    
     public var body: some View {
         yearsGridView
-            .padding(.top, 20)
-            .padding(.bottom, 20)
+            .padding(.top, SSPickerConstants.monthYearViewTopSpace)
+            .padding(.bottom, SSPickerConstants.monthYearViewBottomSpace)
             .onAppear {
-                calendarManager.updateYearRange(year: (calendarManager.selectedDate ?? calendarManager.currentMonth).year)
+                calendarManager.updateYearRange(year: (calendarManager.selectedDate ?? calendarManager.currentMonth).year(calendar))
             }
     }
     
     //MARK: - Sub views
+    
     var yearsGridView: some View {
         HStack {
-            LazyVGrid(columns: gridItem, spacing: SSCalendarConstants.monthYearGridSpacing) {
+            LazyVGrid(columns: gridItem, spacing: SSPickerConstants.monthYearGridSpacing) {
                 ForEach(calendarManager.yearRange, id: \.self) { year in
                     btnYear(for: year)
                 }
@@ -56,15 +60,11 @@ public struct YearSelectionView: View, ConfigurationDirectAccess {
         }
     }
     
+    //MARK: - Methods
+
     func updateYearSelection(year: Int) {
         calendarManager.updateYearSelection(year: year)
         currentView = .month
     }
 
 }
-
-//struct YearSelectionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        YearSelectionView(currentView: .constant(.date))
-//    }
-//}

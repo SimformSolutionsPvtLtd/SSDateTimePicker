@@ -8,8 +8,8 @@
 import Foundation
 
 public extension Bundle {
-
-    static var calendarBundle: Bundle {
+    
+    static var dateTimePickerBundle: Bundle {
         return Bundle(identifier: "simform.DateTimePicker")!
     }
     

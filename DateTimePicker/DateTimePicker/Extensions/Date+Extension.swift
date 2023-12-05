@@ -11,52 +11,54 @@ import Foundation
 extension Date {
     
     //MARK: - Date to String
+    
     public var abbreviatedMonth: String {
-        DateFormatter.abbreviatedMonth.string(from: self)
+        DateFormatter.dateFormatter(DateFormat.abbreviatedMonth).string(from: self)
     }
     
     public var dayOfWeekWithMonthAndDay: String {
-        DateFormatter.dayOfWeekWithMonthAndDay.string(from: self)
+        DateFormatter.dateFormatter(DateFormat.dayOfWeekWithMonthAndDay).string(from: self)
     }
     
     public var fullMonth: String {
-        DateFormatter.fullMonth.string(from: self)
+        DateFormatter.dateFormatter(DateFormat.fullMonth).string(from: self)
     }
     
     public var timeOnlyWithPadding: String {
-        DateFormatter.timeOnlyWithPadding.string(from: self)
+        DateFormatter.dateFormatter(DateFormat.timeOnlyWithPadding).string(from: self)
     }
     
     public var monthDateYear: String {
-        DateFormatter.monthDateYear.string(from: self)
+        DateFormatter.dateFormatter(DateFormat.monthDateYear).string(from: self)
     }
-    
-//    var yearStr: String {
-//        DateFormatter.year.string(from: self)
-//    }
-    
+
     public var monthYear: String {
-        DateFormatter.monthYear.string(from: self)
+        DateFormatter.dateFormatter(DateFormat.monthYear).string(from: self)
     }
     
-    func getNextMonth() -> Date? {
-        return Calendar.current.date(byAdding: .month, value: 1, to: self)
+    public func formatedString(_ format: String) -> String {
+        DateFormatter.dateFormatter(format).string(from: self)
+    }
+
+    func getNextMonth(_ calender: Calendar) -> Date? {
+        return calender.date(byAdding: .month, value: 1, to: self)
     }
     
-    func getPreviousMonth() -> Date? {
-        return Calendar.current.date(byAdding: .month, value: -1, to: self)
+    func getPreviousMonth(_ calender: Calendar) -> Date? {
+        return calender.date(byAdding: .month, value: -1, to: self)
     }
     
-    func getNextYear() -> Date? {
-        return Calendar.current.date(byAdding: .year, value: 1, to: self)
+    func getNextYear(_ calender: Calendar) -> Date? {
+        return calender.date(byAdding: .year, value: 1, to: self)
     }
     
-    func getPreviousYear() -> Date? {
-        return Calendar.current.date(byAdding: .year, value: -1, to: self)
+    func getPreviousYear(_ calender: Calendar) -> Date? {
+        return calender.date(byAdding: .year, value: -1, to: self)
     }
     
-    var year: Int {
-        let components = Calendar.current.dateComponents([.year], from: self)
+    func year(_ calender: Calendar) -> Int {
+        let components = calender.dateComponents([.year], from: self)
         return components.year ?? 2023
     }
+    
 }
