@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-public struct SSDatePicker: View, ConfigurationDirectAccess {
+public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Property
     @Binding var showCalender: Bool
     @State var currentView: SelectionView = .date
-    @ObservedObject var calendarManager: SSDatePickerManager
+    @ObservedObject var datePickerManager: SSDatePickerManager
     
     var configuration: SSDatePickerConfiguration {
-        calendarManager.configuration
+        datePickerManager.configuration
     }
     
     private var weeks: [Date] {
-        guard let monthInterval = calendar.dateInterval(of: .month, for: calendarManager.currentMonth) else {
+        guard let monthInterval = calendar.dateInterval(of: .month, for: datePickerManager.currentMonth) else {
             return []
         }
         return calendar.generateDates(
@@ -30,7 +30,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     //MARK: - init
     public init(showCalender: Binding<Bool>, calendarManager: ObservedObject<SSDatePickerManager>) {
         self._showCalender = showCalender
-        self._calendarManager = calendarManager
+        self._datePickerManager = calendarManager
     }
     
     //MARK: - Sub views
@@ -47,7 +47,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
                     .compositingGroup()
             }
         }
-        .environmentObject(calendarManager)
+        .environmentObject(datePickerManager)
     }
     
     var pickerContainerView: some View {
@@ -65,7 +65,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     
     var calenderContainerView: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
-            calenderHeader
+            datePickerHeader
             pickerContainerView
             calenderFooterView
             bottomButtons
@@ -73,7 +73,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
         .padding(SSPickerConstants.pickerViewInnerPadding)
     }
     
-    var calenderHeader: some View {
+    var datePickerHeader: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             lblSelectedDate
             Divider()
@@ -92,7 +92,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
             Text("Select Date")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundColor(headerTitleColor)
-            Text(calendarManager.selectedDate?.formatedString(headerDateFormat) ?? calendarManager.currentMonth.monthYear)
+            Text(datePickerManager.selectedDate?.formatedString(headerDateFormat) ?? datePickerManager.currentMonth.monthYear)
                 .font(.system(size: 19, weight: .semibold))
                 .foregroundColor(headerDateColor)
         }
@@ -141,12 +141,12 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     var currentMonthYear: String {
         switch currentView {
         case .date:
-            return calendarManager.currentMonth.monthYear
+            return datePickerManager.currentMonth.monthYear
         case .month:
-            return String(calendarManager.currentMonth.year(calendar))
+            return String(datePickerManager.currentMonth.year(calendar))
         case .year:
-            guard let startingYear = calendarManager.yearRange.first, let endYear = calendarManager.yearRange.last else {
-                return String(calendarManager.currentMonth.year(calendar))
+            guard let startingYear = datePickerManager.yearRange.first, let endYear = datePickerManager.yearRange.last else {
+                return String(datePickerManager.currentMonth.year(calendar))
             }
             return "\(startingYear) - \(endYear)"
         }
@@ -154,7 +154,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     
     var btnPrevious: some View {
         Button {
-            self.calendarManager.actionPrev(for: currentView)
+            self.datePickerManager.actionPrev(for: currentView)
         } label: {
             self.imageNextPrev(ImageConstant.chevronLeft)
         }
@@ -162,7 +162,7 @@ public struct SSDatePicker: View, ConfigurationDirectAccess {
     
     var btnNext: some View {
         Button {
-            self.calendarManager.actionNext(for: currentView)
+            self.datePickerManager.actionNext(for: currentView)
         } label: {
             self.imageNextPrev(ImageConstant.chevronRight)
         }
@@ -219,7 +219,7 @@ extension SSDatePicker {
     //MARK: - Action methods
     
     func actionCancel() {
-        calendarManager.selectionCanceled(for: currentView)
+        datePickerManager.selectionCanceled(for: currentView)
         switch currentView {
         case .date:
             showCalender = false
@@ -232,7 +232,7 @@ extension SSDatePicker {
     }
     
     func actionOk() {
-        self.calendarManager.selectionConfirmed(for: currentView)
+        self.datePickerManager.selectionConfirmed(for: currentView)
         switch currentView {
         case .year, .month:
             currentView = .date

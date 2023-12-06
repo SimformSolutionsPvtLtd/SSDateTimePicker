@@ -37,6 +37,6 @@ public struct DateFormat {
     public static let shortMonthYear = "MMM yyyy" // Jun 2023
     public static let dayMonthYear = "EEEE, d MMM, yyyy" // Monday, 3 Jun, 2023
     public static let fullDate = "EEEE, MMMM d, yyyy" // Monday, Jun 03, 2023
-    public static let timeOnlyWithPadding = "h:mm a" // 12:45 PM
-    
+    public static let timeOnlyWithPadding = "hh:mm a" // 12:45 PM
+    public static let twentyFourHourFormat = "HH:mm"
 }

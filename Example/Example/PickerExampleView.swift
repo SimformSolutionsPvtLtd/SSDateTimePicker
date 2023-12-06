@@ -13,6 +13,7 @@ struct PickerExampleView: View {
     
     //MARK: - Property
     @State var showCalender: Bool = false
+    @State var showTimePicker: Bool = false
     @State var displayCustomizedCalendar: Bool = false
     @State var selectedDate: Date = Date()
     @State var selectedDateCombine: Date?
@@ -33,10 +34,12 @@ struct PickerExampleView: View {
                 Divider()
                 rangeSelectionView
                 Divider()
+                timePickerView
                 Spacer()
             }
             .padding(20)
-            SSDatePicker(showCalender: $showCalender, calendarManager: ObservedObject(wrappedValue: pickerViewModel.calendarManager))
+            SSDatePicker(showCalender: $showCalender, calendarManager: ObservedObject(wrappedValue: pickerViewModel.datePickerManager))
+            SSTimePicker(showTimePicker: $showTimePicker, timePickerManager: pickerViewModel.timePickerManager)
         }
         
     }
@@ -76,6 +79,22 @@ struct PickerExampleView: View {
         } label: {
             Text("Select Date range: Start Date & end Date")
         }
+    }
+    
+    var timePickerView: some View {
+        VStack {
+            btnTimePicker
+            Text("Selected Time: \(pickerViewModel.selectedTime?.timeOnlyWithPadding ?? "")")
+        }
+    }
+    
+    var btnTimePicker: some View {
+        Button {
+            showTimePicker.toggle()
+        } label: {
+            Text("Time picker")
+        }
+
     }
     
     var btnSelectSingleDate: some View {

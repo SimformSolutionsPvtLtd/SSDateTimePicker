@@ -30,7 +30,7 @@ public extension DatePickerDataSource {
     
 }
 
-public final class SSDatePickerManager: ObservableObject, ConfigurationDirectAccess {
+public final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirectAccess {
     
     //MARK: - Property
     

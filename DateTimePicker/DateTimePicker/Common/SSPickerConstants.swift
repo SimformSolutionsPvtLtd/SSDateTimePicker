@@ -28,6 +28,16 @@ struct SSPickerConstants {
     static let paddingFive: CGFloat = 5
     static let monthYearGridRows: Int = 3
     
+    // Time picker constant
+    
+    static let timeFieldPadding: CGFloat = 8
+    static let timeFieldCornerRadius: CGFloat = 8
+    static let circleSize: CGFloat = 40
+    static let clockPadding: CGFloat = 50
+    static let clockHeight: CGFloat = 300
+    static let clockNumberRotationDegree: CGFloat = 30 // To create clock on 360 degree angle, use 30 degree (12*30 = 360)
+    static let minuteRotationDegree: CGFloat = 6 // 12*5*6 = 360
+
 }
 
 public enum SelectionView {
