@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeekDatesView: View, ConfigurationDirectAccess {
+struct WeekDatesView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Property
     

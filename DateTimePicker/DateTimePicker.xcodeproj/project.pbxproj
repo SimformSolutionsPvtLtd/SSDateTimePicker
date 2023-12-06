@@ -26,6 +26,11 @@
 		650720CB2B181E5400AC1FB6 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720CA2B181E5400AC1FB6 /* View+Extension.swift */; };
 		650720CD2B18257600AC1FB6 /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */; };
 		650720EF2B19FD7A00AC1FB6 /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720EE2B19FD7A00AC1FB6 /* ThemeButton.swift */; };
+		650720F52B1DAFFB00AC1FB6 /* SSTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720F42B1DAFFB00AC1FB6 /* SSTimePicker.swift */; };
+		650720F72B1DDF3600AC1FB6 /* SSTimePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720F62B1DDF3600AC1FB6 /* SSTimePickerManager.swift */; };
+		650720F92B1DE9FD00AC1FB6 /* SSTimeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720F82B1DE9FD00AC1FB6 /* SSTimeTextField.swift */; };
+		650720FB2B1DEF8300AC1FB6 /* SSTimePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720FA2B1DEF8300AC1FB6 /* SSTimePickerConfiguration.swift */; };
+		654A7F952B1F04DF00EB9B33 /* SSClockPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654A7F942B1F04DF00EB9B33 /* SSClockPicker.swift */; };
 		65E058102B0E2B260049A7BA /* DateTimePicker.docc in Sources */ = {isa = PBXBuildFile; fileRef = 65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */; };
 		65E058162B0E2B260049A7BA /* DateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */; };
 		65E0581B2B0E2B260049A7BA /* DateTimePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0581A2B0E2B260049A7BA /* DateTimePickerTests.swift */; };
@@ -62,6 +67,11 @@
 		650720CA2B181E5400AC1FB6 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		650720EE2B19FD7A00AC1FB6 /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
+		650720F42B1DAFFB00AC1FB6 /* SSTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTimePicker.swift; sourceTree = "<group>"; };
+		650720F62B1DDF3600AC1FB6 /* SSTimePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTimePickerManager.swift; sourceTree = "<group>"; };
+		650720F82B1DE9FD00AC1FB6 /* SSTimeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTimeTextField.swift; sourceTree = "<group>"; };
+		650720FA2B1DEF8300AC1FB6 /* SSTimePickerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTimePickerConfiguration.swift; sourceTree = "<group>"; };
+		654A7F942B1F04DF00EB9B33 /* SSClockPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSClockPicker.swift; sourceTree = "<group>"; };
 		65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTimePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0580E2B0E2B260049A7BA /* DateTimePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateTimePicker.h; sourceTree = "<group>"; };
 		65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DateTimePicker.docc; sourceTree = "<group>"; };
@@ -96,6 +106,7 @@
 				650720B22B10880900AC1FB6 /* MonthSelectionView.swift */,
 				650720B42B10881900AC1FB6 /* YearSelectionView.swift */,
 				650720C52B13BE4D00AC1FB6 /* SSDatePicker.swift */,
+				650720F42B1DAFFB00AC1FB6 /* SSTimePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,11 +114,12 @@
 		650720A42B0F645600AC1FB6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				654A7F972B1F2CF400EB9B33 /* Time picker */,
+				654A7F962B1F2CEC00EB9B33 /* Date picker */,
 				6507209D2B0F538400AC1FB6 /* SSPickerConstants.swift */,
-				6507209B2B0F4D4500AC1FB6 /* SSDatePickerConfiguration.swift */,
 				650720A92B0F819F00AC1FB6 /* ImageConstant.swift */,
-				650720C72B146E9500AC1FB6 /* SSDatePickerManager.swift */,
 				650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */,
+				650720F82B1DE9FD00AC1FB6 /* SSTimeTextField.swift */,
 				650720EE2B19FD7A00AC1FB6 /* ThemeButton.swift */,
 			);
 			path = Common;
@@ -125,6 +137,25 @@
 				650720CA2B181E5400AC1FB6 /* View+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		654A7F962B1F2CEC00EB9B33 /* Date picker */ = {
+			isa = PBXGroup;
+			children = (
+				650720C72B146E9500AC1FB6 /* SSDatePickerManager.swift */,
+				6507209B2B0F4D4500AC1FB6 /* SSDatePickerConfiguration.swift */,
+			);
+			path = "Date picker";
+			sourceTree = "<group>";
+		};
+		654A7F972B1F2CF400EB9B33 /* Time picker */ = {
+			isa = PBXGroup;
+			children = (
+				654A7F942B1F04DF00EB9B33 /* SSClockPicker.swift */,
+				650720FA2B1DEF8300AC1FB6 /* SSTimePickerConfiguration.swift */,
+				650720F62B1DDF3600AC1FB6 /* SSTimePickerManager.swift */,
+			);
+			path = "Time picker";
 			sourceTree = "<group>";
 		};
 		65E058012B0E2B260049A7BA = {
@@ -288,10 +319,15 @@
 				650720AA2B0F819F00AC1FB6 /* ImageConstant.swift in Sources */,
 				650720BE2B10CB7300AC1FB6 /* DateFormatter+Extension.swift in Sources */,
 				650720B52B10881900AC1FB6 /* YearSelectionView.swift in Sources */,
+				654A7F952B1F04DF00EB9B33 /* SSClockPicker.swift in Sources */,
+				650720F72B1DDF3600AC1FB6 /* SSTimePickerManager.swift in Sources */,
 				650720C82B146E9500AC1FB6 /* SSDatePickerManager.swift in Sources */,
+				650720F92B1DE9FD00AC1FB6 /* SSTimeTextField.swift in Sources */,
 				6507209E2B0F538400AC1FB6 /* SSPickerConstants.swift in Sources */,
+				650720FB2B1DEF8300AC1FB6 /* SSTimePickerConfiguration.swift in Sources */,
 				65E058102B0E2B260049A7BA /* DateTimePicker.docc in Sources */,
 				650720BC2B10CB5000AC1FB6 /* Date+Extension.swift in Sources */,
+				650720F52B1DAFFB00AC1FB6 /* SSTimePicker.swift in Sources */,
 				650720EF2B19FD7A00AC1FB6 /* ThemeButton.swift in Sources */,
 				650720C22B10CBC500AC1FB6 /* Color+Extension.swift in Sources */,
 				6507209C2B0F4D4500AC1FB6 /* SSDatePickerConfiguration.swift in Sources */,

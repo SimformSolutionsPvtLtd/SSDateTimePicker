@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MonthSelectionView: View, ConfigurationDirectAccess {
+struct MonthSelectionView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Property
     

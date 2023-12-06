@@ -55,13 +55,13 @@ public struct SSDatePickerConfiguration {
     
 }
 
-protocol ConfigurationDirectAccess {
+protocol DatePickerConfigurationDirectAccess {
     
     var configuration: SSDatePickerConfiguration { get }
     
 }
 
-extension ConfigurationDirectAccess {
+extension DatePickerConfigurationDirectAccess {
     
     var calendar: Calendar {
         configuration.calendar
