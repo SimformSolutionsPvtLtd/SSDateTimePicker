@@ -8,28 +8,32 @@
 import Foundation
 import SwiftUI
 
-
+/// A configuration structure for customizing the appearance and behavior of the SSDatePicker.
 public struct SSDatePickerConfiguration {
     
-    // Colors
+    // MARK: - Colors
+
+    /** Color for the header title -"Select date". */
     public var headerTitleColor: Color = Color.gray
+    /** Color for the header date text. */
     public var headerDateColor: Color = Color.black
     public var weekdayTextColor: Color = Color.gray
+    /** list of Date, month, and year's text color in  picker. */
     public var dateMonthYearTextColor: Color = Color.black
-    public var selectionForegroundColor: Color = Color.white
+    /** Selected date font color */
+    public var selectedDateTextColor: Color = Color.white
     public var selectionBackgroundColor: Color
     public var todayColor: Color = Color.black
-    public var todaySelectionColor: Color = Color.clear
+    public var todaySelectionBgColor: Color?
     public var buttonsForegroundColor: Color
     public var pickerBackgroundColor: Color
     public var nextPrevButtonColor: Color = Color.black
-    public var monthYearNavigationLabelColor: Color = Color.black
+    /** Color for the text of navigation labels, such as "June, 2023" or "2023". */
+    public var navigationLabelColor: Color = Color.black
     public var popupOverlayColor: Color = Color.black.opacity(0.5)
    
-    // Corner radius
-    public var pickerViewRadius: CGFloat = 15
-    
-    // Configuration options for date selection.
+    // MARK: - Date selection behavior configuration properties
+
     public var allowMultipleSelection: Bool = false
     public var allowRangeSelection: Bool = false
     public var minimumDate: Date?
@@ -38,21 +42,40 @@ public struct SSDatePickerConfiguration {
     public var disablePastDates: Bool = false
     public var calendar: Calendar = Calendar.current
 
-    // Date format
+    // MARK: - Font properties
+
+    /** Color for the header title -"Select date". */
+    public var headerTitleFont: Font = .system(size: 12, weight: .bold)
+    /** Font for the header date text. */
+    public var headerDateFont: Font = .system(size: 20, weight: .semibold)
+    public var weekdayTextFont: Font = .caption
+    public var dateTextFont: Font = .footnote
+    public var monthTextFont: Font = .system(size: 14, weight: .regular)
+    public var selectedMonthTextFont: Font = .system(size: 14, weight: .bold)
+    public var yearTextFont: Font = .system(size: 14, weight: .regular)
+    public var selectedYearTextFont: Font = .system(size: 14, weight: .bold)
+    public var buttonsFont: Font = .system(size: 15, weight: .semibold)
+    public var currentMonthYearBottomLabelFont: Font = .system(size: 14, weight: .medium)
+    
+    // MARK: - Additional Properties
+  
+    public var pickerViewRadius: CGFloat = 15
     public var headerDateFormat: String = DateFormat.monthDateYear
     
-    public init(pickerBackgroundColor: Color, selectionColor: Color) {
-        self.selectionBackgroundColor = selectionColor
-        self.buttonsForegroundColor = selectionColor
+    // MARK: - Initializer
+
+    /// Creates a custom-themed date picker.
+    ///
+    /// - Parameters:
+    ///   - pickerBackgroundColor: The color for the background of the picker view. Default is light pink.
+    ///   - primaryColor: This parameter determines the color for both the selected date's background and the buttons in the date picker.
+    ///
+    /// Use this instance to set up the appearance and behavior of the SSDatePicker according to your prefrence.
+    public init(pickerBackgroundColor: Color = Color.lightPink, primaryColor: Color = Color.darkPink) {
+        self.selectionBackgroundColor = primaryColor
+        self.buttonsForegroundColor = primaryColor
         self.pickerBackgroundColor = pickerBackgroundColor
     }
-    
-    public init() {
-        self.selectionBackgroundColor = .darkPink
-        self.buttonsForegroundColor = .darkPink
-        self.pickerBackgroundColor = .lightPink
-    }
-    
 }
 
 protocol DatePickerConfigurationDirectAccess {
@@ -83,8 +106,8 @@ extension DatePickerConfigurationDirectAccess {
         configuration.dateMonthYearTextColor
     }
     
-    var selectionForegroundColor: Color {
-        configuration.selectionForegroundColor
+    var selectedDateTextColor: Color {
+        configuration.selectedDateTextColor
     }
     
     var selectionBackgroundColor: Color {
@@ -95,8 +118,8 @@ extension DatePickerConfigurationDirectAccess {
         configuration.todayColor
     }
     
-    var todaySelectionColor: Color {
-        configuration.todaySelectionColor
+    var todaySelectionBgColor: Color? {
+        configuration.todaySelectionBgColor
     }
     
     var buttonsForegroundColor: Color {
@@ -121,7 +144,7 @@ extension DatePickerConfigurationDirectAccess {
     }
     
     var monthYearNavigationLabelColor: Color {
-        configuration.monthYearNavigationLabelColor
+        configuration.navigationLabelColor
     }
     
     var allowMultipleSelection: Bool {
@@ -150,6 +173,46 @@ extension DatePickerConfigurationDirectAccess {
 
     var disableFutureDates: Bool {
         configuration.disableFutureDates
+    }
+    
+    var headerTitleFont: Font {
+        configuration.headerTitleFont
+    }
+    
+    var headerDateFont: Font {
+        configuration.headerDateFont
+    }
+    
+    var weekdayTextFont: Font {
+        configuration.weekdayTextFont
+    }
+    
+    var dateTextFont: Font {
+        configuration.dateTextFont
+    }
+    
+    var monthTextFont: Font {
+        configuration.monthTextFont
+    }
+    
+    var selectedMonthTextFont: Font {
+        configuration.selectedMonthTextFont
+    }
+    
+    var yearTextFont: Font {
+        configuration.yearTextFont
+    }
+    
+    var buttonsFont: Font {
+        configuration.buttonsFont
+    }
+    
+    var currentMonthYearBottomLabelFont: Font {
+        configuration.currentMonthYearBottomLabelFont
+    }
+    
+    var selectedYearTextFont: Font {
+        configuration.selectedYearTextFont
     }
 
 }

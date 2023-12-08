@@ -13,12 +13,13 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     @ObservedObject var timePickerManager: SSTimePickerManager
     @Binding var showTimePicker: Bool
+    @State var isInEditMode: Bool = false
     
     var configuration: SSTimePickerConfiguration {
         timePickerManager.configuration
     }
     
-    //MARK: - init
+    //MARK: - Initializer
     
     public init(showTimePicker: Binding<Bool>, timePickerManager: SSTimePickerManager) {
         self._showTimePicker = showTimePicker
@@ -38,6 +39,11 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
                     .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
                     .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
                     .compositingGroup()
+            }
+        }
+        .onChange(of: showTimePicker) { newValue in
+            if showTimePicker {
+                timePickerManager.setUpTimeAndAngle()
             }
         }
     }
@@ -62,7 +68,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     var lblSelectedDate: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             Text("Select Time")
-                .font(.system(size: 12, weight: .bold))
+                .font(headerTitleFont)
                 .foregroundColor(headerTitleCoor)
             textFieldHourMinutes
         }
@@ -71,17 +77,31 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     var textFieldHourMinutes: some View {
         HStack(spacing: 4) {
-            SSTimeTextField(time: $timePickerManager.hour, placeHolder: "HH", backgroundColor: timeTextBackgroundColor, foregrondColor: timeForegroundColor)
-                .onTapGesture {
+            SSTimeTextField(time: $timePickerManager.hourSelected, configuration: configuration, isHourField: true, isInEditMode: $isInEditMode)
+                .simultaneousGesture(TapGesture().onEnded {
                     timePickerManager.actionShowHourClock()
-                }
+                })
             Text(":")
-            SSTimeTextField(time: $timePickerManager.minutes, placeHolder: "MM", backgroundColor: timeTextBackgroundColor, foregrondColor: timeForegroundColor)
-                .onTapGesture {
+                .font(timeLabelFont)
+                .foregroundColor(timeLabelForegroundColor)
+            SSTimeTextField(time: $timePickerManager.minutesSelected, configuration: configuration, isHourField: false, isInEditMode: $isInEditMode)
+                .simultaneousGesture(TapGesture().onEnded {
                     timePickerManager.actionShowMinuteClock()
-                }
+                })
             amPMView
+                .padding(2)
             Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Spacer()
+                    Button("Done") {
+                        actionDone()
+                    }
+                }
+               
+            }
         }
     }
     
@@ -94,7 +114,9 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     var btnAM: some View {
         Button {
-            timePickerManager.selectedTimeFromat = .am
+            withAnimation {
+                timePickerManager.selectedTimeFromat = .am
+            }
         } label: {
             labelTimeFormat("AM", isSelected: timePickerManager.selectedTimeFromat == .am)
         }
@@ -102,7 +124,9 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     var btnPM: some View {
         Button {
-            timePickerManager.selectedTimeFromat = .pm
+            withAnimation {
+                timePickerManager.selectedTimeFromat = .pm
+            }
         } label: {
             labelTimeFormat("PM", isSelected: timePickerManager.selectedTimeFromat == .pm)
         }
@@ -121,7 +145,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
             self.actionCancel()
         } label: {
             Text("Cancel")
-                .themeButton(configuration.buttonsForegroundColor)
+                .themeButton(buttonsForegroundColor, buttonFont)
         }
     }
     
@@ -130,14 +154,14 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
             self.actionOk()
         } label: {
             Text("Ok")
-                .themeButton(configuration.buttonsForegroundColor)
+                .themeButton(buttonsForegroundColor, buttonFont)
         }
     }
     
     func labelTimeFormat(_ format: String, isSelected: Bool) -> some View {
         Text(format)
-            .font(.system(size: isSelected ? 15 : 12, weight: .bold))
-            .foregroundColor(isSelected ? configuration.timeFormatSelectionColor : configuration.timeFormatColor)
+            .font( isSelected ? selectedTimeFormatFont : timeFormatFont)
+            .foregroundColor(isSelected ? timeFormatSelectionColor : timeFormatColor)
     }
     
 }
@@ -157,6 +181,15 @@ extension SSTimePicker {
     func actionOk() {
         timePickerManager.updateSelectedTime()
         showTimePicker.toggle()
+    }
+    
+    func actionDone() {
+        isInEditMode = false
+        if timePickerManager.isMinuteClock {
+            timePickerManager.updateCurrentMinuteAngle()
+        } else {
+            timePickerManager.updateCurrentHourAngle()
+        }
     }
     
 }

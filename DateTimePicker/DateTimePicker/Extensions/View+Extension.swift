@@ -27,8 +27,8 @@ extension View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
     
-    func themeButton(_ txtColor: Color) -> some View {
-        self.modifier(ThemeButtonModifier(textColor: txtColor))
+    func themeButton(_ txtColor: Color, _ font: Font) -> some View {
+        self.modifier(ThemeButtonModifier(textColor: txtColor, font: font))
     }
     
 }

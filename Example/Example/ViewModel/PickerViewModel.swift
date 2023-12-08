@@ -22,76 +22,41 @@ final class PickerViewModel: ObservableObject {
     @Published var selectedTime: Date?
     var cancellable = Set<AnyCancellable>()
     
-    //MARK: - init
+    //MARK: - Initializer
 
     init() {
         self.datePickerManager = SSDatePickerManager(currentMonth: Date())
+        self.datePickerManager.delegate = self
+        self.datePickerManager.datasource = self
         self.timePickerManager = SSTimePickerManager(configuration: SSTimePickerConfiguration())
-        subscribeForEvents()
+        self.timePickerManager.delegate = self
     }
     
     //MARK: - Methods
-
-    //MARK: Attaches a subscriber's to observe selected values
-    func subscribeForEvents() {
-        onSingleDateSelection()
-        onMultipleDateSelection()
-        onDateRangeSelection()
-        onTimeSelection()
-    }
-    
-    func onTimeSelection() {
-        self.timePickerManager.onTimeSelection.sink { [weak self] selectedTime in
-            print("onTimeSelection:: \(String(describing: selectedTime))")
-            self?.selectedTime = selectedTime
-        }.store(in: &cancellable)
-    }
-    
-    func onSingleDateSelection() {
-        self.datePickerManager.onSingleDateSelection.sink { [weak self] date in
-            print("onSingleDateSelection:: \(date)")
-            self?.selectedDate = date
-        }.store(in: &cancellable)
-    }
-    
-    func onMultipleDateSelection() {
-        self.datePickerManager.onMultipleDateSelection.sink { [weak self] dates in
-            print("onMultipleDateSelection:: \(dates)")
-            self?.selectedDates = dates
-        }.store(in: &cancellable)
-    }
-    
-    func onDateRangeSelection() {
-        self.datePickerManager.onDateRangeSelection.sink { [weak self] (startDate, endDate) in
-            print("onDateRangeSelection:: \(startDate) - \(endDate)")
-            self?.startDate = startDate
-            self?.endDate = endDate
-        }.store(in: &cancellable)
-    }
     
     //MARK: Date picker configuration methods
     
     func configureForMultipleDateSelection() {
         var configuration = SSDatePickerConfiguration()
         configuration.allowMultipleSelection = true
-//        configuration.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())!
-//        configuration.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: Date())!
+        configuration.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())!
+        configuration.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: Date())!
         resetSelection()
         datePickerManager.configuration = configuration
     }
     
     func configureForSingleDateSelection() {
         var configuration = SSDatePickerConfiguration()
-//        configuration.disablePastDates = true
-        //        resetSelection()
-//        configuration.headerDateFormat = DateFormat.fullDate
+        configuration.disablePastDates = true
+                resetSelection()
+        configuration.headerDateFormat = DateFormat.fullDate
         datePickerManager.configuration = configuration
     }
     
     func configureForDateRangeSelection() {
         var configuration = SSDatePickerConfiguration()
         configuration.allowRangeSelection = true
-//        resetSelection()
+        resetSelection()
         datePickerManager.configuration = configuration
     }
     
@@ -101,4 +66,42 @@ final class PickerViewModel: ObservableObject {
         datePickerManager.startDate = nil
         datePickerManager.endDate = nil
     }
+}
+
+// MARK: - SSTimePickerDelegate
+
+extension PickerViewModel: SSTimePickerDelegate {
+    
+    func timePicker(didSelectTime selectedTime: Date) {
+        self.selectedTime = selectedTime
+    }
+}
+
+// MARK: - SSDatePickerDelegate & SSDatePickerDataSource
+
+extension PickerViewModel: SSDatePickerDelegate, SSDatePickerDataSource {
+    
+    //MARK: Delegate Methods
+    
+    func datePicker(didSelectDate selectedDate: Date) {
+        self.selectedDate = selectedDate
+    }
+    
+    func datePicker(didSelectMultipleDates selectedDates: [Date]) {
+        self.selectedDates = selectedDates
+    }
+    
+    func datePicker(didSelectStartDate selectedStartDate: Date, didSelectEndDate selectedEndDate: Date) {
+        self.startDate = selectedStartDate
+        self.endDate = selectedEndDate
+    }
+    
+    //MARK: Datasource method
+    
+    func datePicker(canSelectDate date: Date) -> Bool {
+        guard !datePickerManager.configuration.allowRangeSelection else { return true }
+        let day = Calendar.current.dateComponents([.day], from: date).day!
+        return day != 4
+    }
+   
 }

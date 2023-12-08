@@ -9,27 +9,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-public typealias Event<T> = PassthroughSubject<T, Never>
-
-
-public protocol DatePickerDataSource {
-    
-    func datePicker(backgroundColorOpacityForDate date: Date) -> Double
-    func datePicker(canSelectDate date: Date) -> Bool
-    func datePicker(viewForSelectedDate date: Date, dimensions size: CGSize) -> AnyView
-    
-}
-
-public extension DatePickerDataSource {
-    
-    func datePicker(backgroundColorOpacityForDate date: Date) -> Double { 1 }
-    func datePicker(canSelectDate date: Date) -> Bool { true }
-    func datePicker(viewForSelectedDate date: Date, dimensions size: CGSize) -> AnyView {
-        AnyView(EmptyView())
-    }
-    
-}
-
 public final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirectAccess {
     
     //MARK: - Property
@@ -37,19 +16,16 @@ public final class SSDatePickerManager: ObservableObject, DatePickerConfiguratio
     @Published public private(set) var currentMonth: Date
     @Published public var selectedDate: Date? = nil
     @Published private(set) var yearRange = [Int]()
-    @Published public var datasource: DatePickerDataSource?
     @Published public var selectedDates: [Date]? = nil
     @Published public var startDate: Date? = nil
     @Published public var endDate: Date? = nil
     private var lastCurrentMonth: Date
     private var lastSelectedDate: Date?
     public var configuration: SSDatePickerConfiguration
-    // Publisher's
-    public var onSingleDateSelection = Event<Date>()
-    public var onMultipleDateSelection = Event<[Date]>()
-    public var onDateRangeSelection = Event<(Date, Date)>()
-    
-    //MARK: - init
+    public weak var datasource: SSDatePickerDataSource?
+    public weak var delegate: SSDatePickerDelegate?
+
+    //MARK: - Initializer
     
     public init(currentMonth: Date, selectedDate: Date? = nil, configuration: SSDatePickerConfiguration = SSDatePickerConfiguration()) {
         self.currentMonth = currentMonth
@@ -159,22 +135,22 @@ public final class SSDatePickerManager: ObservableObject, DatePickerConfiguratio
         switch view {
         case .date:
             lastSelectedDate = self.selectedDate
-            notifySubscriber()
+            notifyDelegate()
         case .month, .year:
             lastCurrentMonth = self.currentMonth
         }
     }
     
-    func notifySubscriber() {
+    func notifyDelegate() {
         if configuration.allowMultipleSelection {
             guard let selectedDates else { return }
-            onMultipleDateSelection.send(selectedDates)
+            self.delegate?.datePicker(didSelectMultipleDates: selectedDates)
         } else if configuration.allowRangeSelection {
             guard let startDate, let endDate else { return }
-            onDateRangeSelection.send((startDate, endDate))
+            self.delegate?.datePicker(didSelectStartDate: startDate, didSelectEndDate: endDate)
         } else {
             guard let selectedDate else { return }
-            onSingleDateSelection.send(selectedDate)
+            self.delegate?.datePicker(didSelectDate: selectedDate)
         }
     }
     

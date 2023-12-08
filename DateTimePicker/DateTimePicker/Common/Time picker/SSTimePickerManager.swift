@@ -8,22 +8,21 @@
 import Foundation
 
 
-public class SSTimePickerManager: ObservableObject {
+public final class SSTimePickerManager: ObservableObject {
     
     //MARK: - Property
     
-    public var configuration: SSTimePickerConfiguration
     @Published var selectedTimeFromat: TimeFormat = .am
-    @Published public var selectedTime: Date? = Date()
-    @Published var hour: String = "12"
-    @Published var minutes: String = "0"
-    
+    @Published public var selectedTime: Date?
+    @Published var hourSelected: String = "12"
+    @Published var minutesSelected: String = "00"
+    public var configuration: SSTimePickerConfiguration
+    public weak var delegate: SSTimePickerDelegate?
+
     // Clock's angle and current clock view
     @Published var angle: Double = 0
     @Published var isMinuteClock: Bool = false
-    
-    @Published public var onTimeSelection = Event<Date?>()
-    
+        
     //MARK: - init
     
     public init(configuration: SSTimePickerConfiguration) {
@@ -33,22 +32,31 @@ public class SSTimePickerManager: ObservableObject {
     //MARK: - Methods
     
     func actionShowHourClock() {
-        angle = Double((Int(hour) ?? 1) * 30)
+        updateCurrentHourAngle()
         isMinuteClock = false
     }
-    
+   
     func actionShowMinuteClock() {
-        angle = Double((Int(minutes) ?? 1) * 6)
-        isMinuteClock = false
+        updateCurrentMinuteAngle()
+        isMinuteClock = true
+    }
+    
+    func updateCurrentHourAngle() {
+        angle = Double((Int(hourSelected) ?? 12) * 30)
+    }
+    
+    func updateCurrentMinuteAngle() {
+        angle = Double((Int(minutesSelected) ?? 00) * 6)
     }
     
     func updateSelectedTime() {
         let format = DateFormatter.dateFormatter(DateFormat.twentyFourHourFormat)
         // get hours for 24-hrs format
-        let updatedHour = selectedTimeFromat == .am ? hour : "\((Int(hour) ?? 0) + 12)"
-        let date = format.date(from: "\(updatedHour):\(minutes)")
+        let hour = (Int(hourSelected) ?? 12)
+        let updatedHour = selectedTimeFromat == .am ? (hour == 12 ? 00.formattedTime : hour.formattedTime) : "\(hour < 12 ? (hour + 12).formattedTime : hour.formattedTime)"
+        let date = format.date(from: "\(updatedHour):\(minutesSelected)")
         selectedTime = date
-        onTimeSelection.send(selectedTime)
+        notifyDelegate()
         isMinuteClock = false
     }
     
@@ -61,9 +69,15 @@ public class SSTimePickerManager: ObservableObject {
         hourTemp = hourTemp == 0 ? 12 : hourTemp
         hourTemp = hourTemp <= 12 ? hourTemp: hourTemp - 12
         let minutesTemp = calender.component(.minute, from: selectedTime)
-        hour = "\(hourTemp)"
-        minutes = "\(minutesTemp)"
-        angle = Double(hourTemp*30)
+        hourSelected = hourTemp.formattedTime
+        minutesSelected = minutesTemp.formattedTime
+        updateCurrentHourAngle()
+    }
+    
+    func notifyDelegate() {
+        if let selectedTime {
+            self.delegate?.timePicker(didSelectTime: selectedTime)
+        }
     }
     
 }

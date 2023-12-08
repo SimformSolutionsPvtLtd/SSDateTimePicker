@@ -10,10 +10,11 @@ import SwiftUI
 struct ThemeButtonModifier: ViewModifier {
   
     var textColor: Color
+    var font: Font
     
     func body(content: Content) -> some View {
        content
-            .font(.system(size: 15, weight: .semibold))
+            .font(font)
             .padding(SSPickerConstants.paddingTen)
             .foregroundColor(textColor)
      }

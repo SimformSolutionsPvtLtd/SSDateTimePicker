@@ -18,7 +18,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
         timePickerManager.configuration
     }
     
-    //MARK: - init
+    //MARK: - Initializer
     
     init(timePickerManager: SSTimePickerManager) {
         self.timePickerManager = timePickerManager
@@ -31,7 +31,6 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
             ZStack {
                 let widthGeo  = reader.frame(in: .global).width/2
                 selectionCircle(widthGeo)
-                clockFace(widthGeo)
                 clockHand(widthGeo)
                 clockFace(widthGeo)
             }
@@ -48,18 +47,22 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
             .frame(width: SSPickerConstants.circleSize, height: SSPickerConstants.circleSize)
             .offset(x: widthGeo - SSPickerConstants.clockPadding)
             .rotationEffect(.init(degrees: timePickerManager.angle))
-            .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
+            .simultaneousGesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
             .rotationEffect(.init(degrees: -90))
     }
     
     func clockFace(_ widthGeo: CGFloat) -> some View {
         ForEach(1...12, id: \.self) { index in
             VStack {
-                Text("\(timePickerManager.isMinuteClock ? index*5 : index)")
-                    .font(.system(size: 15))
+                let time = timePickerManager.isMinuteClock ? index*5 : index
+                Text("\(time)")
+                    .font(clockNumberFont)
                     .fontWeight(.semibold)
                     .foregroundColor(clockNumberTextColor)
                     .rotationEffect(.init(degrees: Double(-index)*SSPickerConstants.clockNumberRotationDegree))
+                    .highPriorityGesture(TapGesture().onEnded {
+                        actionClockNumberSelection(number: index)
+                    }).allowsHitTesting(isClockNumberTapable("\(time)"))
             }
             .offset(y: -widthGeo+SSPickerConstants.clockPadding)
             .rotationEffect(.init(degrees: Double(index)*SSPickerConstants.clockNumberRotationDegree)) // rotating view : 12*30 = 360
@@ -79,8 +82,32 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
             .rotationEffect(.init(degrees: timePickerManager.angle))
     }
     
+    //MARK: - Methods
+    
     func clockHandHeight(_ width: CGFloat) -> CGFloat {
         width-SSPickerConstants.clockPadding
+    }
+    
+    // To disable clock number tap gesture when it is already selected to priotize grag gesture
+    func isClockNumberTapable(_ time: String) -> Bool {
+        if timePickerManager.isMinuteClock {
+            let minute = time == "60" ? "00" : time
+            return timePickerManager.minutesSelected != minute
+        } else {
+            return timePickerManager.hourSelected != time
+        }
+    }
+    
+    // To update selected hour/miute when user tap on any of the number on clock
+    func actionClockNumberSelection(number: Int) {
+        if timePickerManager.isMinuteClock {
+            let minute = number * 5
+            timePickerManager.minutesSelected = (minute == 60 ? 0 : minute).formattedTime
+            timePickerManager.updateCurrentMinuteAngle()
+        } else {
+            timePickerManager.hourSelected = number.formattedTime
+            timePickerManager.updateCurrentHourAngle()
+        }
     }
     
 }
@@ -106,17 +133,18 @@ extension SSClockPicker {
         } else {
             // updating minutes
             let progress = angle / threeSixtyDegree
-            timePickerManager.minutes = "\(progress*60)"
+            timePickerManager.minutesSelected = Int(progress*60).formattedTime
         }
     }
     
     func onEnd(value: DragGesture.Value) {
         if !timePickerManager.isMinuteClock {
             // updating hour value
-            timePickerManager.hour = "\(Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree))"
+            let hour = Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree)
+            timePickerManager.hourSelected = (hour == 0 ? 12 : hour).formattedTime
             // updating picker to minutes
             withAnimation {
-                timePickerManager.angle = Double((Int(timePickerManager.minutes) ?? 1) * Int(SSPickerConstants.minuteRotationDegree))
+                timePickerManager.angle = Double((Int(timePickerManager.minutesSelected) ?? 1) * Int(SSPickerConstants.minuteRotationDegree))
                 timePickerManager.isMinuteClock = true
             }
         }

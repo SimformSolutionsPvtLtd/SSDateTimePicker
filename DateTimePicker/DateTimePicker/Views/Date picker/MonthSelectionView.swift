@@ -47,7 +47,7 @@ struct MonthSelectionView: View, DatePickerConfigurationDirectAccess {
             updateMonth(month: month)
         } label: {
             Text(monthName)
-                .font(.system(size: 14, weight: isSelectedMonth ? .bold : .regular))
+                .font(isSelectedMonth ? selectedMonthTextFont : monthTextFont)
                 .foregroundColor(isSelectedMonth ? selectionBackgroundColor : dateMonthYearTextColor)
         }
     }

@@ -27,13 +27,15 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             matching: calendar.firstDayOfEveryWeek)
     }
     
-    //MARK: - init
+    //MARK: - Initializer
+    
     public init(showCalender: Binding<Bool>, calendarManager: ObservedObject<SSDatePickerManager>) {
         self._showCalender = showCalender
         self._datePickerManager = calendarManager
     }
     
     //MARK: - Sub views
+    
     public var body: some View {
         ZStack(alignment: .center) {
             if showCalender {
@@ -90,10 +92,10 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     var lblSelectedDate: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             Text("Select Date")
-                .font(.system(size: 12, weight: .bold))
+                .font(headerTitleFont)
                 .foregroundColor(headerTitleColor)
             Text(datePickerManager.selectedDate?.formatedString(headerDateFormat) ?? datePickerManager.currentMonth.monthYear)
-                .font(.system(size: 19, weight: .semibold))
+                .font(headerDateFont)
                 .foregroundColor(headerDateColor)
         }
         .padding(SSPickerConstants.paddingTen)
@@ -103,7 +105,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
         HStack(spacing: SSPickerConstants.horizontalSpacingDates) {
             ForEach(calendar.shortWeekdaySymbols, id: \.self) { dayOfWeek in
                 Text(dayOfWeek.prefix(1))
-                    .font(.caption)
+                    .font(weekdayTextFont)
                     .frame(width: SSPickerConstants.widthForDaysOfWeek)
                     .foregroundColor(weekdayTextColor)
             }
@@ -133,7 +135,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             updateView()
         } label: {
             Text(currentMonthYear)
-                .font(.system(size: 14, weight: .medium))
+                .font(currentMonthYearBottomLabelFont)
                 .foregroundColor(monthYearNavigationLabelColor)
         }
     }
@@ -187,7 +189,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             self.actionCancel()
         } label: {
             Text("Cancel")
-                .themeButton(buttonsForegroundColor)
+                .themeButton(buttonsForegroundColor, buttonsFont)
         }
     }
     
@@ -196,7 +198,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             self.actionOk()
         } label: {
             Text("Ok")
-                .themeButton(buttonsForegroundColor)
+                .themeButton(buttonsForegroundColor, buttonsFont)
         }
     }
     
