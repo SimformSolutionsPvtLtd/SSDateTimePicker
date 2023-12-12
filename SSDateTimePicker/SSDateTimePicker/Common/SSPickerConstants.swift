@@ -66,3 +66,8 @@ public enum SelectionView {
     case month
     case year
 }
+
+enum TimeFormat {
+    case am
+    case pm
+}

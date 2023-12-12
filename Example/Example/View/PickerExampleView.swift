@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DateTimePicker
+import SSDateTimePicker
 import Combine
 
 struct PickerExampleView: View {

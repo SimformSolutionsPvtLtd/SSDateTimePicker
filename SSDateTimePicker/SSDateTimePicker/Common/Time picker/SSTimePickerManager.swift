@@ -81,8 +81,3 @@ public final class SSTimePickerManager: ObservableObject {
     }
     
 }
-
-enum TimeFormat {
-    case am
-    case pm
-}

@@ -38,8 +38,9 @@
 		65AB6AF22B28205E009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6AF12B28205E009EA7EC /* LocalizedString.swift */; };
 		65AB6AF42B282280009EA7EC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6AF32B282280009EA7EC /* String+Extension.swift */; };
 		65AB6B032B282A18009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B052B282A18009EA7EC /* Localizable.strings */; };
+		65AB6B182B28597B009EA7EC /* SSWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B172B28597B009EA7EC /* SSWheelPicker.swift */; };
 		65E058102B0E2B260049A7BA /* DateTimePicker.docc in Sources */ = {isa = PBXBuildFile; fileRef = 65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */; };
-		65E058162B0E2B260049A7BA /* DateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */; };
+		65E058162B0E2B260049A7BA /* SSDateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E0580B2B0E2B260049A7BA /* SSDateTimePicker.framework */; };
 		65E0581B2B0E2B260049A7BA /* DateTimePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0581A2B0E2B260049A7BA /* DateTimePickerTests.swift */; };
 		65E0581C2B0E2B260049A7BA /* DateTimePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E0580E2B0E2B260049A7BA /* DateTimePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -86,10 +87,11 @@
 		65AB6AF12B28205E009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		65AB6AF32B282280009EA7EC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		65AB6B042B282A18009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTimePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65AB6B172B28597B009EA7EC /* SSWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSWheelPicker.swift; sourceTree = "<group>"; };
+		65E0580B2B0E2B260049A7BA /* SSDateTimePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSDateTimePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0580E2B0E2B260049A7BA /* DateTimePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateTimePicker.h; sourceTree = "<group>"; };
 		65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DateTimePicker.docc; sourceTree = "<group>"; };
-		65E058152B0E2B260049A7BA /* DateTimePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DateTimePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65E058152B0E2B260049A7BA /* SSDateTimePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSDateTimePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0581A2B0E2B260049A7BA /* DateTimePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E058162B0E2B260049A7BA /* DateTimePicker.framework in Frameworks */,
+				65E058162B0E2B260049A7BA /* SSDateTimePicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +171,7 @@
 				654A7F942B1F04DF00EB9B33 /* SSClockPicker.swift */,
 				650720F82B1DE9FD00AC1FB6 /* SSTimeTextField.swift */,
 				650720F42B1DAFFB00AC1FB6 /* SSTimePicker.swift */,
+				65AB6B172B28597B009EA7EC /* SSWheelPicker.swift */,
 			);
 			path = "Time Picker";
 			sourceTree = "<group>";
@@ -197,7 +200,7 @@
 		65E058012B0E2B260049A7BA = {
 			isa = PBXGroup;
 			children = (
-				65E0580D2B0E2B260049A7BA /* DateTimePicker */,
+				65E0580D2B0E2B260049A7BA /* SSDateTimePicker */,
 				65E058192B0E2B260049A7BA /* DateTimePickerTests */,
 				65E0580C2B0E2B260049A7BA /* Products */,
 			);
@@ -206,13 +209,13 @@
 		65E0580C2B0E2B260049A7BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */,
-				65E058152B0E2B260049A7BA /* DateTimePickerTests.xctest */,
+				65E0580B2B0E2B260049A7BA /* SSDateTimePicker.framework */,
+				65E058152B0E2B260049A7BA /* SSDateTimePickerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		65E0580D2B0E2B260049A7BA /* DateTimePicker */ = {
+		65E0580D2B0E2B260049A7BA /* SSDateTimePicker */ = {
 			isa = PBXGroup;
 			children = (
 				65AB6B052B282A18009EA7EC /* Localizable.strings */,
@@ -223,7 +226,7 @@
 				65E0580E2B0E2B260049A7BA /* DateTimePicker.h */,
 				65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */,
 			);
-			path = DateTimePicker;
+			path = SSDateTimePicker;
 			sourceTree = "<group>";
 		};
 		65E058192B0E2B260049A7BA /* DateTimePickerTests */ = {
@@ -248,9 +251,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		65E0580A2B0E2B260049A7BA /* DateTimePicker */ = {
+		65E0580A2B0E2B260049A7BA /* SSDateTimePicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65E0581F2B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "DateTimePicker" */;
+			buildConfigurationList = 65E0581F2B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "SSDateTimePicker" */;
 			buildPhases = (
 				65E058062B0E2B260049A7BA /* Headers */,
 				65E058072B0E2B260049A7BA /* Sources */,
@@ -261,14 +264,14 @@
 			);
 			dependencies = (
 			);
-			name = DateTimePicker;
+			name = SSDateTimePicker;
 			productName = DateTimePicker;
-			productReference = 65E0580B2B0E2B260049A7BA /* DateTimePicker.framework */;
+			productReference = 65E0580B2B0E2B260049A7BA /* SSDateTimePicker.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		65E058142B0E2B260049A7BA /* DateTimePickerTests */ = {
+		65E058142B0E2B260049A7BA /* SSDateTimePickerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65E058222B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "DateTimePickerTests" */;
+			buildConfigurationList = 65E058222B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "SSDateTimePickerTests" */;
 			buildPhases = (
 				65E058112B0E2B260049A7BA /* Sources */,
 				65E058122B0E2B260049A7BA /* Frameworks */,
@@ -279,9 +282,9 @@
 			dependencies = (
 				65E058182B0E2B260049A7BA /* PBXTargetDependency */,
 			);
-			name = DateTimePickerTests;
+			name = SSDateTimePickerTests;
 			productName = DateTimePickerTests;
-			productReference = 65E058152B0E2B260049A7BA /* DateTimePickerTests.xctest */;
+			productReference = 65E058152B0E2B260049A7BA /* SSDateTimePickerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -302,7 +305,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 65E058052B0E2B260049A7BA /* Build configuration list for PBXProject "DateTimePicker" */;
+			buildConfigurationList = 65E058052B0E2B260049A7BA /* Build configuration list for PBXProject "SSDateTimePicker" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -315,8 +318,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				65E0580A2B0E2B260049A7BA /* DateTimePicker */,
-				65E058142B0E2B260049A7BA /* DateTimePickerTests */,
+				65E0580A2B0E2B260049A7BA /* SSDateTimePicker */,
+				65E058142B0E2B260049A7BA /* SSDateTimePickerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -354,6 +357,7 @@
 				650720A62B0F6BE600AC1FB6 /* DateView.swift in Sources */,
 				650720C62B13BE4D00AC1FB6 /* SSDatePicker.swift in Sources */,
 				650720B32B10880900AC1FB6 /* MonthSelectionView.swift in Sources */,
+				65AB6B182B28597B009EA7EC /* SSWheelPicker.swift in Sources */,
 				650720CD2B18257600AC1FB6 /* CornerRadiusStyle.swift in Sources */,
 				650720AA2B0F819F00AC1FB6 /* ImageConstant.swift in Sources */,
 				651668582B20842000AD02A1 /* Int+Extension.swift in Sources */,
@@ -391,7 +395,7 @@
 /* Begin PBXTargetDependency section */
 		65E058182B0E2B260049A7BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 65E0580A2B0E2B260049A7BA /* DateTimePicker */;
+			target = 65E0580A2B0E2B260049A7BA /* SSDateTimePicker */;
 			targetProxy = 65E058172B0E2B260049A7BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -627,7 +631,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		65E058052B0E2B260049A7BA /* Build configuration list for PBXProject "DateTimePicker" */ = {
+		65E058052B0E2B260049A7BA /* Build configuration list for PBXProject "SSDateTimePicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65E0581D2B0E2B260049A7BA /* Debug */,
@@ -636,7 +640,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65E0581F2B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "DateTimePicker" */ = {
+		65E0581F2B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "SSDateTimePicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65E058202B0E2B260049A7BA /* Debug */,
@@ -645,7 +649,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65E058222B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "DateTimePickerTests" */ = {
+		65E058222B0E2B260049A7BA /* Build configuration list for PBXNativeTarget "SSDateTimePickerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65E058232B0E2B260049A7BA /* Debug */,
