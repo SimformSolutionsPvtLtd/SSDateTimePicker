@@ -7,81 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DBD91F05-DFEF-49AA-9C8C-598D71262870"
+            uuid = "531FE160-B8A0-4935-8A88-E7AEFFCFF001"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Example/ViewModel/PickerViewModel.swift"
+            filePath = "../DateTimePicker/DateTimePicker/Common/Time picker/SSClockPicker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "onTimeSelection()"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "onEnd(value:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CADC7E6A-277A-41B7-87DE-C143714B9897"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../DateTimePicker/DateTimePicker/Views/Time Picker/SSClockPicker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "clockFace(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "DBD91F05-DFEF-49AA-9C8C-598D71262870 - 44b2e3c7a3c60844"
+                  uuid = "CADC7E6A-277A-41B7-87DE-C143714B9897 - 25903705d40f7ed"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Date&gt;) -&gt; () in Example.PickerViewModel.onTimeSelection() -&gt; ()"
-                  moduleName = "Example"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.allowsHitTesting(Swift.Bool) -&gt; some&gt;&gt;.0 in closure #1 (Swift.Int) -&gt; &lt;&lt;opaque return type of SwiftUI.View.rotationEffect(_: SwiftUI.Angle, anchor: SwiftUI.UnitPoint) -&gt; some&gt;&gt;.0 in DateTimePicker.SSClockPicker.clockFace(CoreGraphics.CGFloat) -&gt; some"
+                  moduleName = "DateTimePicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rizwana/Desktop/OSL%20Working/SSDateTimePicker/Example/Example/ViewModel/PickerViewModel.swift"
+                  urlString = "file:///Users/rizwana/Desktop/OSL%20Working/SSDateTimePicker/DateTimePicker/DateTimePicker/Views/Time%20Picker/SSClockPicker.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "128">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "2448">
                </Location>
                <Location
-                  uuid = "DBD91F05-DFEF-49AA-9C8C-598D71262870 - 44b2e3c7a3c60844"
+                  uuid = "CADC7E6A-277A-41B7-87DE-C143714B9897 - 6b7beca44eb228d2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Date&gt;) -&gt; () in Example.PickerViewModel.onTimeSelection() -&gt; ()"
-                  moduleName = "Example"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.allowsHitTesting(Swift.Bool) -&gt; some&gt;&gt;.0 in closure #1 (Swift.Int) -&gt; &lt;&lt;opaque return type of SwiftUI.View.rotationEffect(_: SwiftUI.Angle, anchor: SwiftUI.UnitPoint) -&gt; some&gt;&gt;.0 in DateTimePicker.SSClockPicker.clockFace(CoreGraphics.CGFloat) -&gt; some"
+                  moduleName = "DateTimePicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rizwana/Desktop/OSL%20Working/SSDateTimePicker/Example/Example/ViewModel/PickerViewModel.swift"
+                  urlString = "file:///Users/rizwana/Desktop/OSL%20Working/SSDateTimePicker/DateTimePicker/DateTimePicker/Views/Time%20Picker/SSClockPicker.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "172">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "CADC7E6A-277A-41B7-87DE-C143714B9897 - 25903705d40f7ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.allowsHitTesting(Swift.Bool) -&gt; some&gt;&gt;.0 in closure #1 (Swift.Int) -&gt; &lt;&lt;opaque return type of SwiftUI.View.rotationEffect(_: SwiftUI.Angle, anchor: SwiftUI.UnitPoint) -&gt; some&gt;&gt;.0 in DateTimePicker.SSClockPicker.clockFace(CoreGraphics.CGFloat) -&gt; some"
+                  moduleName = "DateTimePicker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rizwana/Desktop/OSL%20Working/SSDateTimePicker/DateTimePicker/DateTimePicker/Views/Time%20Picker/SSClockPicker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "2452">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D740F3A1-6F2F-4D46-8463-0C150839E396"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../DateTimePicker/DateTimePicker/Common/Time picker/SSClockPicker.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "clockFace(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C8672328-F563-488A-8157-569B7D3F8753"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../DateTimePicker/DateTimePicker/Common/Time picker/SSClockPicker.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "selectionCircle(_:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

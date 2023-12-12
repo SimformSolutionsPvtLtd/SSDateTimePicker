@@ -31,12 +31,12 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
         guard disableFutureDates else { return true }
         return date <= calendar.startOfDay(for: Date())
     }
-
+    
     private var canSelectPastDate: Bool {
         guard disablePastDates else { return true }
         return date >= calendar.startOfDay(for: Date())
     }
-
+    
     private var isDayWithinDateRange: Bool {
         guard let minimumDate, let maximumDate else { return true }
         return date >= calendar.startOfDay(for: minimumDate) && date <= maximumDate
@@ -73,10 +73,10 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     }
     
     private var backgroundColor: Color {
-        if isSelected || isStartDate || isEndDate {
+        if isDayToday && isSelected {
+            return todaySelectionBgColor ?? selectionBackgroundColor
+        } else if isSelected || isStartDate || isEndDate {
             return selectionBackgroundColor
-        } else if isDayToday {
-            return todaySelectionColor
         } else if isDayWithinSelectedDateRange {
             return selectionBackgroundColor.opacity(0.3)
         } else {
@@ -122,7 +122,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
         isStartDate ? [.topLeft,.bottomLeft] : [.topRight,.bottomRight]
     }
     
-    //MARK: - init
+    //MARK: - Initializer
     
     init(date: Date, weekDateInSelectedMonth: Date) {
         self.date = date
@@ -139,7 +139,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     var lblDate: some View {
         Text(numericDay)
-            .font(.footnote)
+            .font(dateTextFont)
             .foregroundColor(foregroundColor)
             .frame(width: SSPickerConstants.widthForDaysOfWeek, height: SSPickerConstants.widthForDaysOfWeek)
             .if(!allowRangeSelection, transform: { view in
@@ -159,7 +159,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     }
     
     //MARK: - Methods
-
+    
     func updateSelection() {
         guard isDaySelectableAndInRange else { return }
         self.calendarManager.updateDateSelection(date: date)

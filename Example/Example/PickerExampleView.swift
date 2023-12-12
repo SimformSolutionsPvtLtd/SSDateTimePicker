@@ -19,8 +19,10 @@ struct PickerExampleView: View {
     @State var selectedDateCombine: Date?
     @ObservedObject var pickerViewModel = PickerViewModel()
 
-    //MARK: - init
+    //MARK: - Initializer
+    
     init() {
+        
     }
     
     
@@ -115,15 +117,6 @@ struct PickerExampleView: View {
         }
     }
     
-    
-}
-
-extension PickerExampleView: DatePickerDataSource {
-    
-    func datePicker(canSelectDate date: Date) -> Bool {
-        let day = Calendar.current.dateComponents([.day], from: date).day!
-        return day != 4
-    }
     
 }
 

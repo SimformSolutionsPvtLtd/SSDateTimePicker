@@ -14,11 +14,11 @@ extension Color {
         self.init(UIColor(named: name, in: Bundle.dateTimePickerBundle, compatibleWith: nil)!)
     }
     
-    static let lightGreen: Color = Color("lightGreen")
-    static let darkGreen: Color = Color("darkGreen")
-    static let darkPink: Color = Color("darkPink")
-    static let lightPink: Color = Color("lightPink")
-    static let lightBlue: Color = Color("lightBlue")
-    static let peach: Color = Color("peach")
+    public static let lightGreen: Color = Color("lightGreen")
+    public static let darkGreen: Color = Color("darkGreen")
+    public static let darkPink: Color = Color("darkPink")
+    public static let lightPink: Color = Color("lightPink")
+    public static let lightBlue: Color = Color("lightBlue")
+    public static let peach: Color = Color("peach")
 }
 

@@ -19,7 +19,7 @@ public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
         calendarManager.configuration
     }
     
-    //MARK: - init
+    //MARK: - Initializer
 
     public init(currentView: Binding<SelectionView>) {
         self._currentView = currentView
@@ -55,7 +55,7 @@ public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
             updateYearSelection(year: year)
         } label: {
             Text(String(year))
-                .font(.system(size: 14, weight: isSelectedYear ? .bold : .regular))
+                .font(isSelectedYear ? selectedYearTextFont : yearTextFont)
                 .foregroundColor(isSelectedYear ? selectionBackgroundColor : dateMonthYearTextColor)
         }
     }

@@ -27,7 +27,7 @@ struct WeekDatesView: View, DatePickerConfigurationDirectAccess {
             matching: .everyDay)
     }
     
-    //MARK: - init
+    //MARK: - Initializer
     init(week: Date) {
         self.week = week
     }
