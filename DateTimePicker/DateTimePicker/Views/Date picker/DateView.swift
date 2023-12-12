@@ -64,9 +64,9 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     private var foregroundColor: Color {
         if isDayToday {
-            return todayColor
+            return isSelected ? todaySelectionFontColor ?? todayColor : todayColor
         } else if isSelected {
-            return Color.white
+            return selectedDateTextColor
         } else {
             return dateMonthYearTextColor
         }
@@ -142,7 +142,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
             .font(dateTextFont)
             .foregroundColor(foregroundColor)
             .frame(width: SSPickerConstants.widthForDaysOfWeek, height: SSPickerConstants.widthForDaysOfWeek)
-            .if(!allowRangeSelection, transform: { view in
+            .if(!allowRangeSelection && isDaySelectableAndInRange, transform: { view in
                 view
                     .background(Circle()
                         .padding(.leading, SSPickerConstants.selectionCirclePadding)
@@ -153,6 +153,8 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
                     view
                         .background(backgroundColor)
                         .cornerRadius((isStartDate || isEndDate) ? SSPickerConstants.dateRangeSelectionCornerRadius : 0, corners: corners)
+                        .padding(.top, SSPickerConstants.rangeSelectionPadding)
+                        .padding(.bottom, SSPickerConstants.rangeSelectionPadding)
                 })
                     .opacity(opacity)
                     .onTapGesture(perform: updateSelection)

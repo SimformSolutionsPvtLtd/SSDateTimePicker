@@ -31,8 +31,6 @@ public struct SSTimePickerConfiguration {
     public var buttonsForegroundColor: Color
     public var pickerBackgroundColor: Color
 
-   
-        
     // MARK: - Font properties
 
     public var headerTitleFont: Font = .system(size: 12, weight: .bold)

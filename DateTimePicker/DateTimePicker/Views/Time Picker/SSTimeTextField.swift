@@ -50,7 +50,7 @@ struct SSTimeTextField: View, TimePickerConfigurationDirectAccess {
     }
     
     var txtField: some View {
-        TextField(isHourField ? "HH" : "MM", text: $time)
+        TextField(isHourField ? LocalizedString.hour : LocalizedString.minute, text: $time)
             .focused($isFocused)
             .keyboardType(.numberPad)
             .multilineTextAlignment(.center)

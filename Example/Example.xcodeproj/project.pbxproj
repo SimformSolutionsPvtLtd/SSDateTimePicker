@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720D22B194D2100AC1FB6 /* PickerViewModel.swift */; };
+		65AB6B0B2B283131009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B0D2B283131009EA7EC /* Localizable.strings */; };
+		65AB6B102B2839F9009EA7EC /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */; };
+		65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B112B283AED009EA7EC /* LocalizedString.swift */; };
+		65AB6B152B285309009EA7EC /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B142B285309009EA7EC /* Color+Extension.swift */; };
 		65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584D2B0E3E850049A7BA /* ExampleApp.swift */; };
 		65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */; };
 		65E058522B0E3E860049A7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E058512B0E3E860049A7BA /* Assets.xcassets */; };
@@ -34,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		650720D22B194D2100AC1FB6 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
+		65AB6B0C2B283131009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
+		65AB6B112B283AED009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		65AB6B142B285309009EA7EC /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		65E0584A2B0E3E850049A7BA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0584D2B0E3E850049A7BA /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerExampleView.swift; sourceTree = "<group>"; };
@@ -62,9 +70,35 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		65AB6B0E2B28393B009EA7EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65AB6B132B283AF2009EA7EC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */,
+				65AB6B112B283AED009EA7EC /* LocalizedString.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		65AB6B162B285312009EA7EC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				65AB6B142B285309009EA7EC /* Color+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		65E058412B0E3E850049A7BA = {
 			isa = PBXGroup;
 			children = (
+				65AB6B0D2B283131009EA7EC /* Localizable.strings */,
 				65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */,
 				65E0584C2B0E3E850049A7BA /* Example */,
 				65E0584B2B0E3E850049A7BA /* Products */,
@@ -83,9 +117,11 @@
 		65E0584C2B0E3E850049A7BA /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				65AB6B162B285312009EA7EC /* Extension */,
+				65AB6B132B283AF2009EA7EC /* Common */,
+				65AB6B0E2B28393B009EA7EC /* View */,
 				650720CF2B194C7900AC1FB6 /* ViewModel */,
 				65E0584D2B0E3E850049A7BA /* ExampleApp.swift */,
-				65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */,
 				65E058512B0E3E860049A7BA /* Assets.xcassets */,
 				65E058532B0E3E860049A7BA /* Preview Content */,
 			);
@@ -198,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E058552B0E3E860049A7BA /* Preview Assets.xcassets in Resources */,
+				65AB6B0B2B283131009EA7EC /* Localizable.strings in Resources */,
 				65E058522B0E3E860049A7BA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,13 +246,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */,
+				65AB6B152B285309009EA7EC /* Color+Extension.swift in Sources */,
 				650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */,
 				65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */,
 				65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */,
+				65AB6B102B2839F9009EA7EC /* ThemeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		65AB6B0D2B283131009EA7EC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65AB6B0C2B283131009EA7EC /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		65E058562B0E3E860049A7BA /* Debug */ = {
@@ -268,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -322,7 +373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

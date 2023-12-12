@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Example
+
+  Created by Rizwana Desai on 12/12/23.
+  
+*/
+
+"ok" = "Ok";
+"cancel" = "Cancel";

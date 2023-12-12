@@ -41,6 +41,9 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             if showCalender {
                 popupOverlayColor
                     .ignoresSafeArea()
+                    .onTapGesture {
+                        actionCancel()
+                    }
                 calenderContainerView
                     .background(pickerBackgroundColor)
                     .cornerRadius(pickerViewRadius)
@@ -76,9 +79,11 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     }
     
     var datePickerHeader: some View {
-        VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
+        VStack(alignment: .leading, spacing: SSPickerConstants.paddingFive) {
             lblSelectedDate
             Divider()
+                .background(sepratorLineColor)
+                .padding(.bottom, SSPickerConstants.deviderBottomPadding)
         }
     }
     
@@ -91,7 +96,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     var lblSelectedDate: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
-            Text("Select Date")
+            Text(LocalizedString.selectDate)
                 .font(headerTitleFont)
                 .foregroundColor(headerTitleColor)
             Text(datePickerManager.selectedDate?.formatedString(headerDateFormat) ?? datePickerManager.currentMonth.monthYear)
@@ -113,8 +118,10 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     }
     
     var datesView: some View {
-        ForEach(weeks, id: \.self) { week in
-            WeekDatesView(week: week)
+        VStack(spacing: SSPickerConstants.verticleSpacingDates) {
+            ForEach(weeks, id: \.self) { week in
+                WeekDatesView(week: week)
+            }
         }
     }
     
@@ -172,7 +179,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     func imageNextPrev(_ name: String) -> some View {
         Image(systemName: name)
-            .foregroundColor(nextPrevButtonColor)
+            .foregroundColor(buttonsForegroundColor)
             .padding(SSPickerConstants.paddingFive)
     }
     
@@ -188,7 +195,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
         Button {
             self.actionCancel()
         } label: {
-            Text("Cancel")
+            Text(LocalizedString.cancel)
                 .themeButton(buttonsForegroundColor, buttonsFont)
         }
     }
@@ -197,7 +204,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
         Button {
             self.actionOk()
         } label: {
-            Text("Ok")
+            Text(LocalizedString.ok)
                 .themeButton(buttonsForegroundColor, buttonsFont)
         }
     }
@@ -214,7 +221,6 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     }
 
 }
-
 
 extension SSDatePicker {
     

@@ -8,6 +8,7 @@
 import Foundation
 import DateTimePicker
 import Combine
+import SwiftUI
 
 final class PickerViewModel: ObservableObject {
     
@@ -49,7 +50,6 @@ final class PickerViewModel: ObservableObject {
         var configuration = SSDatePickerConfiguration()
         configuration.disablePastDates = true
                 resetSelection()
-        configuration.headerDateFormat = DateFormat.fullDate
         datePickerManager.configuration = configuration
     }
     
@@ -57,6 +57,25 @@ final class PickerViewModel: ObservableObject {
         var configuration = SSDatePickerConfiguration()
         configuration.allowRangeSelection = true
         resetSelection()
+        datePickerManager.configuration = configuration
+    }
+    
+    func customizedDatePicker() {
+        self.datePickerManager = SSDatePickerManager(currentMonth: Date())
+        self.datePickerManager.delegate = self
+        var configuration = SSDatePickerConfiguration(pickerBackgroundColor: Color.themeBlack, primaryColor: Color.themeYellow)
+        configuration.headerTitleColor = Color.white
+        configuration.headerDateColor = Color.white
+        configuration.weekdayTextColor = Color.white
+        configuration.dateMonthYearTextColor = .white
+        configuration.todayColor = Color.themeYellow
+        configuration.navigationLabelColor = Color.white
+        configuration.todaySelectionBgColor = Color.red
+        configuration.todaySelectionFontColor = Color.white
+        configuration.selectedDateTextColor = .black
+        configuration.pickerViewRadius = 5
+        configuration.headerDateFormat = DateFormat.fullDate
+        configuration.sepratorLineColor = Color.white.opacity(0.7)
         datePickerManager.configuration = configuration
     }
     

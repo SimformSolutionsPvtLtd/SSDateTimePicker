@@ -25,8 +25,10 @@ public struct SSDatePickerConfiguration {
     public var selectionBackgroundColor: Color
     public var todayColor: Color = Color.black
     public var todaySelectionBgColor: Color?
+    public var todaySelectionFontColor: Color?
     public var buttonsForegroundColor: Color
     public var pickerBackgroundColor: Color
+    public var sepratorLineColor: Color = Color(uiColor: UIColor.opaqueSeparator)
     public var nextPrevButtonColor: Color = Color.black
     /** Color for the text of navigation labels, such as "June, 2023" or "2023". */
     public var navigationLabelColor: Color = Color.black
@@ -122,6 +124,10 @@ extension DatePickerConfigurationDirectAccess {
         configuration.todaySelectionBgColor
     }
     
+    var todaySelectionFontColor: Color? {
+        configuration.todaySelectionFontColor
+    }
+    
     var buttonsForegroundColor: Color {
         configuration.buttonsForegroundColor
     }
@@ -213,6 +219,10 @@ extension DatePickerConfigurationDirectAccess {
     
     var selectedYearTextFont: Font {
         configuration.selectedYearTextFont
+    }
+    
+    var sepratorLineColor: Color {
+        configuration.sepratorLineColor
     }
 
 }

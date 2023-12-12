@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  DateTimePicker
+
+  Created by Rizwana Desai on 12/12/23.
+  
+*/
+
+
+"Ok" = "Ok";
+"Cancel" = "Cancel";
+"Select Date" = "Select Date";
+"Select Time" = "Select Time";
+"AM" = "AM";
+"PM" = "PM";
