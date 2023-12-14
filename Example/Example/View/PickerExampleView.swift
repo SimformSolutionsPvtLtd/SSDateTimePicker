@@ -41,33 +41,38 @@ struct PickerExampleView: View {
     
     //MARK: - Sub views
     
+    var headerView: some View {
+        Text(LocalizedString.dateTimePickerExample)
+            .font(.system(size: 22, weight: .bold))
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity, maxHeight: 60)
+            .background(Color.darkPink.ignoresSafeArea())
+    }
+    
     var dateTimePickerExampleView: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                singleSelectionView
-                Divider()
-                multipleSelectionView
-                Divider()
-                rangeSelectionView
-                Divider()
-                btnCustomizedPicker
-                Divider()
-                timePickerView
-                Spacer()
+        VStack {
+            headerView
+            ScrollView {
+                VStack(alignment: .center, spacing: 10) {
+                    singleSelectionView
+                    multipleSelectionView
+                    rangeSelectionView
+                    btnCustomizedPicker
+                    timePickerView
+                }
             }
-            .padding(20)
         }
     }
     
     var singleSelectionView: some View {
-        VStack(alignment: .leading) {
+        VStack {
             btnSelectSingleDate
-            Text(pickerViewModel.selectedDate?.monthDateYear ?? "")
+            Text("\(LocalizedString.selectedDate)  \(pickerViewModel.selectedDate?.monthDateYear ?? "")")
         }
     }
     
     var multipleSelectionView: some View {
-        VStack(alignment: .leading) {
+        VStack {
             btnSelectMultipleDates
             if let dates = pickerViewModel.selectedDates {
                 ForEach(0..<dates.count, id: \.self) { index in
@@ -78,7 +83,7 @@ struct PickerExampleView: View {
     }
     
     var rangeSelectionView: some View {
-        VStack(alignment: .leading) {
+        VStack {
             btnSelectDateRange
             Text("\(LocalizedString.startDate) \(pickerViewModel.startDate?.monthDateYear ?? "")")
             Text("\(LocalizedString.endDate) \(pickerViewModel.endDate?.monthDateYear ?? "")")
@@ -96,7 +101,7 @@ struct PickerExampleView: View {
     }
     
     var timePickerView: some View {
-        VStack(alignment: .leading) {
+        VStack {
             btnTimePicker
             Text("\(LocalizedString.selectedTime) \(pickerViewModel.selectedTime?.timeOnlyWithPadding ?? "")")
         }

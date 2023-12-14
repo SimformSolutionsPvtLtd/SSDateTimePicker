@@ -139,7 +139,9 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     var lblMonthYear: some View {
         Button {
-            updateView()
+            withAnimation {
+                updateView()
+            }
         } label: {
             Text(currentMonthYear)
                 .font(currentMonthYearBottomLabelFont)
@@ -193,7 +195,9 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     var btnCancel: some View {
         Button {
-            self.actionCancel()
+            withAnimation {
+                self.actionCancel()
+            }
         } label: {
             Text(LocalizedString.cancel)
                 .themeButton(buttonsForegroundColor, buttonsFont)
@@ -202,7 +206,9 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     var btnOk: some View {
         Button {
-            self.actionOk()
+            withAnimation {
+                self.actionOk()
+            }
         } label: {
             Text(LocalizedString.ok)
                 .themeButton(buttonsForegroundColor, buttonsFont)

@@ -24,7 +24,7 @@ final class PickerViewModel: ObservableObject {
     var cancellable = Set<AnyCancellable>()
     
     //MARK: - Initializer
-
+    
     init() {
         self.datePickerManager = SSDatePickerManager(currentMonth: Date())
         self.datePickerManager.delegate = self
@@ -38,25 +38,29 @@ final class PickerViewModel: ObservableObject {
     //MARK: Date picker configuration methods
     
     func configureForMultipleDateSelection() {
+        datePickerManager = SSDatePickerManager(currentMonth: self.selectedDates?.first ?? Date())
+        datePickerManager.delegate = self
+        datePickerManager.datasource = self
         var configuration = SSDatePickerConfiguration()
         configuration.allowMultipleSelection = true
-        configuration.minimumDate = Calendar.current.date(byAdding: .day, value: -10, to: Date())!
-        configuration.maximumDate = Calendar.current.date(byAdding: .day, value: 5, to: Date())!
-        resetSelection()
         datePickerManager.configuration = configuration
     }
     
     func configureForSingleDateSelection() {
-        var configuration = SSDatePickerConfiguration()
-        configuration.disablePastDates = true
-                resetSelection()
-        datePickerManager.configuration = configuration
+        datePickerManager = SSDatePickerManager(currentMonth: self.selectedDate ?? Date())
+        datePickerManager.delegate = self
+        datePickerManager.datasource = self
+        datePickerManager.selectedDate = self.selectedDate
     }
     
     func configureForDateRangeSelection() {
+        datePickerManager = SSDatePickerManager(currentMonth: self.startDate ?? Date())
+        datePickerManager.delegate = self
+        datePickerManager.datasource = self
+        datePickerManager.startDate = self.startDate
+        datePickerManager.endDate = self.endDate
         var configuration = SSDatePickerConfiguration()
         configuration.allowRangeSelection = true
-        resetSelection()
         datePickerManager.configuration = configuration
     }
     
@@ -79,12 +83,6 @@ final class PickerViewModel: ObservableObject {
         datePickerManager.configuration = configuration
     }
     
-    func resetSelection() {
-        datePickerManager.selectedDates = nil
-        datePickerManager.selectedDate = nil
-        datePickerManager.startDate = nil
-        datePickerManager.endDate = nil
-    }
 }
 
 // MARK: - SSTimePickerDelegate
@@ -122,5 +120,5 @@ extension PickerViewModel: SSDatePickerDelegate, SSDatePickerDataSource {
         let day = Calendar.current.dateComponents([.day], from: date).day!
         return day != 4
     }
-   
+    
 }

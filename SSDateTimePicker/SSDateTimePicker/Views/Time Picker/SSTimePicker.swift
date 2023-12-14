@@ -163,8 +163,10 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     func labelTimeFormat(_ format: String, isSelected: Bool) -> some View {
         Text(format)
-            .font( isSelected ? selectedTimeFormatFont : timeFormatFont)
+            .font(isSelected ? selectedTimeFormatFont : timeFormatFont)
             .foregroundColor(isSelected ? timeFormatSelectionColor : timeFormatColor)
+            .transition(.scale)
+            .animation(.easeIn, value: isSelected)
     }
     
 }

@@ -41,7 +41,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
     
     //MARK: - Sub views
     
-    func selectionCircle(_ widthGeo: CGFloat) -> some View {
+    private func selectionCircle(_ widthGeo: CGFloat) -> some View {
         Circle()
             .fill(clockHandColor)
             .frame(width: SSPickerConstants.circleSize, height: SSPickerConstants.circleSize)
@@ -51,7 +51,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
             .rotationEffect(.init(degrees: -90))
     }
     
-    func clockFace(_ widthGeo: CGFloat) -> some View {
+    private func clockFace(_ widthGeo: CGFloat) -> some View {
         ForEach(1...12, id: \.self) { index in
             VStack {
                 let time = timePickerManager.isMinuteClock ? index*5 : index
@@ -69,7 +69,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    func clockHand(_ widthGeo: CGFloat) -> some View {
+    private func clockHand(_ widthGeo: CGFloat) -> some View {
         Circle()
             .fill(clockHandColor)
             .frame(width: SSPickerConstants.paddingTen, height: SSPickerConstants.paddingTen)
@@ -84,12 +84,12 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
     
     //MARK: - Methods
     
-    func clockHandHeight(_ width: CGFloat) -> CGFloat {
+    private func clockHandHeight(_ width: CGFloat) -> CGFloat {
         width-SSPickerConstants.clockPadding
     }
     
     // To disable clock number tap gesture when it is already selected to priotize grag gesture
-    func isClockNumberTapable(_ time: String) -> Bool {
+    private func isClockNumberTapable(_ time: String) -> Bool {
         if timePickerManager.isMinuteClock {
             let minute = time == "60" ? "00" : time
             return timePickerManager.minutesSelected != minute
@@ -99,7 +99,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
     }
     
     // To update selected hour/miute when user tap on any of the number on clock
-    func actionClockNumberSelection(number: Int) {
+    private func actionClockNumberSelection(number: Int) {
         if timePickerManager.isMinuteClock {
             let minute = number * 5
             timePickerManager.minutesSelected = (minute == 60 ? 0 : minute).formattedTime
@@ -116,7 +116,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
 
 extension SSClockPicker {
     
-    func onChanged(value: DragGesture.Value) {
+    private func onChanged(value: DragGesture.Value) {
         // getting angle
         let vector = CGVector(dx: value.location.x
                               , dy: value.location.y)
@@ -137,7 +137,7 @@ extension SSClockPicker {
         }
     }
     
-    func onEnd(value: DragGesture.Value) {
+    private func onEnd(value: DragGesture.Value) {
         if !timePickerManager.isMinuteClock {
             // updating hour value
             let hour = Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree)

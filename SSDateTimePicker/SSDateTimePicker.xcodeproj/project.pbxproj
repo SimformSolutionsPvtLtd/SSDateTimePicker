@@ -38,7 +38,6 @@
 		65AB6AF22B28205E009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6AF12B28205E009EA7EC /* LocalizedString.swift */; };
 		65AB6AF42B282280009EA7EC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6AF32B282280009EA7EC /* String+Extension.swift */; };
 		65AB6B032B282A18009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B052B282A18009EA7EC /* Localizable.strings */; };
-		65AB6B182B28597B009EA7EC /* SSWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B172B28597B009EA7EC /* SSWheelPicker.swift */; };
 		65E058102B0E2B260049A7BA /* DateTimePicker.docc in Sources */ = {isa = PBXBuildFile; fileRef = 65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */; };
 		65E058162B0E2B260049A7BA /* SSDateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E0580B2B0E2B260049A7BA /* SSDateTimePicker.framework */; };
 		65E0581B2B0E2B260049A7BA /* DateTimePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0581A2B0E2B260049A7BA /* DateTimePickerTests.swift */; };
@@ -87,7 +86,6 @@
 		65AB6AF12B28205E009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		65AB6AF32B282280009EA7EC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		65AB6B042B282A18009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		65AB6B172B28597B009EA7EC /* SSWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSWheelPicker.swift; sourceTree = "<group>"; };
 		65E0580B2B0E2B260049A7BA /* SSDateTimePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSDateTimePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0580E2B0E2B260049A7BA /* DateTimePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateTimePicker.h; sourceTree = "<group>"; };
 		65E0580F2B0E2B260049A7BA /* DateTimePicker.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DateTimePicker.docc; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 				654A7F942B1F04DF00EB9B33 /* SSClockPicker.swift */,
 				650720F82B1DE9FD00AC1FB6 /* SSTimeTextField.swift */,
 				650720F42B1DAFFB00AC1FB6 /* SSTimePicker.swift */,
-				65AB6B172B28597B009EA7EC /* SSWheelPicker.swift */,
 			);
 			path = "Time Picker";
 			sourceTree = "<group>";
@@ -357,7 +354,6 @@
 				650720A62B0F6BE600AC1FB6 /* DateView.swift in Sources */,
 				650720C62B13BE4D00AC1FB6 /* SSDatePicker.swift in Sources */,
 				650720B32B10880900AC1FB6 /* MonthSelectionView.swift in Sources */,
-				65AB6B182B28597B009EA7EC /* SSWheelPicker.swift in Sources */,
 				650720CD2B18257600AC1FB6 /* CornerRadiusStyle.swift in Sources */,
 				650720AA2B0F819F00AC1FB6 /* ImageConstant.swift in Sources */,
 				651668582B20842000AD02A1 /* Int+Extension.swift in Sources */,
@@ -559,6 +555,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = simform.DateTimePicker;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -590,6 +589,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = simform.DateTimePicker;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

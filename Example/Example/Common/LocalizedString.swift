@@ -19,5 +19,6 @@ class LocalizedString {
     static let selectedDate = "Selected Date:"
     static let selectedDates = "Selected Dates:"
     static let selectedTime = "Selected Time:"
+    static let dateTimePickerExample = "SSDateTimePicker Example"
 
 }
