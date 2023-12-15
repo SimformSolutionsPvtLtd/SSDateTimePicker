@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720D22B194D2100AC1FB6 /* PickerViewModel.swift */; };
+		6549D9AC2B2C4B4B0089EBB1 /* ThemeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549D9AB2B2C4B4B0089EBB1 /* ThemeCard.swift */; };
+		6549D9B02B2C4DBA0089EBB1 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549D9AF2B2C4DBA0089EBB1 /* View+Extension.swift */; };
 		65AB6B0B2B283131009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B0D2B283131009EA7EC /* Localizable.strings */; };
 		65AB6B102B2839F9009EA7EC /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */; };
 		65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B112B283AED009EA7EC /* LocalizedString.swift */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		650720D22B194D2100AC1FB6 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
+		6549D9AB2B2C4B4B0089EBB1 /* ThemeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCard.swift; sourceTree = "<group>"; };
+		6549D9AF2B2C4DBA0089EBB1 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		65AB6B0C2B283131009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
 		65AB6B112B283AED009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			children = (
 				65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */,
 				65AB6B112B283AED009EA7EC /* LocalizedString.swift */,
+				6549D9AB2B2C4B4B0089EBB1 /* ThemeCard.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				65AB6B142B285309009EA7EC /* Color+Extension.swift */,
+				6549D9AF2B2C4DBA0089EBB1 /* View+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -249,6 +255,8 @@
 			files = (
 				65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */,
 				65AB6B152B285309009EA7EC /* Color+Extension.swift in Sources */,
+				6549D9B02B2C4DBA0089EBB1 /* View+Extension.swift in Sources */,
+				6549D9AC2B2C4B4B0089EBB1 /* ThemeCard.swift in Sources */,
 				650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */,
 				65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */,
 				65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */,

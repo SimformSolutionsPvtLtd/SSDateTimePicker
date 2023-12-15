@@ -59,6 +59,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
             SSClockPicker(timePickerManager: timePickerManager)
             bottomButtons
         }
+        .padding(SSPickerConstants.pickerViewInnerPadding)
     }
     
     var timePickerHeader: some View {
@@ -103,7 +104,6 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
                         actionDone()
                     }
                 }
-               
             }
         }
     }
@@ -145,7 +145,9 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     var btnCancel: some View {
         Button {
-            self.actionCancel()
+            withAnimation {
+                self.actionCancel()
+            }
         } label: {
             Text(LocalizedString.cancel)
                 .themeButton(buttonsForegroundColor, buttonFont)
@@ -154,7 +156,9 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     var btnOk: some View {
         Button {
-            self.actionOk()
+            withAnimation {
+                self.actionOk()
+            }
         } label: {
             Text(LocalizedString.ok)
                 .themeButton(buttonsForegroundColor, buttonFont)

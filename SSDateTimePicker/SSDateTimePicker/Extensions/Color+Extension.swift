@@ -20,5 +20,6 @@ extension Color {
     public static let lightPink: Color = Color("lightPink")
     public static let lightBlue: Color = Color("lightBlue")
     public static let peach: Color = Color("peach")
+    
 }
 
