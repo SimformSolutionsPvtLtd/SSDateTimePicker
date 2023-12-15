@@ -8,38 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720D22B194D2100AC1FB6 /* PickerViewModel.swift */; };
+		65AB6B0B2B283131009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B0D2B283131009EA7EC /* Localizable.strings */; };
+		65AB6B102B2839F9009EA7EC /* ThemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */; };
+		65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B112B283AED009EA7EC /* LocalizedString.swift */; };
+		65AB6B152B285309009EA7EC /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B142B285309009EA7EC /* Color+Extension.swift */; };
+		65AB6B812B289EA8009EA7EC /* SSDateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584D2B0E3E850049A7BA /* ExampleApp.swift */; };
 		65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */; };
 		65E058522B0E3E860049A7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E058512B0E3E860049A7BA /* Assets.xcassets */; };
 		65E058552B0E3E860049A7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E058542B0E3E860049A7BA /* Preview Assets.xcassets */; };
-		65E058772B0E3FC30049A7BA /* DateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E058732B0E3FBC0049A7BA /* DateTimePicker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		65E058722B0E3FBC0049A7BA /* PBXContainerItemProxy */ = {
+		65AB6B7D2B289E49009EA7EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */;
+			containerPortal = 65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65E0580B2B0E2B260049A7BA;
-			remoteInfo = DateTimePicker;
+			remoteInfo = SSDateTimePicker;
 		};
-		65E058742B0E3FBC0049A7BA /* PBXContainerItemProxy */ = {
+		65AB6B7F2B289E49009EA7EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */;
+			containerPortal = 65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65E058152B0E2B260049A7BA;
-			remoteInfo = DateTimePickerTests;
+			remoteInfo = SSDateTimePickerTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		650720D22B194D2100AC1FB6 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
+		65AB6B0C2B283131009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButton.swift; sourceTree = "<group>"; };
+		65AB6B112B283AED009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		65AB6B142B285309009EA7EC /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSDateTimePicker.xcodeproj; path = ../SSDateTimePicker/SSDateTimePicker.xcodeproj; sourceTree = "<group>"; };
 		65E0584A2B0E3E850049A7BA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0584D2B0E3E850049A7BA /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerExampleView.swift; sourceTree = "<group>"; };
 		65E058512B0E3E860049A7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65E058542B0E3E860049A7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DateTimePicker.xcodeproj; path = ../DateTimePicker/DateTimePicker.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E058772B0E3FC30049A7BA /* DateTimePicker.framework in Frameworks */,
+				65AB6B812B289EA8009EA7EC /* SSDateTimePicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,10 +70,45 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		65AB6B0E2B28393B009EA7EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65AB6B132B283AF2009EA7EC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65AB6B0F2B2839F9009EA7EC /* ThemeButton.swift */,
+				65AB6B112B283AED009EA7EC /* LocalizedString.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		65AB6B162B285312009EA7EC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				65AB6B142B285309009EA7EC /* Color+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		65AB6B792B289E49009EA7EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */,
+				65AB6B802B289E49009EA7EC /* SSDateTimePickerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		65E058412B0E3E850049A7BA = {
 			isa = PBXGroup;
 			children = (
-				65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */,
+				65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */,
+				65AB6B0D2B283131009EA7EC /* Localizable.strings */,
 				65E0584C2B0E3E850049A7BA /* Example */,
 				65E0584B2B0E3E850049A7BA /* Products */,
 				65E058762B0E3FC30049A7BA /* Frameworks */,
@@ -83,9 +126,11 @@
 		65E0584C2B0E3E850049A7BA /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				65AB6B162B285312009EA7EC /* Extension */,
+				65AB6B132B283AF2009EA7EC /* Common */,
+				65AB6B0E2B28393B009EA7EC /* View */,
 				650720CF2B194C7900AC1FB6 /* ViewModel */,
 				65E0584D2B0E3E850049A7BA /* ExampleApp.swift */,
-				65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */,
 				65E058512B0E3E860049A7BA /* Assets.xcassets */,
 				65E058532B0E3E860049A7BA /* Preview Content */,
 			);
@@ -98,15 +143,6 @@
 				65E058542B0E3E860049A7BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		65E0586E2B0E3FBC0049A7BA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				65E058732B0E3FBC0049A7BA /* DateTimePicker.framework */,
-				65E058752B0E3FBC0049A7BA /* DateTimePickerTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		65E058762B0E3FC30049A7BA /* Frameworks */ = {
@@ -158,14 +194,15 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 65E058412B0E3E850049A7BA;
 			productRefGroup = 65E0584B2B0E3E850049A7BA /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 65E0586E2B0E3FBC0049A7BA /* Products */;
-					ProjectRef = 65E0586D2B0E3FBC0049A7BA /* DateTimePicker.xcodeproj */;
+					ProductGroup = 65AB6B792B289E49009EA7EC /* Products */;
+					ProjectRef = 65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -176,18 +213,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		65E058732B0E3FBC0049A7BA /* DateTimePicker.framework */ = {
+		65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = DateTimePicker.framework;
-			remoteRef = 65E058722B0E3FBC0049A7BA /* PBXContainerItemProxy */;
+			path = SSDateTimePicker.framework;
+			remoteRef = 65AB6B7D2B289E49009EA7EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65E058752B0E3FBC0049A7BA /* DateTimePickerTests.xctest */ = {
+		65AB6B802B289E49009EA7EC /* SSDateTimePickerTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = DateTimePickerTests.xctest;
-			remoteRef = 65E058742B0E3FBC0049A7BA /* PBXContainerItemProxy */;
+			path = SSDateTimePickerTests.xctest;
+			remoteRef = 65AB6B7F2B289E49009EA7EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -198,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E058552B0E3E860049A7BA /* Preview Assets.xcassets in Resources */,
+				65AB6B0B2B283131009EA7EC /* Localizable.strings in Resources */,
 				65E058522B0E3E860049A7BA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,13 +247,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */,
+				65AB6B152B285309009EA7EC /* Color+Extension.swift in Sources */,
 				650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */,
 				65E058502B0E3E850049A7BA /* PickerExampleView.swift in Sources */,
 				65E0584E2B0E3E850049A7BA /* ExampleApp.swift in Sources */,
+				65AB6B102B2839F9009EA7EC /* ThemeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		65AB6B0D2B283131009EA7EC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65AB6B0C2B283131009EA7EC /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		65E058562B0E3E860049A7BA /* Debug */ = {
@@ -268,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -322,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -345,8 +397,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -355,9 +407,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = simform.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -374,8 +429,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -384,9 +439,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = simform.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
