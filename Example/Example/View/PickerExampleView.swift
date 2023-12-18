@@ -19,12 +19,6 @@ struct PickerExampleView: View {
     @State var selectedDateCombine: Date?
     @ObservedObject var pickerViewModel = PickerViewModel()
     
-//    //MARK: - Initializer
-//
-//    init() {
-//
-//    }
-    
     //MARK: - Body
     var body: some View {
         ZStack {
@@ -54,40 +48,46 @@ struct PickerExampleView: View {
             headerView
             ScrollView {
                 VStack(alignment: .center, spacing: 10) {
-                    singleSelectionView
-                    multipleSelectionView
-                    rangeSelectionView
-                    btnCustomizedPicker
+                    singleDateSelectionView
+                    multipleDateSelectionView
+                    dateRangeSelectionView
                     timePickerView
                 }
             }
         }
     }
     
-    var singleSelectionView: some View {
-        VStack {
+    var singleDateSelectionView: some View {
+        VStack(spacing: 10) {
+            Text("\(LocalizedString.singleDateSelectionExample)")
+                .font(.callout)
+            Text("\(LocalizedString.selectedDate)  \(pickerViewModel.selectedDate?.monthDateYear ?? "-")")
+                .font(.footnote)
             btnSelectSingleDate
-            Text("\(LocalizedString.selectedDate)  \(pickerViewModel.selectedDate?.monthDateYear ?? "")")
         }
+        .themeCard()
     }
     
-    var multipleSelectionView: some View {
-        VStack {
+    var multipleDateSelectionView: some View {
+        VStack(spacing: 10) {
+            Text("\(LocalizedString.multipleDateSelectionExample)")
+                .font(.callout)
+            Text("\(LocalizedString.selectedDates) \(pickerViewModel.getSelectedDates() ?? "-")")
+                .font(.footnote)
             btnSelectMultipleDates
-            if let dates = pickerViewModel.selectedDates {
-                ForEach(0..<dates.count, id: \.self) { index in
-                    Text(dates[index].monthDateYear)
-                }
-            }
         }
+        .themeCard()
     }
     
-    var rangeSelectionView: some View {
-        VStack {
+    var dateRangeSelectionView: some View {
+        VStack(spacing: 10) {
+            Text("\(LocalizedString.dateRangeSelectionExample)")
+                .font(.callout)
+            Text("\(LocalizedString.startDate) \(pickerViewModel.startDate?.monthDateYear ?? "-"),  \(LocalizedString.endDate) \(pickerViewModel.endDate?.monthDateYear ?? "-")")
+                .font(.footnote)
             btnSelectDateRange
-            Text("\(LocalizedString.startDate) \(pickerViewModel.startDate?.monthDateYear ?? "")")
-            Text("\(LocalizedString.endDate) \(pickerViewModel.endDate?.monthDateYear ?? "")")
         }
+        .themeCard()
     }
     
     var btnSelectDateRange: some View {
@@ -95,23 +95,27 @@ struct PickerExampleView: View {
             pickerViewModel.configureForDateRangeSelection()
             showCalender.toggle()
         } label: {
-            Text(LocalizedString.dateRangeSelectionPicker)
+            Text(LocalizedString.selectDateRange)
                 .themeButton()
         }
     }
     
     var timePickerView: some View {
-        VStack {
+        VStack(spacing: 10) {
+            Text("\(LocalizedString.timePickerExample)")
+                .font(.callout)
+            Text("\(LocalizedString.selectedTime) \(pickerViewModel.selectedTime?.timeOnlyWithPadding ?? "-")")
+                .font(.footnote)
             btnTimePicker
-            Text("\(LocalizedString.selectedTime) \(pickerViewModel.selectedTime?.timeOnlyWithPadding ?? "")")
         }
+        .themeCard()
     }
     
     var btnTimePicker: some View {
         Button {
             showTimePicker.toggle()
         } label: {
-            Text(LocalizedString.timePicker)
+            Text(LocalizedString.selectTime)
                 .themeButton()
         }
         
@@ -122,7 +126,7 @@ struct PickerExampleView: View {
             pickerViewModel.configureForSingleDateSelection()
             showCalender.toggle()
         } label: {
-            Text(LocalizedString.singleDateSelectionPicker)
+            Text(LocalizedString.selectSingleDate)
                 .themeButton()
         }
     }
@@ -142,12 +146,11 @@ struct PickerExampleView: View {
             pickerViewModel.configureForMultipleDateSelection()
             showCalender.toggle()
         } label: {
-            Text(LocalizedString.multipleDateSelectionPicker)
+            Text(LocalizedString.selectMultipleDate)
                 .themeButton()
             
         }
     }
-    
     
 }
 

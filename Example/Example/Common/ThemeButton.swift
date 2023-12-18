@@ -13,17 +13,11 @@ struct ThemeButton: ViewModifier {
        content
             .frame(maxWidth: .infinity, minHeight: 44)
             .font(.system(size: 14, weight: .semibold))
-            .background(Color.lightBlue)
-            .foregroundColor(Color.darkPink)
+            .background(Color.darkPink)
+            .foregroundColor(Color.white)
             .cornerRadius(10)
             .padding(.leading, 20)
             .padding(.trailing, 20)
      }
     
-}
-
-extension View {
-    func themeButton() -> some View {
-        self.modifier(ThemeButton())
-    }
 }

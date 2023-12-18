@@ -41,6 +41,7 @@ final class PickerViewModel: ObservableObject {
         datePickerManager = SSDatePickerManager(currentMonth: self.selectedDates?.first ?? Date())
         datePickerManager.delegate = self
         datePickerManager.datasource = self
+        datePickerManager.selectedDates = self.selectedDates
         var configuration = SSDatePickerConfiguration()
         configuration.allowMultipleSelection = true
         datePickerManager.configuration = configuration
@@ -81,6 +82,13 @@ final class PickerViewModel: ObservableObject {
         configuration.headerDateFormat = DateFormat.fullDate
         configuration.sepratorLineColor = Color.white.opacity(0.7)
         datePickerManager.configuration = configuration
+    }
+    
+    func getSelectedDates() -> String? {
+        let dates = self.selectedDates?.compactMap({ date in
+            date.monthDateYear
+        }).joined(separator: ",")
+        return dates
     }
     
 }
