@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
     
-    //MARK: - Property
-    
+    // MARK: - Properties
+
     @ObservedObject var timePickerManager: SSTimePickerManager
     private var threeSixtyDegree: CGFloat = 360
     private var oneEightyDegree: CGFloat = 180

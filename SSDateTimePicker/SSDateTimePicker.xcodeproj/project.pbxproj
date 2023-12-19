@@ -35,6 +35,9 @@
 		6552AF272B22CCDC00518870 /* SSDatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552AF262B22CCDC00518870 /* SSDatePickerDelegate.swift */; };
 		6552AF292B22CCEB00518870 /* SSDatePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552AF282B22CCEB00518870 /* SSDatePickerDataSource.swift */; };
 		6552AF2B2B22D67C00518870 /* SSTimePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6552AF2A2B22D67C00518870 /* SSTimePickerDelegate.swift */; };
+		6579912D2B3016D100BE8B25 /* SSDateRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6579912C2B3016D100BE8B25 /* SSDateRangePicker.swift */; };
+		6579912F2B3016F900BE8B25 /* SSMultiDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6579912E2B3016F900BE8B25 /* SSMultiDatePicker.swift */; };
+		657991332B30834400BE8B25 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657991322B30834400BE8B25 /* Utils.swift */; };
 		65AB6AF22B28205E009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6AF12B28205E009EA7EC /* LocalizedString.swift */; };
 		65AB6AF42B282280009EA7EC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6AF32B282280009EA7EC /* String+Extension.swift */; };
 		65AB6B032B282A18009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B052B282A18009EA7EC /* Localizable.strings */; };
@@ -83,6 +86,9 @@
 		6552AF262B22CCDC00518870 /* SSDatePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDatePickerDelegate.swift; sourceTree = "<group>"; };
 		6552AF282B22CCEB00518870 /* SSDatePickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDatePickerDataSource.swift; sourceTree = "<group>"; };
 		6552AF2A2B22D67C00518870 /* SSTimePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTimePickerDelegate.swift; sourceTree = "<group>"; };
+		6579912C2B3016D100BE8B25 /* SSDateRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDateRangePicker.swift; sourceTree = "<group>"; };
+		6579912E2B3016F900BE8B25 /* SSMultiDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSMultiDatePicker.swift; sourceTree = "<group>"; };
+		657991322B30834400BE8B25 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		65AB6AF12B28205E009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		65AB6AF32B282280009EA7EC /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		65AB6B042B282A18009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				650720A92B0F819F00AC1FB6 /* ImageConstant.swift */,
 				650720CC2B18257600AC1FB6 /* CornerRadiusStyle.swift */,
 				65AB6AF12B28205E009EA7EC /* LocalizedString.swift */,
+				657991322B30834400BE8B25 /* Utils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 				650720B22B10880900AC1FB6 /* MonthSelectionView.swift */,
 				650720A52B0F6BE600AC1FB6 /* DateView.swift */,
 				650720A12B0F644000AC1FB6 /* WeekDatesView.swift */,
+				6579912C2B3016D100BE8B25 /* SSDateRangePicker.swift */,
+				6579912E2B3016F900BE8B25 /* SSMultiDatePicker.swift */,
 			);
 			path = "Date picker";
 			sourceTree = "<group>";
@@ -359,6 +368,7 @@
 				651668582B20842000AD02A1 /* Int+Extension.swift in Sources */,
 				650720BE2B10CB7300AC1FB6 /* DateFormatter+Extension.swift in Sources */,
 				650720B52B10881900AC1FB6 /* YearSelectionView.swift in Sources */,
+				6579912D2B3016D100BE8B25 /* SSDateRangePicker.swift in Sources */,
 				654A7F952B1F04DF00EB9B33 /* SSClockPicker.swift in Sources */,
 				650720F72B1DDF3600AC1FB6 /* SSTimePickerManager.swift in Sources */,
 				650720C82B146E9500AC1FB6 /* SSDatePickerManager.swift in Sources */,
@@ -373,8 +383,10 @@
 				650720F52B1DAFFB00AC1FB6 /* SSTimePicker.swift in Sources */,
 				650720EF2B19FD7A00AC1FB6 /* ThemeButton.swift in Sources */,
 				650720C22B10CBC500AC1FB6 /* Color+Extension.swift in Sources */,
+				657991332B30834400BE8B25 /* Utils.swift in Sources */,
 				65AB6AF42B282280009EA7EC /* String+Extension.swift in Sources */,
 				6507209C2B0F4D4500AC1FB6 /* SSDatePickerConfiguration.swift in Sources */,
+				6579912F2B3016F900BE8B25 /* SSMultiDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

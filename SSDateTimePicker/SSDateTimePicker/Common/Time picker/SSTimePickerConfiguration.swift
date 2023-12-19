@@ -8,58 +8,61 @@
 import Foundation
 import SwiftUI
 
-public struct SSTimePickerConfiguration {
+/// A configuration structure for customizing the appearance and behavior of the SSTimePicker.
+struct SSTimePickerConfiguration {
+    
+    // MARK: - Colors and fonts
+
+    /// Color for the header title "Select Time".
+    var headerTitleStyle: SSStyle = .init(font: Font.headerTitle, color: .gray)
+
+    /// Text color for the selected and unselected number on the clock.
+    var clockNumberStyle: SSStyle = .init(font: Font.clockNumber, color: .black)
+
+    /// Font for Hour (HH) and Minute (MM) labels.
+    var timeLabelStyle: SSStyle = .init(font: Font.timeLabel, color: .darkPink)
+    
+    /// Font for the AM/PM time format when unselected.
+    var timeFormatStyle: SSStyle = .init(font: Font.timeFormat, color: .gray)
+    
+    /// Font for the AM/PM time format when selected.
+    var selectedTimeFormatStyle: SSStyle = .init(font: Font.selectedTimeFormat, color: .darkPink)
+    
+    var buttonStyle: SSStyle = .init(font: Font.selectedTimeFormat, color: .darkPink)
     
     // MARK: - Colors
-
-    /** Background color for Hour (HH) and Minute (MM) labels. */
-    public var timeLabelBackgroundColor: Color
-    /** Font color for Hour (HH) and Minute (MM) labels. */
-    public var timeLabelForegroundColor: Color
-    /** Color to highlight the selected time format (AM/PM). */
-    public var timeFormatSelectionColor: Color
-    /** Default color for the AM/PM time format when deselected. */
-    public var timeFormatColor: Color = Color.gray
-    /** Color for the header title "Select Time". */
-    public var headerTitleCoor: Color = Color.gray
-    /** Text color for the selected number on the clock. */
-    public var clockSelectedNumberTextColor: Color = Color.white
-    /** Color for the clock hand and circular selection circle. */
-    public var clockHandColor: Color
-    public var clockNumberTextColor: Color = Color.black
-    public var popupOverlayColor: Color = Color.black.opacity(0.5)
-    public var buttonsForegroundColor: Color
-    public var pickerBackgroundColor: Color
-
-    // MARK: - Font properties
-
-    public var headerTitleFont: Font = .system(size: 12, weight: .bold)
-    /** Font for Hour (HH) and Minute (MM) labels. */
-    public var timeLabelFont: Font = .system(size: 20, weight: .semibold)
-    /** Font for the AM/PM time format when deselected. */
-    public var timeFormatFont: Font = .system(size: 12, weight: .bold)
-    /** Font for the AM/PM time format when selected. */
-    public var selectedTimeFormatFont: Font = .system(size: 15, weight: .bold)
-    public var clockNumberFont: Font = .system(size: 15)
-    public var buttonFont: Font = .system(size: 15, weight: .semibold)
+    
+    /// Color for the clock hand and circular selection circle.
+    var clockHandColor: Color
+    
+    /// Background and foreground color for Hour (HH) and Minute (MM) labels.
+    var timeLabelBackgroundColor: Color = .peach
+    
+    /// Color for the overlay background of the popup.
+    var popupOverlayColor: Color = Color.black.opacity(0.5)
+        
+    /// Background color for the picker.
+    var pickerBackgroundColor: Color
 
     // MARK: - Additional Properties
 
-    public var pickerViewRadius: CGFloat = 15
+    /// Radius for the corner of the picker view.
+    var pickerViewRadius: CGFloat = 15
     
     // MARK: - Initializer
 
-    /// Creates a custom-themed time picker.
+    /// Creates a custom-themed time picker configuration.
     ///
     /// - Parameters:
-    ///   - pickerBackgroundColor: The color for the background of the picker view. Default is light pink.
-    ///   - primaryColor: This parameter determines the color for the `selected time formate(AM/PM), buttons text color, time                      Text(HH:MM) and clock hand color.`
-    ///   - timeLabelBackgroundColor: The color for the background of the time label(HH:MM). Default is light pink.
-    /// Use this instance to set up the appearance of the SSTimePicker according to your prefrence.
-    public init(pickerBackgroundColor: Color = Color.lightPink, primaryColor: Color = Color.darkPink, timeLabelBackgroundColor: Color = Color.peach) {
-        self.timeLabelForegroundColor = primaryColor
-        self.timeFormatSelectionColor = primaryColor
-        self.buttonsForegroundColor = primaryColor
+    ///   - pickerBackgroundColor: The background color of the picker view. Default is light pink.
+    ///   - primaryColor: The color for the selected time format (AM/PM), buttons text color, time text (HH:MM), and clock hand color.
+    ///   - timeLabelBackgroundColor: The background color for the time label (HH:MM). Default is light pink.
+    ///
+    /// Use this instance to set up the appearance and behavior of the SSTimePicker according to your preferences.
+    init(pickerBackgroundColor: Color = Color.lightPink, primaryColor: Color = Color.darkPink, timeLabelBackgroundColor: Color = Color.peach) {
+        self.timeLabelStyle.color = primaryColor
+        self.selectedTimeFormatStyle.color = primaryColor
+        self.buttonStyle.color = primaryColor
         self.clockHandColor = primaryColor
         self.pickerBackgroundColor = pickerBackgroundColor
         self.timeLabelBackgroundColor = timeLabelBackgroundColor
@@ -67,6 +70,7 @@ public struct SSTimePickerConfiguration {
 
 }
 
+/// A protocol providing direct access to specific properties of an `SSTimePickerConfiguration`.
 protocol TimePickerConfigurationDirectAccess {
     
     var configuration: SSTimePickerConfiguration { get }
@@ -80,33 +84,29 @@ extension TimePickerConfigurationDirectAccess {
     }
     
     var timeLabelForegroundColor: Color {
-        configuration.timeLabelForegroundColor
+        configuration.timeLabelStyle.color
     }
     
     var timeFormatSelectionColor: Color {
-        configuration.timeFormatSelectionColor
+        configuration.selectedTimeFormatStyle.color
     }
     
     var timeFormatColor: Color {
-        configuration.timeFormatColor
+        configuration.timeFormatStyle.color
     }
     
-    var headerTitleCoor: Color {
-        configuration.headerTitleCoor
+    var headerTitleColor: Color {
+        configuration.headerTitleStyle.color
     }
     
     var buttonsForegroundColor: Color {
-        configuration.buttonsForegroundColor
+        configuration.buttonStyle.color
     }
     
     var pickerBackgroundColor: Color {
         configuration.pickerBackgroundColor
     }
-    
-    var timeSelectionForegroundColor: Color {
-        configuration.clockSelectedNumberTextColor
-    }
-    
+        
     var popupOverlayColor: Color {
         configuration.popupOverlayColor
     }
@@ -120,31 +120,31 @@ extension TimePickerConfigurationDirectAccess {
     }
     
     var clockNumberTextColor: Color {
-        configuration.clockNumberTextColor
+        configuration.clockNumberStyle.color
     }
     
     var headerTitleFont: Font {
-        configuration.headerTitleFont
+        configuration.headerTitleStyle.font
     }
     
     var timeLabelFont: Font {
-        configuration.timeLabelFont
+        configuration.timeLabelStyle.font
     }
     
     var timeFormatFont: Font {
-        configuration.timeFormatFont
+        configuration.timeFormatStyle.font
     }
     
     var selectedTimeFormatFont: Font {
-        configuration.selectedTimeFormatFont
+        configuration.selectedTimeFormatStyle.font
     }
     
     var clockNumberFont: Font {
-        configuration.clockNumberFont
+        configuration.clockNumberStyle.font
     }
     
     var buttonFont: Font {
-        configuration.buttonFont
+        configuration.buttonStyle.font
     }
         
 }
