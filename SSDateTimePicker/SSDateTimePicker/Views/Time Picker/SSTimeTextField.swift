@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SSTimeTextField: View, TimePickerConfigurationDirectAccess {
     
-    //MARK: - Property
-    
+    // MARK: - Properties
+
     @Binding var time: String
     var configuration: SSTimePickerConfiguration
     @State var isHourField: Bool
@@ -38,7 +38,7 @@ struct SSTimeTextField: View, TimePickerConfigurationDirectAccess {
     
     //MARK: - Sub views
     
-    var timeLabel: some View {
+    private var timeLabel: some View {
         Text(time.count == 1 ? "0\(time)" : time)
             .multilineTextAlignment(.center)
             .font(timeLabelFont)
@@ -49,7 +49,7 @@ struct SSTimeTextField: View, TimePickerConfigurationDirectAccess {
             .cornerRadius(SSPickerConstants.timeFieldCornerRadius)
     }
     
-    var txtField: some View {
+    private var txtField: some View {
         TextField(isHourField ? LocalizedString.hour : LocalizedString.minute, text: $time)
             .focused($isFocused)
             .keyboardType(.numberPad)

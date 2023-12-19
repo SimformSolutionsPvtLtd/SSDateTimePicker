@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CornerRadiusStyle: ViewModifier {
     
-    //MARK: - Property
+    // MARK: - Properties
 
     var radius: CGFloat
     var corners: UIRectCorner

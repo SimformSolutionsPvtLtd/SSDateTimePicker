@@ -9,8 +9,8 @@ import SwiftUI
 
 public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
     
-    //MARK: - Property
-    
+    // MARK: - Properties
+
     @Binding var currentView: SelectionView
     @EnvironmentObject var calendarManager: SSDatePickerManager
     private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: SSPickerConstants.monthYearGridRows)
@@ -38,7 +38,7 @@ public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Sub views
     
-    var yearsGridView: some View {
+    private var yearsGridView: some View {
         HStack {
             LazyVGrid(columns: gridItem, spacing: SSPickerConstants.monthYearGridSpacing) {
                 ForEach(calendarManager.yearRange, id: \.self) { year in
@@ -49,7 +49,7 @@ public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
     }
     
     @ViewBuilder
-    func btnYear(for year: Int) -> some View {
+    private func btnYear(for year: Int) -> some View {
         let isSelectedYear = calendarManager.isSelected(year)
         Button {
             updateYearSelection(year: year)
@@ -62,7 +62,7 @@ public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Methods
 
-    func updateYearSelection(year: Int) {
+    private func updateYearSelection(year: Int) {
         calendarManager.updateYearSelection(year: year)
         currentView = .month
     }

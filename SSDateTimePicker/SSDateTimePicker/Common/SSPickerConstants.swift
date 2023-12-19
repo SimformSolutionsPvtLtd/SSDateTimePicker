@@ -7,8 +7,11 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 let screen = UIScreen.main.bounds
+
+// MARK: - Picker Constants
 
 struct SSPickerConstants {
     
@@ -43,31 +46,66 @@ struct SSPickerConstants {
 
 }
 
+// MARK: - Font Size
+
+struct Size {
+    static let headerTitle: CGFloat = 12
+    static let headerDate: CGFloat = 20
+    static let month: CGFloat = 14
+    static let year: CGFloat = 14
+    static let buttonsText: CGFloat = 15
+    static let currentMonthYear: CGFloat = 14
+    static let clockNumber: CGFloat = 15
+    static let timeLabel: CGFloat = 20
+    static let timeFormat: CGFloat = 12
+    static let selectedTimeFormat: CGFloat = 15
+}
+
+// MARK: - DateFormat
+
+/// A struct containing commonly used date format strings for formatting and parsing dates.
 public struct DateFormat {
     
-    public static let abbreviatedMonth = "MMM" // Dec
-    public static let dayOfWeekWithMonthAndDay = "EEEE MMMM d" // Friday December 3
-    public static let fullMonth = "MMMM" // December
-    public static let monthYear = "MMMM, yyyy" // December, 2023
-    public static let monthDateYear = "MMM d, yyyy" // Jun 3, 2023
-    public static let dateMonthYear = "d MMM, yyyy" // 3 Jun, 2023
-    public static let dateMonthYearFull = "dd MMMM, yyyy" // 03 December, 2023
-    public static let monthDateYearFull = "MMMM dd, yyyy" // December 03, 2023
-    public static let yearMonthDate = "yyyy-MM-dd" // 2023-06-03
-    public static let shortMonthYear = "MMM yyyy" // Jun 2023
-    public static let dayMonthYear = "EEEE, d MMM, yyyy" // Monday, 3 Jun, 2023
-    public static let fullDate = "EEEE, MMMM d, yyyy" // Monday, Jun 03, 2023
-    public static let timeOnlyWithPadding = "hh:mm a" // 12:45 PM
+    /// Abbreviated month format (e.g., "Dec").
+    public static let abbreviatedMonth = "MMM"
+    
+    /// Day of the week with month and day format (e.g., "Friday December 3").
+    public static let dayOfWeekWithMonthAndDay = "EEEE MMMM d"
+    
+    /// Full month format (e.g., "December").
+    public static let fullMonth = "MMMM"
+    
+    /// Month and year format (e.g., "December, 2023").
+    public static let monthYear = "MMMM, yyyy"
+    
+    /// Month, day, and year format (e.g., "Jun 3, 2023").
+    public static let monthDateYear = "MMM d, yyyy"
+    
+    /// Day, month, and year format (e.g., "3 Jun, 2023").
+    public static let dateMonthYear = "d MMM, yyyy"
+    
+    /// Full date with day, month, and year format (e.g., "03 December, 2023").
+    public static let dateMonthYearFull = "dd MMMM, yyyy"
+    
+    /// Month, day, and year full format (e.g., "December 03, 2023").
+    public static let monthDateYearFull = "MMMM dd, yyyy"
+    
+    /// Year, month, and day format (e.g., "2023-06-03").
+    public static let yearMonthDate = "yyyy-MM-dd"
+    
+    /// Short month and year format (e.g., "Jun 2023").
+    public static let shortMonthYear = "MMM yyyy"
+    
+    /// Day of the week, day, month, and year format (e.g., "Monday, 3 Jun, 2023").
+    public static let dayMonthYear = "EEEE, d MMM, yyyy"
+    
+    /// Full date format (e.g., "Monday, Jun 03, 2023").
+    public static let fullDate = "EEEE, MMMM d, yyyy"
+    
+    /// Time-only format with padding (e.g., "12:45 PM").
+    public static let timeOnlyWithPadding = "hh:mm a"
+    
+    /// Twenty-four-hour time format (e.g., "12:45").
     public static let twentyFourHourFormat = "HH:mm"
-}
-
-public enum SelectionView {
-    case date
-    case month
-    case year
-}
-
-enum TimeFormat {
-    case am
-    case pm
+    
 }

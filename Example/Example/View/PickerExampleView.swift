@@ -7,12 +7,14 @@
 
 import SwiftUI
 import SSDateTimePicker
-import Combine
 
 struct PickerExampleView: View {
     
-    //MARK: - Property
-    @State var showCalender: Bool = false
+    //MARK: - Properties
+    
+    @State var showDatePicker: Bool = false
+    @State var showMultiDatePicker: Bool = false
+    @State var showDateRangePicker: Bool = false
     @State var showTimePicker: Bool = false
     @State var displayCustomizedCalendar: Bool = false
     @State var selectedDate: Date = Date()
@@ -21,15 +23,21 @@ struct PickerExampleView: View {
     
     //MARK: - Body
     var body: some View {
-        ZStack {
-            dateTimePickerExampleView
-            
-            // Date Picker
-            SSDatePicker(showCalender: $showCalender, calendarManager: ObservedObject(wrappedValue: pickerViewModel.datePickerManager))
-            
-            // Time Picker
-            SSTimePicker(showTimePicker: $showTimePicker, timePickerManager: pickerViewModel.timePickerManager)
-        }
+        dateTimePickerExampleView
+            .fullScreenCover(isPresented: $showDatePicker) {
+                datePicker
+            }
+            .fullScreenCover(isPresented: $showDateRangePicker, content: {
+                dateRangePicker
+            })
+            .fullScreenCover(isPresented: $showMultiDatePicker, content: {
+                multiDatePicker
+            })
+            .fullScreenCover(isPresented: $showTimePicker) {
+                // Time Picker
+                timePicker
+                    .background(ClearBackgroundView())
+            }
         
     }
     
@@ -83,7 +91,7 @@ struct PickerExampleView: View {
         VStack(spacing: 10) {
             Text("\(LocalizedString.dateRangeSelectionExample)")
                 .font(.callout)
-            Text("\(LocalizedString.startDate) \(pickerViewModel.startDate?.monthDateYear ?? "-"),  \(LocalizedString.endDate) \(pickerViewModel.endDate?.monthDateYear ?? "-")")
+            Text("\(LocalizedString.startDate) \(pickerViewModel.selectedDateRange?.startDate.monthDateYear ?? "-"),  \(LocalizedString.endDate) \(pickerViewModel.selectedDateRange?.endDate.monthDateYear ?? "-")")
                 .font(.footnote)
             btnSelectDateRange
         }
@@ -92,8 +100,7 @@ struct PickerExampleView: View {
     
     var btnSelectDateRange: some View {
         Button {
-            pickerViewModel.configureForDateRangeSelection()
-            showCalender.toggle()
+            showDateRangePicker.toggle()
         } label: {
             Text(LocalizedString.selectDateRange)
                 .themeButton()
@@ -118,38 +125,64 @@ struct PickerExampleView: View {
             Text(LocalizedString.selectTime)
                 .themeButton()
         }
-        
     }
     
     var btnSelectSingleDate: some View {
         Button {
-            pickerViewModel.configureForSingleDateSelection()
-            showCalender.toggle()
+            showDatePicker.toggle()
         } label: {
             Text(LocalizedString.selectSingleDate)
                 .themeButton()
         }
     }
     
-    var btnCustomizedPicker: some View {
+    var btnSelectMultipleDates: some View {
         Button {
-            pickerViewModel.customizedDatePicker()
-            showCalender.toggle()
+            showMultiDatePicker.toggle()
         } label: {
-            Text(LocalizedString.customizedDatePicker)
+            Text(LocalizedString.selectMultipleDate)
                 .themeButton()
         }
     }
     
-    var btnSelectMultipleDates: some View {
-        Button {
-            pickerViewModel.configureForMultipleDateSelection()
-            showCalender.toggle()
-        } label: {
-            Text(LocalizedString.selectMultipleDate)
-                .themeButton()
-            
-        }
+    var datePicker: some View {
+        SSDatePicker(showDatePicker: $showDatePicker)
+            .selectedDate(self.pickerViewModel.selectedDate)
+            .onDateSelection({ date in
+                self.pickerViewModel.selectedDate = date
+            })
+            .background(ClearBackgroundView())
+    }
+    
+    var dateRangePicker: some View {
+        SSDatePicker(showDatePicker: $showDateRangePicker)
+            .enableDateRangeSelection()
+            .selectedDates(pickerViewModel.selectedDateRange)
+            .onDateRangeSelection({ dateRange in
+                pickerViewModel.selectedDateRange = dateRange
+            })
+            .background(ClearBackgroundView())
+    }
+    
+    var multiDatePicker: some View {
+        SSDatePicker(showDatePicker: $showMultiDatePicker)
+            .disableDates([Date()])
+            .themeColor(pickerBackgroundColor: .lightGreen, primaryColor: .darkGreen)
+            .enableMultipleDateSelection()
+            .selectedDates(pickerViewModel.selectedDates)
+            .onMultiDateSelection({ dates in
+                pickerViewModel.selectedDates = dates
+            })
+            .background(ClearBackgroundView())
+    }
+    
+    var timePicker: some View {
+        SSTimePicker(showTimePicker: $showTimePicker)
+            .selectedTime(pickerViewModel.selectedTime)
+            .buttonStyle(color: .darkGreen)
+            .onTimeSelection { time in
+                pickerViewModel.selectedTime = time
+            }
     }
     
 }

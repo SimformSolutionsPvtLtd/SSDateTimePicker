@@ -9,40 +9,41 @@ import SwiftUI
 
 public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
-    //MARK: - Property
+    // MARK: - Properties
     
-    @ObservedObject var timePickerManager: SSTimePickerManager
+    @ObservedObject var timePickerManager: SSTimePickerManager = SSTimePickerManager()
     @Binding var showTimePicker: Bool
     @State var isInEditMode: Bool = false
     
     var configuration: SSTimePickerConfiguration {
-        timePickerManager.configuration
+        get {
+            timePickerManager.configuration
+        } set {
+            timePickerManager.configuration = newValue
+        }
     }
     
     //MARK: - Initializer
     
-    public init(showTimePicker: Binding<Bool>, timePickerManager: SSTimePickerManager) {
+    public init(showTimePicker: Binding<Bool>) {
         self._showTimePicker = showTimePicker
-        self.timePickerManager = timePickerManager
     }
     
     //MARK: - Body
     
     public var body: some View {
         ZStack(alignment: .center) {
-            if showTimePicker {
-                popupOverlayColor
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        actionCancel()
-                    }
-                timePickerSubview
-                    .background(pickerBackgroundColor)
-                    .cornerRadius(pickerViewRadius)
-                    .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
-                    .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
-                    .compositingGroup()
-            }
+            popupOverlayColor
+                .ignoresSafeArea()
+                .onTapGesture {
+                    actionCancel()
+                }
+            timePickerSubview
+                .background(pickerBackgroundColor)
+                .cornerRadius(pickerViewRadius)
+                .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
+                .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
+                .compositingGroup()
         }
         .onChange(of: showTimePicker) { newValue in
             if showTimePicker {
@@ -53,7 +54,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     //MARK: - Sub views
     
-    var timePickerSubview: some View {
+    private var timePickerSubview: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             timePickerHeader
             SSClockPicker(timePickerManager: timePickerManager)
@@ -62,24 +63,24 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         .padding(SSPickerConstants.pickerViewInnerPadding)
     }
     
-    var timePickerHeader: some View {
+    private var timePickerHeader: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             lblSelectedDate
             Divider()
         }
     }
     
-    var lblSelectedDate: some View {
+    private var lblSelectedDate: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             Text(LocalizedString.selectTime)
                 .font(headerTitleFont)
-                .foregroundColor(headerTitleCoor)
+                .foregroundColor(headerTitleColor)
             textFieldHourMinutes
         }
         .padding(SSPickerConstants.paddingTen)
     }
     
-    var textFieldHourMinutes: some View {
+    private var textFieldHourMinutes: some View {
         HStack(spacing: 4) {
             SSTimeTextField(time: $timePickerManager.hourSelected, configuration: configuration, isHourField: true, isInEditMode: $isInEditMode)
                 .simultaneousGesture(TapGesture().onEnded {
@@ -108,14 +109,14 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    var amPMView: some View {
+    private var amPMView: some View {
         VStack {
             btnAM
             btnPM
         }
     }
     
-    var btnAM: some View {
+    private var btnAM: some View {
         Button {
             withAnimation {
                 timePickerManager.selectedTimeFromat = .am
@@ -125,7 +126,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    var btnPM: some View {
+    private var btnPM: some View {
         Button {
             withAnimation {
                 timePickerManager.selectedTimeFromat = .pm
@@ -135,7 +136,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    var bottomButtons: some View {
+    private var bottomButtons: some View {
         HStack(spacing: SSPickerConstants.bottomButtonHSpacing) {
             Spacer()
             btnCancel
@@ -143,7 +144,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    var btnCancel: some View {
+    private var btnCancel: some View {
         Button {
             withAnimation {
                 self.actionCancel()
@@ -154,7 +155,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    var btnOk: some View {
+    private var btnOk: some View {
         Button {
             withAnimation {
                 self.actionOk()
@@ -165,7 +166,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
         }
     }
     
-    func labelTimeFormat(_ format: String, isSelected: Bool) -> some View {
+    private func labelTimeFormat(_ format: String, isSelected: Bool) -> some View {
         Text(format)
             .font(isSelected ? selectedTimeFormatFont : timeFormatFont)
             .foregroundColor(isSelected ? timeFormatSelectionColor : timeFormatColor)
@@ -203,8 +204,116 @@ extension SSTimePicker {
     
 }
 
-struct SSTimePicker_Previews: PreviewProvider {
-    static var previews: some View {
-        SSTimePicker(showTimePicker: .constant(true), timePickerManager: SSTimePickerManager(configuration: SSTimePickerConfiguration()))
+// MARK: - Modifiers
+
+extension SSTimePicker {
+    
+    /// Set the selected time for the time picker.
+    /// - Parameter time: The selected time.
+    /// - Returns: The modified SSTimePicker instance.
+    public func selectedTime(_ time: Date?) -> SSTimePicker {
+        let picker = self
+        picker.timePickerManager.selectedTime = time
+        return picker
     }
+    
+    /// Apply a custom theme to the time picker.
+    /// - Parameters:
+    ///   - pickerBackgroundColor: Background color of the time picker.
+    ///   - primaryColor: Primary color used for various elements.
+    ///   - timeLabelBackgroundColor: Background color for the time label.
+    /// - Returns: The modified SSTimePicker instance.
+    public func themeColor(pickerBackgroundColor: Color, primaryColor: Color, timeLabelBackgroundColor: Color) -> SSTimePicker {
+        var picker = self
+        picker.configuration.timeLabelStyle.color = primaryColor
+        picker.configuration.selectedTimeFormatStyle.color = primaryColor
+        picker.configuration.buttonStyle.color = primaryColor
+        picker.configuration.clockHandColor = primaryColor
+        picker.configuration.pickerBackgroundColor = pickerBackgroundColor
+        picker.configuration.timeLabelBackgroundColor = timeLabelBackgroundColor
+        return picker
+    }
+    
+    /// Customize the style of the header title.
+    /// - Parameters:
+    ///   - color: Text color of the header title.
+    ///   - font: Font of the header title.
+    /// - Returns: The modified SSTimePicker instance.
+    public func headerTitleStyle(color: Color? = nil, font: Font? = nil) -> SSTimePicker {
+        var picker = self
+        color.map { picker.configuration.headerTitleStyle.color = $0 }
+        font.map { picker.configuration.headerTitleStyle.font = $0 }
+        return picker
+    }
+    
+    /// Customize the style of the time label.
+    /// - Parameters:
+    ///   - color: Text color of the time label.
+    ///   - font: Font of the time label.
+    /// - Returns: The modified SSTimePicker instance.
+    public func timeLabelStyle(color: Color? = nil, font: Font? = nil) -> SSTimePicker {
+        var picker = self
+        color.map { picker.configuration.timeLabelStyle.color = $0 }
+        font.map { picker.configuration.timeLabelStyle.font = $0 }
+        return picker
+    }
+    
+    /// Customize the style of the time format.
+    /// - Parameters:
+    ///   - color: Text color of the time format.
+    ///   - font: Font of the time format.
+    /// - Returns: The modified SSTimePicker instance.
+    public func timeFormatStyle(color: Color? = nil, font: Font? = nil) -> SSTimePicker {
+        var picker = self
+        color.map { picker.configuration.timeFormatStyle.color = $0 }
+        font.map { picker.configuration.timeFormatStyle.font = $0 }
+        return picker
+    }
+    
+    /// Customize the style of the clock numbers.
+    /// - Parameters:
+    ///   - color: Text color of the clock numbers.
+    ///   - font: Font of the clock numbers.
+    /// - Returns: The modified SSTimePicker instance.
+    public func clockNumberStyle(color: Color? = nil, font: Font? = nil) -> SSTimePicker {
+        var picker = self
+        color.map { picker.configuration.clockNumberStyle.color = $0 }
+        font.map { picker.configuration.clockNumberStyle.font = $0 }
+        return picker
+    }
+    
+    /// Customize the style of the buttons.
+    /// - Parameters:
+    ///   - color: Text color of the buttons.
+    ///   - font: Font of the buttons.
+    /// - Returns: The modified SSTimePicker instance.
+    public func buttonStyle(color: Color? = nil, font: Font? = nil) -> SSTimePicker {
+        var picker = self
+        color.map { picker.configuration.buttonStyle.color = $0 }
+        font.map { picker.configuration.buttonStyle.font = $0 }
+        return picker
+    }
+    
+    /// Customize the style of the selected time format.
+    /// - Parameters:
+    ///   - color: Text color of the selected time format.
+    ///   - font: Font of the selected time format.
+    /// - Returns: The modified SSTimePicker instance.
+    public func selectedTimeFormatStyle(color: Color? = nil, font: Font? = nil) -> SSTimePicker {
+        var picker = self
+        color.map { picker.configuration.selectedTimeFormatStyle.color = $0 }
+        font.map { picker.configuration.selectedTimeFormatStyle.font = $0 }
+        return picker
+    }
+    
+    /// Set a callback closure to be executed when a time is selected.
+    /// - Parameter completion: A closure to be called with the selected time.
+    /// - Returns: The modified SSTimePicker instance.
+    public func onTimeSelection(_ completion: @escaping (Date) -> ()) -> SSTimePicker {
+        let picker = self
+        picker.timePickerManager.timeSelectionCallback = completion
+        return picker
+    }
+    
 }
+

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DateView: View, DatePickerConfigurationDirectAccess {
     
-    //MARK: - Property
-    
+    // MARK: - Properties
+
     @EnvironmentObject var calendarManager: SSDatePickerManager
     var date: Date
     var weekDateInSelectedMonth: Date
@@ -27,16 +27,6 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
         isDayWithinDateRange && isDayWithinWeekMonthAndYear && canSelectDay
     }
     
-    private var canSelectFutureDate: Bool {
-        guard disableFutureDates else { return true }
-        return date <= calendar.startOfDay(for: Date())
-    }
-    
-    private var canSelectPastDate: Bool {
-        guard disablePastDates else { return true }
-        return date >= calendar.startOfDay(for: Date())
-    }
-    
     private var isDayWithinDateRange: Bool {
         guard let minimumDate, let maximumDate else { return true }
         return date >= calendar.startOfDay(for: minimumDate) && date <= maximumDate
@@ -47,7 +37,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     }
     
     private var canSelectDay: Bool {
-        (calendarManager.datasource?.datePicker(canSelectDate: date) ?? true) && canSelectPastDate && canSelectFutureDate
+        calendarManager.canSelectDate(date)
     }
     
     private var isSelected: Bool {
@@ -64,7 +54,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     private var foregroundColor: Color {
         if isDayToday {
-            return isSelected ? todaySelectionFontColor ?? todayColor : todayColor
+            return isSelected ? todaySelectionFontColor : todayColor
         } else if isSelected {
             return selectedDateTextColor
         } else {
@@ -74,7 +64,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     private var backgroundColor: Color {
         if isDayToday && isSelected {
-            return todaySelectionBgColor ?? selectionBackgroundColor
+            return todaySelectionBgColor 
         } else if isSelected || isStartDate || isEndDate {
             return selectionBackgroundColor
         } else if isDayWithinSelectedDateRange {
@@ -137,7 +127,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Sub views
     
-    var lblDate: some View {
+    private var lblDate: some View {
         Text(numericDay)
             .font(dateTextFont)
             .foregroundColor(foregroundColor)
@@ -162,7 +152,7 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Methods
     
-    func updateSelection() {
+    private func updateSelection() {
         guard isDaySelectableAndInRange else { return }
         self.calendarManager.updateDateSelection(date: date)
     }
