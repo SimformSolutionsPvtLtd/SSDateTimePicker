@@ -49,11 +49,10 @@ SSDateTimePicker is a SwiftUI library that simplifies date and time selection in
 
 ### [Swift Package Manager](https://swift.org/package-manager/)
 
-You can install `SSDateTimePicker` using [Swift Package Manager] by:
+You can install `SSDateTimePicker` using Swift Package Manager by:
 
 1. Go to `Xcode` -> `File` -> `Add Package Dependencies...`
 2. Add package URL [https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker][SSDateTimePicker]
-
 
 ### [CocoaPods](http://cocoapods.org)
 
@@ -99,10 +98,10 @@ struct PickerExample: View {
 
 ```swift
  SSDatePicker(showDatePicker: $showDatePicker)
-                .selectedDate(selectedDate)
-                .onDateSelection({ date in
-                    selectedDate = date
-                })
+     .selectedDate(selectedDate)
+     .onDateSelection({ date in
+         selectedDate = date
+     })
 ```
 
 ###### Multiple date selection picker
@@ -238,6 +237,11 @@ Distributed under the MIT license. See [LICENSE] for details.
 
 
 <!-- Reference links -->
+
+[SSDateTimePicker]:            https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker
+
+[Swift Package Manager]:    https://www.swift.org/package-manager
+
 [stargazers]:               https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/stargazers
 
 [Awesome-Mobile-Libraries]: https://github.com/SimformSolutionsPvtLtd/Awesome-Mobile-Libraries
@@ -247,4 +251,5 @@ Distributed under the MIT license. See [LICENSE] for details.
 [Github Issues]:            https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/issues
 
 [Contributing Guide]:       CONTRIBUTING.md
+
 

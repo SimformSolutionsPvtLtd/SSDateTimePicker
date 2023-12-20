@@ -164,8 +164,6 @@ struct PickerExampleView: View {
     
     var multiDatePicker: some View {
         SSDatePicker(showDatePicker: $showMultiDatePicker)
-            .disableDates([Date()])
-            .themeColor(pickerBackgroundColor: .lightGreen, primaryColor: .darkGreen)
             .enableMultipleDateSelection()
             .selectedDates(pickerViewModel.selectedDates)
             .onMultiDateSelection({ dates in

@@ -54,8 +54,8 @@ struct DateView: View, DatePickerConfigurationDirectAccess {
     
     private var foregroundColor: Color {
         if isDayToday {
-            return isSelected ? todaySelectionFontColor : todayColor
-        } else if isSelected {
+            return isSelected && isDaySelectableAndInRange ? todaySelectionFontColor : todayColor
+        } else if isSelected && isDaySelectableAndInRange {
             return selectedDateTextColor
         } else {
             return dateMonthYearTextColor
