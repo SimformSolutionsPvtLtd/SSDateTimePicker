@@ -200,7 +200,6 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
         }
     }
     
-    
     /// Determines if a given date can be selected based on a list of disabled dates.
     /// - Parameters:
     ///   - date: The date to be checked for selectability.

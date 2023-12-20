@@ -13,7 +13,7 @@ public struct SSDateRangePicker: View {
 
     var datePicker: SSDatePicker
     
-    //MARK: - Initializer
+    // MARK: - Initializer
 
     init(_ datePicker: SSDatePicker) {
         self.datePicker = datePicker
@@ -45,7 +45,7 @@ extension SSDateRangePicker {
     ///
     /// - Parameter dateRange: An optional `DateRange` representing the selected date range. Pass `nil` to clear the selection.
     /// - Returns: The modified `SSDateRangePicker` instance.
-    public func selectedDates(_ dateRange: DateRange?) -> SSDateRangePicker {
+    public func selectedDateRange(_ dateRange: DateRange?) -> SSDateRangePicker {
         let picker = self
         picker.datePicker.datePickerManager.startDate = dateRange?.startDate
         picker.datePicker.datePickerManager.endDate = dateRange?.endDate
