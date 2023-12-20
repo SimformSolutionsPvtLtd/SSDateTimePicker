@@ -1,6 +1,34 @@
 # SSDateTimePicker
 
-SSDateTimePicker simplifies date and time selection in your applications, offering a range of features and a customizable UI for both date and time pickers.
+SSDateTimePicker is a SwiftUI library that simplifies date and time selection in your applications, providing a variety of features and a customizable UI for both date and time pickers.
+
+<table>
+    <thead>
+        <tr>
+            <th>Date Selection</th>
+            <th>Multiple Date Selection</th>
+            <th>Date Range Selection</th>
+            <th>Time Picker</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://s.gif" />
+            </td>
+            <td>
+                <img src="https://2.gif" />
+            </td>
+            <td>
+                <img src="https://3.gif" />
+            </td>
+            <td>
+                <img src="https://4.gif" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 
 ## Features!
 * Single Date Selection
@@ -12,15 +40,39 @@ SSDateTimePicker simplifies date and time selection in your applications, offeri
 * Time selection with a clock-style interface
 * Personalize fonts and colors for seamless integration with your app's design.
 
+## Requirements
+
+* iOS 15.0+
+* Xcode 12+
+
+## Installation
+
+### [Swift Package Manager](https://swift.org/package-manager/)
+
+You can install `SSDateTimePicker` using [Swift Package Manager] by:
+
+1. Go to `Xcode` -> `File` -> `Add Package Dependencies...`
+2. Add package URL [https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker][SSDateTimePicker]
+
+
+### [CocoaPods](http://cocoapods.org)
+
+To install `SSDateTimePicker`, simply add the following line to your Podfile:
+
+```swift
+pod 'SSDateTimePicker'
+```
+
+
 ## Usage
 
 ### SSDatePicker
 
 SSDatePicker offers versatile date selection options, including single date, multiple date, and date range selection. Follow this guide to set up the date picker according to your preferences:
 
-1. import `SSDateTimePicker`
-2. Add a bool to control date-time picker presentation state
-3. Add a `SSDatePicker` in your view
+1. import `SSDateTimePicker`.
+2. Add a bool to control date picker presentation state.
+3. Add a `SSDatePicker` in your view.
 
 
 ```swift
@@ -42,7 +94,7 @@ struct PickerExample: View {
 
 ###### Single Date Selection Picker
 
-1. Add `.selectedDate(selectedDate)` modifier to pre-select specific date
+1. Add `.selectedDate(selectedDate)` modifier to pre-select specific date.
 2. Set the callback closure ` .onDateSelection` to get selected date.
 
 ```swift
@@ -59,12 +111,12 @@ struct PickerExample: View {
 4. Set `.onMultiDateSelection` callback to get selected multiple dates.
 
 ```swift
-        SSDatePicker(showDatePicker: $showDatePicker)
-            .enableMultipleDateSelection()
-            .selectedDates(selectedDates)
-            .onMultiDateSelection({ dates in
-                selectedDates = dates
-            })
+SSDatePicker(showDatePicker: $showDatePicker)
+    .enableMultipleDateSelection()
+    .selectedDates(selectedDates)
+    .onMultiDateSelection({ dates in
+         selectedDates = dates
+    })
 ```
 
 ###### Date Range Selection Picker
@@ -74,12 +126,12 @@ struct PickerExample: View {
 2. Sets `.onDateRangeSelection` callback to get selected date range.
 
 ```swift
-        SSDatePicker(showDatePicker: $showDatePicker)
-            .enableDateRangeSelection()
-            .selectedDateRange(selectedDateRange)
-            .onDateRangeSelection({ dateRange in
-                selectedDateRange = dateRange
-            })
+  SSDatePicker(showDatePicker: $showDatePicker)
+      .enableDateRangeSelection()
+      .selectedDateRange(selectedDateRange)
+      .onDateRangeSelection({ dateRange in
+          selectedDateRange = dateRange
+      })
 ```
 
 ### SSTimePicker
@@ -88,7 +140,7 @@ struct PickerExample: View {
 2. Add a bool to control date-time picker presentation state
 3. Add a `SSTimePicker` in your view
 4. Add `.selectedTime(pickerViewModel.selectedTime)` modifier to pre-select specific dates.
-2. Sets `.onDateRangeSelection` callback to get selected date range.
+2. Set `.onTimeSelection` callback to get selected date range.
 
 ```swift
 import SSDateTimePicker
@@ -113,42 +165,86 @@ struct TimePickerExample: View {
 
 ## Configuration Guide
 
-Explore the following modifiers to effortlessly customize the UI of SSDatePicker to suit your preferences.
+Explore the following modifiers to effortlessly customize the UI and behaviour of SSDateTimePicker to suit your preferences.
 
-###### SSDatePicker Modifiers
+### SSDatePicker
 
-- `.themeColor(pickerBackgroundColor: Color, primaryColor: Color)` - Set up the theme color, where the primary color is used for both the selected date's background and buttons.
-- `enableDateRangeSelection()` -  To allow date range selection
-- `enableMultipleDateSelection()` - To allow multiple date selection
-- `selectedDates(_ dates: [Date]?)` - Sets the selected dates for the multi-date picker.
-- `selectedDates(_ dateRange: DateRange?)` - set selected date range for range selection picker
-- `.minimumDate(_ date: Date)` - Sets the minimum selectable date in the date picker.
-- `.maximumDate(_ date: Date)` - Sets the maximum selectable date in the date picker.
-- `.disablePastDate()` - Disables selection of past dates in the date picker.
-- `.disableFutureDate()` - Disables selection of future dates in the date picker.
-- `.currentMonth(_ date: Date)` - The current month displayed in the date picker.
-- `selectedDate(_ date: Date?)` - The selected date in the date picker. Set this property to pre-select a specific date.
-- `disableDates(_ dates: [Date])` - disable specific dates in date picker
-- `.calendar(_ calendar: Calendar)` - Sets the calendar used by the date picker, default is current.
-- `.headerTitleStyle(color: Color?, font: Font?)` - set up header text font and color
-- `.headerDateStyle(color: Color?, font: Font?)` - set up header date text font and color
-- `.weekdayStyle(color: Color?, font: Font?)`  - set up weekday text color and font
+###### Behavioral Modifiers
 
-- `.dateStyle(color: Color?, font: Font?)` - set up date text color and font
-- `.monthStyle(color: Color?, font: Font?)` - set up month text color and font
-- `.selectedMonthStyle(color: Color?, font: Font?)` - change font and color for selected month.
-- `.yearStyle(color: Color?, font: Font?) -> SSDatePicker ` - set up year text color and font
-- `.selectedYearStyle(color: Color?, font: Font?)` -  change font and color for selected year.
-- `.buttonStyle(color: Color?, font: Font?)` - set up font and color for buttons
-- `.currentMonthYearLabelStyle(color: Color?, font: Font?)` - to set Current month year bottom navigation color and font
-- `.selectedDateColor(backgroundColor: Color?, foregroundColor: Color?) ` - chnage selected date foreground color and background color
-- `.todayColor(backgroundColor: Color?, foregroundColor: Color?)` - heighlight todays date using this modifiers, set foreground and background color
-- `.todayDateSelectionColor(backgroundColor: Color?, foregroundColor: Color?)` - Today's date selection state foreground and background color
-- `.pickerBackgroundColor(_ color: Color) ` - PickerView background color
-- `.sepratorLineColor(_ color: Color)` - to change seprator line color
-- `.popupOverlayColor(_ color: Color)` - to change popupoverlay color
+- `.minimumDate(_ date: Date)` - Set the minimum selectable date in the date picker.
+- `.maximumDate(_ date: Date)` - Set the maximum selectable date in the date picker.
+- `.disableDates(_ dates: [Date])` - Block the selection of specific dates.
+- `.disablePastDate()` - Prevent the selection of past dates.
+- `.disableFutureDate()` - Prevent the selection of future dates.
+- `.currentMonth(_ date: Date)` - Set the initial display month in the date picker, providing a specific starting point when the picker is opened. By default it will open current month claendar.
+- `.enableDateRangeSelection()` -  Enable the selection of date range.
+- `.enableMultipleDateSelection()` - Enable the selection of multiple dates.
+- `.selectedDate(_ date: Date?)` - Pre-select a specific date in the date picker.
+- `.selectedDates(_ dates: [Date]?)` - Pre-select a specific dates in the date picker.
+- `.selectedDates(_ dateRange: DateRange?)` - Pre-select a specific date range in the date picker.
+- `.calendar(_ calendar: Calendar)` - Set the calendar used by the date picker.
+
+###### UI Modifiers
+
+- `.themeColor(pickerBackgroundColor: Color, primaryColor: Color)` - Define the overall theme color, where the primary color sets the background of selected dates, buttons and selectected month, year foreground.
+- `.todayColor(backgroundColor: Color?, foregroundColor: Color?)` - Highlight today's date with specific foreground and background colors.
+- `.todayDateSelectionColor(backgroundColor: Color?, foregroundColor: Color?)` - Adjust the foreground and background colors for the today's date selection state.
+- `.headerTitleStyle(color: Color?, font: Font?)` - Customize the font and color of the header text.
+- `.headerDateStyle(color: Color?, font: Font?)` - Customize font and color for header date text.
+- `.weekdayStyle(color: Color?, font: Font?)`  - Adjust the text color and font of weekdays.
+- `.dateStyle(color: Color?, font: Font?)` - Customize color and font for date text.
+- `.monthStyle(color: Color?, font: Font?)` - Modify the font and color for the selected month.
+- `.selectedMonthStyle(color: Color?, font: Font?)` - Customize font and color for selected month.
+- `.yearStyle(color: Color?, font: Font?) -> SSDatePicker ` - Customize the text color and font for the year text.
+- `.selectedYearStyle(color: Color?, font: Font?)` - Adjust the font and color for the selected year.
+- `.buttonStyle(color: Color?, font: Font?)` -  Set the font and color for the buttons.
+- `.currentMonthYearLabelStyle(color: Color?, font: Font?)` -  Customize the color and font for the label displaying the current month and year in the bottom navigation.
+- `.selectedDateColor(backgroundColor: Color?, foregroundColor: Color?) ` - Change the foreground and background color for selected dates.
+- `.pickerBackgroundColor(_ color: Color) ` - Define the background color of the entire picker view.
+- `.sepratorLineColor(_ color: Color)` - Change the color of the separator line within the picker.
+- `.popupOverlayColor(_ color: Color)` - Customize the color of the popup overlay,
+
+### SSTimePicker
+
+- `themeColor(pickerBackgroundColor: Color, primaryColor: Color, timeLabelBackgroundColor: Color)` - Apply a custom color scheme to the time picker, primary color is designated for the clock hand and the foreground of the time label.
+- `selectedTime(_ time: Time?)` - Set the initially selected time for the time picker.
+- `headerTitleStyle(color: Color?, font: Font?)` - Customize the style of the header title.
+- `timeLabelStyle(color: Color?, font: Font?)` - Customize time label(HH:MM) font and foreground color.
+- `timeFormatStyle(color: Color?, font: Font?)` - Modify Time format(AM/PM) color and font.
+- `selectedTimeFormatStyle(color: Color?, font: Font?)` - Customize selected time format(AM/PM) style.
+- `clockNumberStyle(color: Color?, font: Font?)` - Customize the style of the clock numbers.
+- `buttonStyle(color: Color?, font: Font?)` - Customize buttons font and foreground color.
+
+## Find this samples useful? :heart:
+
+Support it by joining [stargazers] :star: for this repository.
+
+## How to Contribute :handshake:
+
+Whether you're helping us fix bugs, improve the docs, or a feature request, we'd love to have you! :muscle: \
+Check out our __[Contributing Guide]__ for ideas on contributing.
+
+## Bugs and Feedback
+
+For bugs, feature feature requests, and discussion use [GitHub Issues].
+
+## Other Mobile Libraries
+
+Check out our other libraries [Awesome-Mobile-Libraries].
+
+## License
+
+Distributed under the MIT license. See [LICENSE] for details.
 
 
+<!-- Reference links -->
+[stargazers]:               https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/stargazers
 
+[Awesome-Mobile-Libraries]: https://github.com/SimformSolutionsPvtLtd/Awesome-Mobile-Libraries
 
+[license]:                  LICENSE
+
+[Github Issues]:            https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/issues
+
+[Contributing Guide]:       CONTRIBUTING.md
 

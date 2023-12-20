@@ -260,7 +260,7 @@ extension SSTimePicker {
         return picker
     }
     
-    /// Customize the style of the time format.
+    /// Customize the style of the time format(AM/PM).
     /// - Parameters:
     ///   - color: Text color of the time format.
     ///   - font: Font of the time format.
