@@ -23,21 +23,13 @@ struct PickerExampleView: View {
     
     //MARK: - Body
     var body: some View {
-        dateTimePickerExampleView
-            .fullScreenCover(isPresented: $showDatePicker) {
-                datePicker
-            }
-            .fullScreenCover(isPresented: $showDateRangePicker, content: {
-                dateRangePicker
-            })
-            .fullScreenCover(isPresented: $showMultiDatePicker, content: {
-                multiDatePicker
-            })
-            .fullScreenCover(isPresented: $showTimePicker) {
-                // Time Picker
-                timePicker
-                    .background(ClearBackgroundView())
-            }
+        ZStack {
+            dateTimePickerExampleView
+            datePicker
+            multiDatePicker
+            dateRangePicker
+            timePicker
+        }
         
     }
     
@@ -100,7 +92,9 @@ struct PickerExampleView: View {
     
     var btnSelectDateRange: some View {
         Button {
-            showDateRangePicker.toggle()
+            withAnimation {
+                showDateRangePicker.toggle()
+            }
         } label: {
             Text(LocalizedString.selectDateRange)
                 .themeButton()
@@ -120,7 +114,9 @@ struct PickerExampleView: View {
     
     var btnTimePicker: some View {
         Button {
-            showTimePicker.toggle()
+            withAnimation {
+                showTimePicker.toggle()
+            }
         } label: {
             Text(LocalizedString.selectTime)
                 .themeButton()
@@ -129,7 +125,9 @@ struct PickerExampleView: View {
     
     var btnSelectSingleDate: some View {
         Button {
-            showDatePicker.toggle()
+            withAnimation {
+                showDatePicker.toggle()
+            }
         } label: {
             Text(LocalizedString.selectSingleDate)
                 .themeButton()
@@ -138,7 +136,9 @@ struct PickerExampleView: View {
     
     var btnSelectMultipleDates: some View {
         Button {
-            showMultiDatePicker.toggle()
+            withAnimation {
+                showMultiDatePicker.toggle()
+            }
         } label: {
             Text(LocalizedString.selectMultipleDate)
                 .themeButton()
@@ -151,35 +151,29 @@ struct PickerExampleView: View {
             .onDateSelection({ date in
                 self.pickerViewModel.selectedDate = date
             })
-            .background(ClearBackgroundView())
     }
     
     var dateRangePicker: some View {
         SSDatePicker(showDatePicker: $showDateRangePicker)
             .enableDateRangeSelection()
-            .selectedDates(pickerViewModel.selectedDateRange)
+            .selectedDateRange(pickerViewModel.selectedDateRange)
             .onDateRangeSelection({ dateRange in
                 pickerViewModel.selectedDateRange = dateRange
             })
-            .background(ClearBackgroundView())
     }
     
     var multiDatePicker: some View {
         SSDatePicker(showDatePicker: $showMultiDatePicker)
-            .disableDates([Date()])
-            .themeColor(pickerBackgroundColor: .lightGreen, primaryColor: .darkGreen)
             .enableMultipleDateSelection()
             .selectedDates(pickerViewModel.selectedDates)
             .onMultiDateSelection({ dates in
                 pickerViewModel.selectedDates = dates
             })
-            .background(ClearBackgroundView())
     }
     
     var timePicker: some View {
         SSTimePicker(showTimePicker: $showTimePicker)
             .selectedTime(pickerViewModel.selectedTime)
-            .buttonStyle(color: .darkGreen)
             .onTimeSelection { time in
                 pickerViewModel.selectedTime = time
             }

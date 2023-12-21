@@ -43,17 +43,19 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     public var body: some View {
         ZStack(alignment: .center) {
-            popupOverlayColor
-                .ignoresSafeArea()
-                .onTapGesture {
-                    actionCancel()
-                }
-            calenderContainerView
-                .background(pickerBackgroundColor)
-                .cornerRadius(pickerViewRadius)
-                .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
-                .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
-                .compositingGroup()
+            if showDatePicker {
+                popupOverlayColor
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        actionCancel()
+                    }
+                calenderContainerView
+                    .background(pickerBackgroundColor)
+                    .cornerRadius(pickerViewRadius)
+                    .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
+                    .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
+                    .compositingGroup()
+            }
         }
         .environmentObject(datePickerManager)
     }

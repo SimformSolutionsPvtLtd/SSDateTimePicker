@@ -33,17 +33,19 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     public var body: some View {
         ZStack(alignment: .center) {
-            popupOverlayColor
-                .ignoresSafeArea()
-                .onTapGesture {
-                    actionCancel()
-                }
-            timePickerSubview
-                .background(pickerBackgroundColor)
-                .cornerRadius(pickerViewRadius)
-                .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
-                .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
-                .compositingGroup()
+            if showTimePicker {
+                popupOverlayColor
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        actionCancel()
+                    }
+                timePickerSubview
+                    .background(pickerBackgroundColor)
+                    .cornerRadius(pickerViewRadius)
+                    .padding(.leading, SSPickerConstants.pickerLeadingTrailing)
+                    .padding(.trailing, SSPickerConstants.pickerLeadingTrailing)
+                    .compositingGroup()
+            }
         }
         .onChange(of: showTimePicker) { newValue in
             if showTimePicker {
@@ -211,7 +213,7 @@ extension SSTimePicker {
     /// Set the selected time for the time picker.
     /// - Parameter time: The selected time.
     /// - Returns: The modified SSTimePicker instance.
-    public func selectedTime(_ time: Date?) -> SSTimePicker {
+    public func selectedTime(_ time: Time?) -> SSTimePicker {
         let picker = self
         picker.timePickerManager.selectedTime = time
         return picker
@@ -258,7 +260,7 @@ extension SSTimePicker {
         return picker
     }
     
-    /// Customize the style of the time format.
+    /// Customize the style of the time format(AM/PM).
     /// - Parameters:
     ///   - color: Text color of the time format.
     ///   - font: Font of the time format.
