@@ -10,25 +10,25 @@ SSDateTimePicker is a SwiftUI library that simplifies date and time selection in
 <table>
     <thead>
         <tr>
-            <th>Date Selection</th>
-            <th>Multiple Date Selection</th>
-            <th>Date Range Selection</th>
             <th>Time Picker</th>
+            <th>Date Picker</th>
+            <th>Multiple Date Picker</th>
+            <th>Date Range Picker</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
-                <img src="https://s.gif" />
+                <img  width=200px src="https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/assets/151725480/5838d32f-5126-4009-9d01-88fbd2afa482" />
             </td>
             <td>
-                <img src="https://2.gif" />
+                <img width=200px src="https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/assets/151725480/0cbae52b-4876-4e3b-b2a5-bfdd32e73618" />
             </td>
             <td>
-                <img src="https://3.gif" />
+                <img  width=200px src="https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/assets/151725480/b4b0d3a4-aade-4eaf-aec4-aed15b787ea7" />
             </td>
             <td>
-                <img src="https://4.gif" />
+                <img  width=200px src="https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/assets/151725480/2c4ed25c-dd70-4b0e-b6ac-6ad375b24188" />
             </td>
         </tr>
     </tbody>
@@ -256,5 +256,6 @@ Distributed under the MIT license. See [LICENSE] for details.
 [Github Issues]:            https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker/issues
 
 [Contributing Guide]:       CONTRIBUTING.md
+
 
 
