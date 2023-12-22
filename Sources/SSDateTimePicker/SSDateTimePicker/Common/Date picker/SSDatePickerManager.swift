@@ -109,12 +109,29 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
             if selectedDates == nil  {
                 self.selectedDates = []
             }
-            self.selectedDates?.append(date)
+            updateMultipleSelection(date: date)
         } else if configuration.allowRangeSelection {
             self.updateRangeSelection(date: date)
         } else {
             self.selectedDate = date
         }
+    }
+    
+    func updateMultipleSelection(date: Date) {
+        // Find the index of the selected date in the array, if it exists
+        if let existingIndex = selectedDates?.firstIndex(where: { selectedDate in
+            calendar.isDate(date, equalTo: selectedDate, toGranularities: [.day, .month, .year])
+        }) {
+            // If the date is already selected, remove it to support deselection
+            selectedDates?.remove(at: existingIndex)
+        } else {
+            // If the date is not selected, add it to the selected dates array
+            selectedDates?.append(date)
+        }
+    }
+    
+    func handleMultiDateDeselection(date: Date) {
+        
     }
     
     /// Updates the range selection based on the chosen date.
@@ -210,7 +227,7 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
         }
         
         return !disableDates.contains { disableDate in
-            configuration.calendar.isDate(date, equalTo: disableDate, toGranularities: [.day, .month, .year])
+            calendar.isDate(date, equalTo: disableDate, toGranularities: [.day, .month, .year])
         }
     }
     

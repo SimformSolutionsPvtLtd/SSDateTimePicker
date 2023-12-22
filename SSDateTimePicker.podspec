@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
 
   spec.platform     = :ios, "15.0"
   spec.source       = { :git => "https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker.git", :tag => spec.version.to_s }
-  spec.source_files  = "Sources", "Sources/SSDateTimePicker/SSDateTimePicker/**/*.{swift}"
+  spec.source_files  = "Sources", "Sources/SSDateTimePicker/SSDateTimePicker/**/*.{swift, xcassets}"
   spec.swift_versions = "5.9"
 
 end
