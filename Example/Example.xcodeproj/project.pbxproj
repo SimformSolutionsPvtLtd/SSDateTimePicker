@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		650720D32B194D2100AC1FB6 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650720D22B194D2100AC1FB6 /* PickerViewModel.swift */; };
-		6520E7C42B2D9BDF008D7329 /* SSDateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */; };
-		6520E7C52B2D9BDF008D7329 /* SSDateTimePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6549D9AC2B2C4B4B0089EBB1 /* ThemeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549D9AB2B2C4B4B0089EBB1 /* ThemeCard.swift */; };
 		6549D9B02B2C4DBA0089EBB1 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549D9AF2B2C4DBA0089EBB1 /* View+Extension.swift */; };
+		658A5CE12B3523B50044930D /* SSDateTimePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658A5CDC2B3523490044930D /* SSDateTimePicker.framework */; };
+		658A5CE22B3523B50044930D /* SSDateTimePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 658A5CDC2B3523490044930D /* SSDateTimePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65AB6B0B2B283131009EA7EC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AB6B0D2B283131009EA7EC /* Localizable.strings */; };
 		65AB6B102B2839F9009EA7EC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B0F2B2839F9009EA7EC /* Utils.swift */; };
 		65AB6B122B283AED009EA7EC /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB6B112B283AED009EA7EC /* LocalizedString.swift */; };
@@ -23,16 +23,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		65AB6B7D2B289E49009EA7EC /* PBXContainerItemProxy */ = {
+		658A5CDB2B3523490044930D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */;
+			containerPortal = 658A5CD62B3523490044930D /* SSDateTimePicker.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65E0580B2B0E2B260049A7BA;
 			remoteInfo = SSDateTimePicker;
 		};
-		65AB6B7F2B289E49009EA7EC /* PBXContainerItemProxy */ = {
+		658A5CDD2B3523490044930D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */;
+			containerPortal = 658A5CD62B3523490044930D /* SSDateTimePicker.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65E058152B0E2B260049A7BA;
 			remoteInfo = SSDateTimePickerTests;
@@ -46,7 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6520E7C52B2D9BDF008D7329 /* SSDateTimePicker.framework in Embed Frameworks */,
+				658A5CE22B3523B50044930D /* SSDateTimePicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,11 +57,11 @@
 		650720D22B194D2100AC1FB6 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		6549D9AB2B2C4B4B0089EBB1 /* ThemeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCard.swift; sourceTree = "<group>"; };
 		6549D9AF2B2C4DBA0089EBB1 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		658A5CD62B3523490044930D /* SSDateTimePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSDateTimePicker.xcodeproj; path = ../Sources/SSDateTimePicker/SSDateTimePicker.xcodeproj; sourceTree = "<group>"; };
 		65AB6B0C2B283131009EA7EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		65AB6B0F2B2839F9009EA7EC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		65AB6B112B283AED009EA7EC /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		65AB6B142B285309009EA7EC /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSDateTimePicker.xcodeproj; path = ../SSDateTimePicker/SSDateTimePicker.xcodeproj; sourceTree = "<group>"; };
 		65E0584A2B0E3E850049A7BA /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0584D2B0E3E850049A7BA /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		65E0584F2B0E3E850049A7BA /* PickerExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerExampleView.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6520E7C42B2D9BDF008D7329 /* SSDateTimePicker.framework in Frameworks */,
+				658A5CE12B3523B50044930D /* SSDateTimePicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +87,22 @@
 				650720D22B194D2100AC1FB6 /* PickerViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		658A5CD72B3523490044930D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				658A5CDC2B3523490044930D /* SSDateTimePicker.framework */,
+				658A5CDE2B3523490044930D /* SSDateTimePickerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		658A5CDF2B3523590044930D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		65AB6B0E2B28393B009EA7EC /* View */ = {
@@ -116,23 +132,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		65AB6B792B289E49009EA7EC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */,
-				65AB6B802B289E49009EA7EC /* SSDateTimePickerTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		65E058412B0E3E850049A7BA = {
 			isa = PBXGroup;
 			children = (
-				65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */,
+				658A5CD62B3523490044930D /* SSDateTimePicker.xcodeproj */,
 				65AB6B0D2B283131009EA7EC /* Localizable.strings */,
 				65E0584C2B0E3E850049A7BA /* Example */,
 				65E0584B2B0E3E850049A7BA /* Products */,
-				65E058762B0E3FC30049A7BA /* Frameworks */,
+				658A5CDF2B3523590044930D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,13 +171,6 @@
 				65E058542B0E3E860049A7BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		65E058762B0E3FC30049A7BA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,8 +223,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 65AB6B792B289E49009EA7EC /* Products */;
-					ProjectRef = 65AB6B782B289E49009EA7EC /* SSDateTimePicker.xcodeproj */;
+					ProductGroup = 658A5CD72B3523490044930D /* Products */;
+					ProjectRef = 658A5CD62B3523490044930D /* SSDateTimePicker.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -235,18 +235,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		65AB6B7E2B289E49009EA7EC /* SSDateTimePicker.framework */ = {
+		658A5CDC2B3523490044930D /* SSDateTimePicker.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SSDateTimePicker.framework;
-			remoteRef = 65AB6B7D2B289E49009EA7EC /* PBXContainerItemProxy */;
+			remoteRef = 658A5CDB2B3523490044930D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65AB6B802B289E49009EA7EC /* SSDateTimePickerTests.xctest */ = {
+		658A5CDE2B3523490044930D /* SSDateTimePickerTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = SSDateTimePickerTests.xctest;
-			remoteRef = 65AB6B7F2B289E49009EA7EC /* PBXContainerItemProxy */;
+			remoteRef = 658A5CDD2B3523490044930D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -416,6 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
+				DEVELOPMENT_TEAM = K7XJG666ZW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -448,6 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
+				DEVELOPMENT_TEAM = K7XJG666ZW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
