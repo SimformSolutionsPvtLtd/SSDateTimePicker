@@ -74,6 +74,7 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
             currentMonth = currentMonth.getNextMonth(calendar) ?? currentMonth
         case .month:
             currentMonth = currentMonth.getNextYear(calendar) ?? currentMonth
+            updateYearSelection(date: currentMonth)
         case .year:
             guard let year = self.yearRange.last else { return }
             self.updateYearRange(year: year+12)
@@ -87,12 +88,18 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
             currentMonth = currentMonth.getPreviousMonth(calendar) ?? currentMonth
         case .month:
             currentMonth = currentMonth.getPreviousYear(calendar) ?? currentMonth
+            updateYearSelection(date: currentMonth)
         case .year:
             guard let year = self.yearRange.first else { return }
             self.updateYearRange(year: year-1)
         }
     }
-    
+
+    /// Updates the year selection based on the chosen year.
+    func updateYearSelection(date: Date) {
+        updateYearSelection(year: date.year(calendar))
+    }
+
     /// Checks if a given month is currently selected in the date picker.
     func isSelected(_ month: String) -> Bool {
         month.lowercased() == (selectedDate ?? currentMonth).fullMonth.lowercased()
