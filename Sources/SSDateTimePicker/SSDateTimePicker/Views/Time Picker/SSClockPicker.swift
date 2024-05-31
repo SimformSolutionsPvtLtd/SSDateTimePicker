@@ -130,6 +130,7 @@ extension SSClockPicker {
             // updating angle for hour if the angle is in between hours
             let roundValue = Int(SSPickerConstants.clockNumberRotationDegree) * Int(round(angle/SSPickerConstants.clockNumberRotationDegree))
             timePickerManager.angle = Double(roundValue)
+            updateHour()
         } else {
             // updating minutes
             let progress = angle / threeSixtyDegree
@@ -139,9 +140,7 @@ extension SSClockPicker {
     
     private func onEnd(value: DragGesture.Value) {
         if !timePickerManager.isMinuteClock {
-            // updating hour value
-            let hour = Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree)
-            timePickerManager.hourSelected = (hour == 0 ? 12 : hour).formattedTime
+            updateHour()
             // updating picker to minutes
             withAnimation {
                 timePickerManager.angle = Double((Int(timePickerManager.minutesSelected) ?? 1) * Int(SSPickerConstants.minuteRotationDegree))
@@ -149,7 +148,13 @@ extension SSClockPicker {
             }
         }
     }
-    
+
+    // updating hour value
+    private func updateHour() {
+        let hour = Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree)
+        timePickerManager.hourSelected = (hour == 0 ? 12 : hour).formattedTime
+    }
+
 }
 
 
