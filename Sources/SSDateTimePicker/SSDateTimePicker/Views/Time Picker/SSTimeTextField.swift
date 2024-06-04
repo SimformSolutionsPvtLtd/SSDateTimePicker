@@ -61,7 +61,7 @@ struct SSTimeTextField: View, TimePickerConfigurationDirectAccess {
             .fixedSize()
             .cornerRadius(SSPickerConstants.timeFieldCornerRadius)
             .onChange(of: time) { [time] newTime in
-                if Int(newTime) ?? 0 > (isHourField ? 12 : 59) {
+                if Int(newTime) ?? 00 > (isHourField ? 12 : 59) {
                     self.time = time
                 }
                 if self.time.count > charLimit {

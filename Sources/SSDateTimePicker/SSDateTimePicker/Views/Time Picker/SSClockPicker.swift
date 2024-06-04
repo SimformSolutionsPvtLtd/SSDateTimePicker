@@ -102,7 +102,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
     private func actionClockNumberSelection(number: Int) {
         if timePickerManager.isMinuteClock {
             let minute = number * 5
-            timePickerManager.minutesSelected = (minute == 60 ? 0 : minute).formattedTime
+            timePickerManager.minutesSelected = (minute == 60 ? 00 : minute).formattedTime
             timePickerManager.updateCurrentMinuteAngle()
         } else {
             timePickerManager.hourSelected = number.formattedTime
@@ -143,7 +143,7 @@ extension SSClockPicker {
             updateHour()
             // updating picker to minutes
             withAnimation {
-                timePickerManager.angle = Double((Int(timePickerManager.minutesSelected) ?? 1) * Int(SSPickerConstants.minuteRotationDegree))
+                timePickerManager.angle = Double((Int(timePickerManager.minutesSelected) ?? 00) * Int(SSPickerConstants.minuteRotationDegree))
                 timePickerManager.isMinuteClock = true
             }
         }
