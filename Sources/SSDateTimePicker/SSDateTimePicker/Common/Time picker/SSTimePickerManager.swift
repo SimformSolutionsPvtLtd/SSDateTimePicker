@@ -60,16 +60,20 @@ final class SSTimePickerManager: ObservableObject {
     
     /// Updates the angle based on the current selected hour.
     func updateCurrentHourAngle() {
-        angle = Double((Int(hourSelected) ?? 12) * 30)
+        let hour = updateWithDefaultHourIfEmpty()
+        angle = Double(hour * 30)
     }
     
     /// Updates the angle based on the current selected minute.
     func updateCurrentMinuteAngle() {
-        angle = Double((Int(minutesSelected) ?? 00) * 6)
+        let minute = updateWithDefaultMinuteIfEmpty()
+        angle = Double(minute * 6)
     }
     
     /// Updates the selected time based on the current hour, minute, and time format.
     func updateSelectedTime() {
+        _ = updateWithDefaultMinuteIfEmpty()
+        _ = updateWithDefaultHourIfEmpty()
         let format = DateFormatter.configure(with: DateFormat.twentyFourHourFormat)
         // get hours for 24-hrs format
         let hour = (Int(hourSelected) ?? 12)
@@ -79,7 +83,25 @@ final class SSTimePickerManager: ObservableObject {
         handleCallback()
         isMinuteClock = false
     }
-    
+
+    // In case if textfield is empty set default minute
+    func updateWithDefaultMinuteIfEmpty() -> Int {
+        let minute = Int(minutesSelected) ?? 00
+        if minutesSelected == "" {
+            minutesSelected = "00"
+        }
+        return minute
+    }
+
+    // In case if textfield is empty set default hour
+    func updateWithDefaultHourIfEmpty() -> Int {
+        let hour = Int(hourSelected) ?? 12
+        if hourSelected == "" {
+            hourSelected = "12"
+        }
+        return hour
+    }
+
     /// Sets up the initial time, angle, and clock view based on the selected time.
     func setUpTimeAndAngle() {
         let calender = Calendar.current

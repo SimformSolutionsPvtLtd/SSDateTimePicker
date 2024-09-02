@@ -102,7 +102,7 @@ struct SSClockPicker: View, TimePickerConfigurationDirectAccess {
     private func actionClockNumberSelection(number: Int) {
         if timePickerManager.isMinuteClock {
             let minute = number * 5
-            timePickerManager.minutesSelected = (minute == 60 ? 0 : minute).formattedTime
+            timePickerManager.minutesSelected = (minute == 60 ? 00 : minute).formattedTime
             timePickerManager.updateCurrentMinuteAngle()
         } else {
             timePickerManager.hourSelected = number.formattedTime
@@ -130,6 +130,7 @@ extension SSClockPicker {
             // updating angle for hour if the angle is in between hours
             let roundValue = Int(SSPickerConstants.clockNumberRotationDegree) * Int(round(angle/SSPickerConstants.clockNumberRotationDegree))
             timePickerManager.angle = Double(roundValue)
+            updateHour()
         } else {
             // updating minutes
             let progress = angle / threeSixtyDegree
@@ -139,17 +140,21 @@ extension SSClockPicker {
     
     private func onEnd(value: DragGesture.Value) {
         if !timePickerManager.isMinuteClock {
-            // updating hour value
-            let hour = Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree)
-            timePickerManager.hourSelected = (hour == 0 ? 12 : hour).formattedTime
+            updateHour()
             // updating picker to minutes
             withAnimation {
-                timePickerManager.angle = Double((Int(timePickerManager.minutesSelected) ?? 1) * Int(SSPickerConstants.minuteRotationDegree))
+                timePickerManager.angle = Double((Int(timePickerManager.minutesSelected) ?? 00) * Int(SSPickerConstants.minuteRotationDegree))
                 timePickerManager.isMinuteClock = true
             }
         }
     }
-    
+
+    // updating hour value
+    private func updateHour() {
+        let hour = Int(timePickerManager.angle / SSPickerConstants.clockNumberRotationDegree)
+        timePickerManager.hourSelected = (hour == 0 ? 12 : hour).formattedTime
+    }
+
 }
 
 
