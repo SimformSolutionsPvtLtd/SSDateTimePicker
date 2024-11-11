@@ -55,6 +55,8 @@ struct PickerExampleView: View {
                 }
             }
         }
+        .background(Color.white)
+        .foregroundStyle(.black)
     }
     
     var singleDateSelectionView: some View {
