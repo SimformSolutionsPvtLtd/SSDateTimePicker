@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "SSDateTimePicker"
-  spec.version      = "0.0.1"
+  spec.version      = "1.0.0"
   spec.summary      = "Date and time selection picker."
   spec.description  = "SSDateTimePicker offers versatile date and time selection options, including single date, multiple date, and date range selection."
   spec.homepage     = "https://github.com/SimformSolutionsPvtLtd/SSDateTimePicker.git"
