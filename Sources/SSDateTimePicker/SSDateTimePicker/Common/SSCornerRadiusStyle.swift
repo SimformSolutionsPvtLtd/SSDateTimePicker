@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct CornerRadiusStyle: ViewModifier {
+struct SSCornerRadiusStyle: ViewModifier {
     
     // MARK: - Properties
 
@@ -19,12 +19,12 @@ struct CornerRadiusStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
+            .clipShape(SSCornerRadiusShape(radius: radius, corners: corners))
     }
     
 }
 
-struct CornerRadiusShape: Shape {
+struct SSCornerRadiusShape: Shape {
     
     //MARK: - Property
     

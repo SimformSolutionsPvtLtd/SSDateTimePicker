@@ -66,9 +66,9 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             case .date:
                 dateSectionView
             case .month:
-                MonthSelectionView()
+                SSMonthSelectionView()
             case .year:
-                YearSelectionView(currentView: $currentView)
+                SSYearSelectionView(currentView: $currentView)
             }
         }
     }
@@ -101,7 +101,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     private var lblSelectedDate: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
-            Text(LocalizedString.selectDate)
+            Text(SSLocalizedString.selectDate)
                 .font(headerTitleFont)
                 .foregroundColor(headerTitleColor)
             Text(datePickerManager.selectedDate?.formatedString(headerDateFormat) ?? datePickerManager.currentMonth.monthYear)
@@ -125,7 +125,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     private var datesView: some View {
         VStack(spacing: SSPickerConstants.verticleSpacingDates) {
             ForEach(weeks, id: \.self) { week in
-                WeekDatesView(week: week)
+                SSWeekDatesView(week: week)
             }
         }
     }
@@ -172,7 +172,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
         Button {
             self.datePickerManager.actionPrev(for: currentView)
         } label: {
-            self.imageNextPrev(ImageConstant.chevronLeft)
+            self.imageNextPrev(SSImageConstant.chevronLeft)
         }
     }
     
@@ -180,7 +180,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
         Button {
             self.datePickerManager.actionNext(for: currentView)
         } label: {
-            self.imageNextPrev(ImageConstant.chevronRight)
+            self.imageNextPrev(SSImageConstant.chevronRight)
         }
     }
     
@@ -204,7 +204,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
                 self.actionCancel()
             }
         } label: {
-            Text(LocalizedString.cancel)
+            Text(SSLocalizedString.cancel)
                 .themeButton(buttonsForegroundColor, buttonsFont)
         }
     }
@@ -215,7 +215,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
                 self.actionOk()
             }
         } label: {
-            Text(LocalizedString.ok)
+            Text(SSLocalizedString.ok)
                 .themeButton(buttonsForegroundColor, buttonsFont)
         }
     }
