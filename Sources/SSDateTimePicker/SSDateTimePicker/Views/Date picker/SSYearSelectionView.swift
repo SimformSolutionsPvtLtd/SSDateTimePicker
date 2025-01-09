@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct YearSelectionView: View, DatePickerConfigurationDirectAccess {
+public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
     
     // MARK: - Properties
 

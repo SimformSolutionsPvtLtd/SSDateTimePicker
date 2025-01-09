@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateView: View, DatePickerConfigurationDirectAccess {
+struct SSDateView: View, DatePickerConfigurationDirectAccess {
     
     // MARK: - Properties
 

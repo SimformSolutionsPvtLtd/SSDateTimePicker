@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeekDatesView: View, DatePickerConfigurationDirectAccess {
+struct SSWeekDatesView: View, DatePickerConfigurationDirectAccess {
     
     // MARK: - Properties
 
@@ -43,7 +43,7 @@ struct WeekDatesView: View, DatePickerConfigurationDirectAccess {
     private var datesForWeek: some View {
         HStack(spacing: SSPickerConstants.horizontalSpacingDates) {
             ForEach(dates, id: \.self) { date in
-                DateView(date: date, weekDateInSelectedMonth: week)
+                SSDateView(date: date, weekDateInSelectedMonth: week)
             }
         }
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ThemeButtonModifier: ViewModifier {
+struct SSThemeButtonModifier: ViewModifier {
   
     var textColor: Color
     var font: Font
