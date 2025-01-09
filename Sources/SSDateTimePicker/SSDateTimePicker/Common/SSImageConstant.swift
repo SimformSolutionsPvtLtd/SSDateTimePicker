@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageConstant {
+struct SSImageConstant {
     
     static let chevronRight = "chevron.right"
     static let chevronLeft = "chevron.left"

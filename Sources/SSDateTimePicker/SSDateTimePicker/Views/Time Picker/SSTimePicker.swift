@@ -74,7 +74,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
     
     private var lblSelectedDate: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
-            Text(LocalizedString.selectTime)
+            Text(SSLocalizedString.selectTime)
                 .font(headerTitleFont)
                 .foregroundColor(headerTitleColor)
             textFieldHourMinutes
@@ -103,7 +103,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
             ToolbarItem(placement: .keyboard) {
                 HStack {
                     Spacer()
-                    Button(LocalizedString.done) {
+                    Button(SSLocalizedString.done) {
                         actionDone()
                     }
                 }
@@ -124,7 +124,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
                 timePickerManager.selectedTimeFromat = .am
             }
         } label: {
-            labelTimeFormat(LocalizedString.am, isSelected: timePickerManager.selectedTimeFromat == .am)
+            labelTimeFormat(SSLocalizedString.am, isSelected: timePickerManager.selectedTimeFromat == .am)
         }
     }
     
@@ -134,7 +134,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
                 timePickerManager.selectedTimeFromat = .pm
             }
         } label: {
-            labelTimeFormat(LocalizedString.pm, isSelected: timePickerManager.selectedTimeFromat == .pm)
+            labelTimeFormat(SSLocalizedString.pm, isSelected: timePickerManager.selectedTimeFromat == .pm)
         }
     }
     
@@ -152,7 +152,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
                 self.actionCancel()
             }
         } label: {
-            Text(LocalizedString.cancel)
+            Text(SSLocalizedString.cancel)
                 .themeButton(buttonsForegroundColor, buttonFont)
         }
     }
@@ -163,7 +163,7 @@ public struct SSTimePicker: View, TimePickerConfigurationDirectAccess {
                 self.actionOk()
             }
         } label: {
-            Text(LocalizedString.ok)
+            Text(SSLocalizedString.ok)
                 .themeButton(buttonsForegroundColor, buttonFont)
         }
     }
